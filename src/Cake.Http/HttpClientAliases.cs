@@ -8,7 +8,7 @@ namespace Cake.Http
 {
     /// <summary>
     /// <para>
-    /// Contains functionality for working with the HTTP operations such as GET, PUT, POST, DELETE, etc.
+    /// Contains functionality for working with HTTP operations such as GET, PUT, POST, DELETE, PATCH, etc.
     /// </para>
     /// </summary>
     [CakeAliasCategory("Http")]

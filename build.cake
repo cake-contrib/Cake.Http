@@ -89,7 +89,7 @@ Task("Patch-Assembly-Info")
         Version = version,
         FileVersion = version,
         InformationalVersion = semVersion,
-        Copyright = "Copyright (c) Cake Contributions Organization 2016"
+        Copyright = "Copyright (c) Louis Fischer 2017"
     });
 });
 
