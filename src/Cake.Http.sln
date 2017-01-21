@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C827C1A6-94DB-4230-B6C9-D40B0350DEAE}"
+	ProjectSection(SolutionItems) = preProject
+		..\appveyor.yml = ..\appveyor.yml
+		..\build.cake = ..\build.cake
+		..\build.ps1 = ..\build.ps1
+		..\nuspec\Cake.Http.nuspec = ..\nuspec\Cake.Http.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meta", "Meta", "{3FBC45E7-8C75-4B59-BC6D-CB474107ECBD}"
+	ProjectSection(SolutionItems) = preProject
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+		..\ReleaseNotes.md = ..\ReleaseNotes.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Http", "Cake.Http\Cake.Http.csproj", "{CCB786A8-703E-4E0B-B224-3E2C8FAB95D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Http.Tests", "Cake.Http.Tests\Cake.Http.Tests.csproj", "{F2383D73-43AE-4C47-85E8-2BB34D5B6371}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCB786A8-703E-4E0B-B224-3E2C8FAB95D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB786A8-703E-4E0B-B224-3E2C8FAB95D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB786A8-703E-4E0B-B224-3E2C8FAB95D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB786A8-703E-4E0B-B224-3E2C8FAB95D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2383D73-43AE-4C47-85E8-2BB34D5B6371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2383D73-43AE-4C47-85E8-2BB34D5B6371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2383D73-43AE-4C47-85E8-2BB34D5B6371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2383D73-43AE-4C47-85E8-2BB34D5B6371}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

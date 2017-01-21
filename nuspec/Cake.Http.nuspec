@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+      <id>Cake.Http</id>
+      <version>0.0.0</version>
+      <authors>louisfischer</authors>
+      <owners>louisfischer</owners>
+      <title>Cake.Http</title>
+      <description>HttpClient addin for cake build.</description>
+      <summary>HttpClient addin for cake build.</summary>
+      <licenseUrl>https://github.com/louisfischer/Cake.Http/blob/master/LICENSE</licenseUrl>
+      <projectUrl>https://github.com/louisfischer/Cake.Http</projectUrl>
+      <iconUrl>https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png</iconUrl>
+      <requireLicenseAcceptance>false</requireLicenseAcceptance>
+      <copyright>Copyright (c) Louis Fischer 2017</copyright>
+      <releaseNotes></releaseNotes>
+      <tags>cake script build httpclient web</tags>
+       <dependencies>
+           <dependency id="Cake.Core" version="0.17.0" />
+       </dependencies>
+   </metadata>
+   <files>
+      <file src="Cake.Http.dll" target="lib/net45" />
+      <file src="Cake.Http.xml" target="lib/net45" />
+      <file src="LICENSE" />
+   </files>
+</package>
