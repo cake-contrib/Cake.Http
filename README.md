@@ -5,9 +5,7 @@ Release notes can be found [here](ReleaseNotes.md).
 
 ## Build Status
 Continuous Integration is provided by [AppVeyor](https://www.appveyor.com).  
-The build can be found at [https://ci.appveyor.com/project/louisfischer/cake-http](https://ci.appveyor.com/project/louisfischer/cake-http).
-
-![AppVeyor](https://ci.appveyor.com/api/projects/status/github/louisfischer/cake-http)
+[![Build status](https://ci.appveyor.com/api/projects/status/le61twvbmwct99cc?svg=true)](https://ci.appveyor.com/project/louisfischer/cake-http)
 
 
 ## Referencing
