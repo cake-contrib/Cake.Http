@@ -128,7 +128,7 @@ Task("Copy-Files")
 {
     CopyFileToDirectory(buildDir + "/Cake.Http.dll", binDir);
     CopyFileToDirectory(buildDir + "/Cake.Http.xml", binDir);
-    CopyFiles(new FilePath[] { "LICENSE", "README.md", "ReleaseNotes.md" }, binDir);
+    CopyFiles(new FilePath[] { "LICENSE", "README.md" }, binDir);
 });
 
 Task("Zip-Files")
