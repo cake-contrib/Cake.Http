@@ -38,7 +38,7 @@ namespace Cake.Http.Tests.Unit
                 var nullRecord = Record.Exception(() => HttpClientAliases.HttpGetAsByteArray(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(context));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(context));
             }
 
             [Fact]
@@ -59,9 +59,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpClientAliases.HttpGetAsByteArray(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(address));
-                Assert.IsArgumentNullException(emptyRecord, nameof(address));
-                Assert.IsArgumentNullException(spaceRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(address));
             }
 
             [Fact]
@@ -77,7 +77,7 @@ namespace Cake.Http.Tests.Unit
                 var record = Record.Exception(() => HttpClientAliases.HttpGetAsByteArray(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(record, nameof(settings));
+                CakeAssert.IsArgumentNullException(record, nameof(settings));
             }
 
             [Fact]
@@ -123,7 +123,7 @@ namespace Cake.Http.Tests.Unit
                 var nullRecord = Record.Exception(() => HttpClientAliases.HttpPostAsByteArray(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(context));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(context));
             }
 
             [Fact]
@@ -144,9 +144,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpClientAliases.HttpPostAsByteArray(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(address));
-                Assert.IsArgumentNullException(emptyRecord, nameof(address));
-                Assert.IsArgumentNullException(spaceRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(address));
             }
 
             [Fact]
@@ -162,7 +162,7 @@ namespace Cake.Http.Tests.Unit
                 var record = Record.Exception(() => HttpClientAliases.HttpPostAsByteArray(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(record, nameof(settings));
+                CakeAssert.IsArgumentNullException(record, nameof(settings));
             }
 
             [Fact]
@@ -212,7 +212,7 @@ namespace Cake.Http.Tests.Unit
                 var nullRecord = Record.Exception(() => HttpClientAliases.HttpPutAsByteArray(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(context));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(context));
             }
 
             [Fact]
@@ -233,9 +233,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpClientAliases.HttpPutAsByteArray(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(address));
-                Assert.IsArgumentNullException(emptyRecord, nameof(address));
-                Assert.IsArgumentNullException(spaceRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(address));
             }
 
             [Fact]
@@ -251,7 +251,7 @@ namespace Cake.Http.Tests.Unit
                 var record = Record.Exception(() => HttpClientAliases.HttpGetAsByteArray(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(record, nameof(settings));
+                CakeAssert.IsArgumentNullException(record, nameof(settings));
             }
 
             [Fact]
@@ -302,7 +302,7 @@ namespace Cake.Http.Tests.Unit
                 var nullRecord = Record.Exception(() => HttpClientAliases.HttpPatchAsByteArray(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(context));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(context));
             }
 
             [Fact]
@@ -323,9 +323,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpClientAliases.HttpPatchAsByteArray(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(address));
-                Assert.IsArgumentNullException(emptyRecord, nameof(address));
-                Assert.IsArgumentNullException(spaceRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(address));
             }
 
             [Fact]
@@ -341,7 +341,7 @@ namespace Cake.Http.Tests.Unit
                 var record = Record.Exception(() => HttpClientAliases.HttpPatchAsByteArray(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(record, nameof(settings));
+                CakeAssert.IsArgumentNullException(record, nameof(settings));
             }
 
             [Fact]
@@ -392,7 +392,7 @@ namespace Cake.Http.Tests.Unit
                 var nullRecord = Record.Exception(() => HttpClientAliases.HttpDelete(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(context));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(context));
             }
 
             [Fact]
@@ -413,9 +413,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpClientAliases.HttpDelete(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(address));
-                Assert.IsArgumentNullException(emptyRecord, nameof(address));
-                Assert.IsArgumentNullException(spaceRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(address));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(address));
             }
 
             [Fact]
@@ -431,7 +431,7 @@ namespace Cake.Http.Tests.Unit
                 var record = Record.Exception(() => HttpClientAliases.HttpDelete(context, address, settings));
 
                 //Then
-                Assert.IsArgumentNullException(record, nameof(settings));
+                CakeAssert.IsArgumentNullException(record, nameof(settings));
             }
 
             [Fact]

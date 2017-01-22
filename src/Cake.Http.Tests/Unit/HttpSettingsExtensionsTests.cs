@@ -24,7 +24,7 @@ namespace Cake.Http.Tests.Unit
                 var record = Record.Exception(() => HttpSettingsExtensions.AppendHeader(settings, name, value));
 
                 //Then
-                Assert.IsArgumentNullException(record, "settings");
+                CakeAssert.IsArgumentNullException(record, "settings");
             }
 
             [Fact]
@@ -41,9 +41,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpSettingsExtensions.AppendHeader(settings, "   ", value));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, "name");
-                Assert.IsArgumentNullException(emptyRecord, "name");
-                Assert.IsArgumentNullException(spaceRecord, "name");
+                CakeAssert.IsArgumentNullException(nullRecord, "name");
+                CakeAssert.IsArgumentNullException(emptyRecord, "name");
+                CakeAssert.IsArgumentNullException(spaceRecord, "name");
             }
 
             [Fact]
@@ -60,9 +60,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpSettingsExtensions.AppendHeader(settings, name, "   "));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, "value");
-                Assert.IsArgumentNullException(emptyRecord, "value");
-                Assert.IsArgumentNullException(spaceRecord, "value");
+                CakeAssert.IsArgumentNullException(nullRecord, "value");
+                CakeAssert.IsArgumentNullException(emptyRecord, "value");
+                CakeAssert.IsArgumentNullException(spaceRecord, "value");
             }
 
             [Fact]
@@ -118,7 +118,7 @@ namespace Cake.Http.Tests.Unit
                 var record = Record.Exception(() => HttpSettingsExtensions.AppendCookie(settings, name, value));
 
                 //Then
-                Assert.IsArgumentNullException(record, "settings");
+                CakeAssert.IsArgumentNullException(record, "settings");
             }
 
             [Fact]
@@ -139,9 +139,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpSettingsExtensions.AppendCookie(settings, name, value));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(name));
-                Assert.IsArgumentNullException(emptyRecord, nameof(name));
-                Assert.IsArgumentNullException(spaceRecord, nameof(name));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(name));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(name));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(name));
             }
 
             [Fact]
@@ -162,9 +162,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpSettingsExtensions.AppendCookie(settings, name, value));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(value));
-                Assert.IsArgumentNullException(emptyRecord, nameof(value));
-                Assert.IsArgumentNullException(spaceRecord, nameof(value));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(value));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(value));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(value));
             }
 
             [Fact]
@@ -202,9 +202,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpSettingsExtensions.SetAuthorization(settings, "   ", parameter));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, "schema");
-                Assert.IsArgumentNullException(emptyRecord, "schema");
-                Assert.IsArgumentNullException(spaceRecord, "schema");
+                CakeAssert.IsArgumentNullException(nullRecord, "schema");
+                CakeAssert.IsArgumentNullException(emptyRecord, "schema");
+                CakeAssert.IsArgumentNullException(spaceRecord, "schema");
             }
 
             [Fact]
@@ -221,9 +221,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpSettingsExtensions.SetAuthorization(settings, schema, "   "));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, "parameter");
-                Assert.IsArgumentNullException(emptyRecord, "parameter");
-                Assert.IsArgumentNullException(spaceRecord, "parameter");
+                CakeAssert.IsArgumentNullException(nullRecord, "parameter");
+                CakeAssert.IsArgumentNullException(emptyRecord, "parameter");
+                CakeAssert.IsArgumentNullException(spaceRecord, "parameter");
             }
 
             [Fact]
@@ -267,9 +267,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpSettingsExtensions.UseBasicAuthorization(settings, userName, password));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(userName));
-                Assert.IsArgumentNullException(emptyRecord, nameof(userName));
-                Assert.IsArgumentNullException(spaceRecord, nameof(userName));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(userName));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(userName));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(userName));
             }
 
             [Fact]
@@ -290,9 +290,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpSettingsExtensions.UseBasicAuthorization(settings, userName, password));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(password));
-                Assert.IsArgumentNullException(emptyRecord, nameof(password));
-                Assert.IsArgumentNullException(spaceRecord, nameof(password));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(password));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(password));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(password));
             }
 
             [Fact]
@@ -335,9 +335,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpSettingsExtensions.UseBearerAuthorization(settings, token));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(token));
-                Assert.IsArgumentNullException(emptyRecord, nameof(token));
-                Assert.IsArgumentNullException(spaceRecord, nameof(token));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(token));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(token));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(token));
             }
 
             [Fact]
@@ -379,9 +379,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpSettingsExtensions.SetContentType(settings, contentType));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(contentType));
-                Assert.IsArgumentNullException(emptyRecord, nameof(contentType));
-                Assert.IsArgumentNullException(spaceRecord, nameof(contentType));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(contentType));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(contentType));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(contentType));
             }
 
             [Fact]
@@ -421,9 +421,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpSettingsExtensions.SetAccept(settings, accept));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(accept));
-                Assert.IsArgumentNullException(emptyRecord, nameof(accept));
-                Assert.IsArgumentNullException(spaceRecord, nameof(accept));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(accept));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(accept));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(accept));
             }
 
             [Fact]
@@ -482,9 +482,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpSettingsExtensions.SetOrigin(settings, url));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(url));
-                Assert.IsArgumentNullException(emptyRecord, nameof(url));
-                Assert.IsArgumentNullException(spaceRecord, nameof(url));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(url));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(url));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(url));
             }
 
             [Fact]
@@ -524,9 +524,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpSettingsExtensions.SetReferer(settings, url));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(url));
-                Assert.IsArgumentNullException(emptyRecord, nameof(url));
-                Assert.IsArgumentNullException(spaceRecord, nameof(url));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(url));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(url));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(url));
             }
 
             [Fact]
@@ -561,7 +561,7 @@ namespace Cake.Http.Tests.Unit
                 var record = Record.Exception(() => HttpSettingsExtensions.SetRequestBody(settings, requestBody));
 
                 //Then
-                Assert.IsArgumentNullException(record, "settings");
+                CakeAssert.IsArgumentNullException(record, "settings");
             }
 
             [Fact]
@@ -581,9 +581,9 @@ namespace Cake.Http.Tests.Unit
                 var spaceRecord = Record.Exception(() => HttpSettingsExtensions.SetRequestBody(settings, requestBody));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(requestBody));
-                Assert.IsArgumentNullException(emptyRecord, nameof(requestBody));
-                Assert.IsArgumentNullException(spaceRecord, nameof(requestBody));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(requestBody));
+                CakeAssert.IsArgumentNullException(emptyRecord, nameof(requestBody));
+                CakeAssert.IsArgumentNullException(spaceRecord, nameof(requestBody));
             }
 
             [Fact]
@@ -617,7 +617,7 @@ namespace Cake.Http.Tests.Unit
                 var nullRecord = Record.Exception(() => HttpSettingsExtensions.SetFormUrlEncodedRequestBody(settings, data));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(settings));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(settings));
             }
 
             [Fact]
@@ -632,7 +632,7 @@ namespace Cake.Http.Tests.Unit
                 var nullRecord = Record.Exception(() => HttpSettingsExtensions.SetFormUrlEncodedRequestBody(settings, data));
 
                 //Then
-                Assert.IsArgumentNullException(nullRecord, nameof(data));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(data));
             }
 
             [Fact]

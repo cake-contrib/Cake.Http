@@ -22,13 +22,13 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///      byte[] responseBody = HttpGetAsByteArray("https://www.google.com", new HttpSettings());
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to GET.</param>
         /// <param name="settings">The settings</param>
-        /// <returns>Content of the request as a byte array.</returns>
+        /// <returns>Content of the response body as a byte array.</returns>
         [CakeMethodAlias]
         public static byte[] HttpGetAsByteArray(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -52,13 +52,25 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///        var settings = new HttpSettings
+        ///        {
+        ///           Headers = new Dictionary&lt;string, string&gt;
+        ///            {
+        ///              { "Authorization", "Bearer 1af538baa9045a84c0e889f672baf83ff24" },
+        ///                { "Cache-Control", "no-store" },
+        ///                { "Connection", "keep-alive" } 
+        ///            },
+        ///            UseDefaultCredentials = true,
+        ///            EnsureSuccessStatusCode = false
+        ///        };        
+        ///
+        ///        string responseBody = HttpGet("https://www.google.com", settings);
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to GET.</param>
         /// <param name="settings">The settings</param>
-        /// <returns>Content of the request as a string.</returns>
+        /// <returns>Content of the response body as a string.</returns>
         [CakeMethodAlias]
         public static string HttpGet(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -66,17 +78,22 @@ namespace Cake.Http
         }
 
         /// <summary>
-        /// GETS the specified resource over over HTTP/HTTPS..
+        /// GETS the specified resource over over HTTP/HTTPS.
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///        var responseBody = HttpGet("https://www.google.com", settings =>
+        ///        {
+        ///            settings.UseBearerAuthorization("1af538baa9045a84c0e889f672baf83ff24")
+        ///                    .SetNoCeche()
+        ///                    .AppendHeader("Connection", "keep-alive");
+        ///        });
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to GET.</param>
         /// <param name="configurator">The settings configurator.</param>
-        /// <returns></returns>
+        /// <returns>Content of the request as a string.</returns>
         [CakeMethodAlias]
         public static string HttpGet(this ICakeContext context, string address, Action<HttpSettings> configurator)
         {
@@ -90,16 +107,16 @@ namespace Cake.Http
         }
 
         /// <summary>
-        /// GETS the specified resource over over HTTP/HTTPS..
+        /// GETS the specified resource over over HTTP/HTTPS.
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///   string responseBody = HttpGet("https://www.google.com");
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to GET.</param>
-        /// <returns></returns>
+        /// <returns>Content of the response body as a string.</returns>
         [CakeMethodAlias]
         public static string HttpGet(this ICakeContext context, string address)
         {
@@ -115,13 +132,13 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///     btye[] responseBody = HttpPostAsByteArray("https://www.google.com", new HttpSettings());
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to POST.</param>
         /// <param name="settings">The settings</param>
-        /// <returns>Content of the request as a byte array.</returns>
+        /// <returns>Content of the response body as a string.</returns>
         [CakeMethodAlias]
         public static byte[] HttpPostAsByteArray(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -147,13 +164,25 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///        var settings = new HttpSettings
+        ///        {
+        ///           Headers = new Dictionary&lt;string, string&gt;
+        ///            {
+        ///              { "Authorization", "Bearer 1af538baa9045a84c0e889f672baf83ff24" },
+        ///                { "Cache-Control", "no-store" },
+        ///                { "Connection", "keep-alive" } 
+        ///            },
+        ///            UseDefaultCredentials = true,
+        ///            EnsureSuccessStatusCode = false
+        ///        };        
+        ///
+        ///        string responseBody = HttpPost("https://www.google.com", settings);
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to POST.</param>
         /// <param name="settings">The settings</param>
-        /// <returns>Content of the request as a string.</returns>
+        /// <returns>Content of the response body as a string.</returns>
         [CakeMethodAlias]
         public static string HttpPost(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -165,13 +194,18 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///         string responseBody = HttpPost("https://www.google.com", settings =>
+        ///         {
+        ///            settings.UseBearerAuthorization("1af538baa9045a84c0e889f672baf83ff24")
+        ///                    .SetContentType("appliication/json")
+        ///                    .SetRequestBody("{ \"id\": 123, \"name\": \"Test Test\" }");
+        ///         });
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to POST.</param>
         /// <param name="configurator">The settings configurator.</param>
-        /// <returns></returns>
+        /// <returns>Content of the response body as a string.</returns>
         [CakeMethodAlias]
         public static string HttpPost(this ICakeContext context, string address, Action<HttpSettings> configurator)
         {
@@ -189,12 +223,12 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///     string responseBody = HttpPost("https://www.google.com");
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to POST.</param>
-        /// <returns></returns>
+        /// <returns>Content of the response body as a string.</returns>
         [CakeMethodAlias]
         public static string HttpPost(this ICakeContext context, string address)
         {
@@ -210,13 +244,13 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///     byte[] responseBody = HttpPutAsByteArray("https://www.google.com/1", new HttpSettings());
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to PUT.</param>
         /// <param name="settings">The settings</param>
-        /// <returns>Content of the response as a byte array.</returns>
+        /// <returns>Content of the response body as a byte array.</returns>
         [CakeMethodAlias]
         public static byte[] HttpPutAsByteArray(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -242,13 +276,25 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///        var settings = new HttpSettings
+        ///        {
+        ///           Headers = new Dictionary&lt;string, string&gt;
+        ///            {
+        ///              { "Authorization", "Bearer 1af538baa9045a84c0e889f672baf83ff24" },
+        ///                { "Cache-Control", "no-store" },
+        ///                { "Connection", "keep-alive" } 
+        ///            },
+        ///            UseDefaultCredentials = true,
+        ///            EnsureSuccessStatusCode = false
+        ///        };        
+        ///
+        ///        string responseBody = HttpPut("https://www.google.com/1", settings);
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to PUT.</param>
         /// <param name="settings">The settings</param>
-        /// <returns>Content of the response as a string.</returns>
+        /// <returns>Content of the response body as a string.</returns>
         [CakeMethodAlias]
         public static string HttpPut(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -260,13 +306,18 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///         string responseBody = HttpPut("https://www.google.com/1", settings =>
+        ///         {
+        ///            settings.UseBearerAuthorization("1af538baa9045a84c0e889f672baf83ff24")
+        ///                    .SetContentType("appliication/json")
+        ///                    .SetRequestBody("{ \"id\": 123, \"name\": \"Test Test\" }");
+        ///         });
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to PUT.</param>
         /// <param name="configurator">The settings configurator.</param>
-        /// <returns>Content of the response as a string.</returns>
+        /// <returns>Content of the response body as a string.</returns>
         [CakeMethodAlias]
         public static string HttpPut(this ICakeContext context, string address, Action<HttpSettings> configurator)
         {
@@ -284,12 +335,12 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///     string responseBody = HttpPut("https://www.google.com/1");
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to PUT.</param>
-        /// <returns>Content of the response a string</returns>
+        /// <returns>Content of the response body as a string.</returns>
         [CakeMethodAlias]
         public static string HttpPut(this ICakeContext context, string address)
         {
@@ -298,20 +349,20 @@ namespace Cake.Http
 
         #endregion
 
-        #region Put Methods
+        #region Patch Methods
 
         /// <summary>
         /// PATCH the specified resource over over HTTP/HTTPS.
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///     byte[] responseBody = HttpPatchAsByteArray("https://www.google.com/1", new HttpSettings());
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to PATCH.</param>
         /// <param name="settings">The settings</param>
-        /// <returns>Content of the response as a byte array.</returns>
+        /// <returns>Content of the response body as a byte array.</returns>
         [CakeMethodAlias]
         public static byte[] HttpPatchAsByteArray(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -343,13 +394,25 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///        var settings = new HttpSettings
+        ///        {
+        ///           Headers = new Dictionary&lt;string, string&gt;
+        ///            {
+        ///              { "Authorization", "Bearer 1af538baa9045a84c0e889f672baf83ff24" },
+        ///                { "Cache-Control", "no-store" },
+        ///                { "Connection", "keep-alive" } 
+        ///            },
+        ///            UseDefaultCredentials = true,
+        ///            EnsureSuccessStatusCode = false
+        ///        };        
+        ///
+        ///        string responseBody = HttpPatch("https://www.google.com/1", settings);
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to PATCH.</param>
         /// <param name="settings">The settings</param>
-        /// <returns>Content of the response as a string.</returns>
+        /// <returns>Content of the response body as a string.</returns>
         [CakeMethodAlias]
         public static string HttpPatch(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -361,13 +424,18 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///         string responseBody = HttpPatch("https://www.google.com/1", settings =>
+        ///         {
+        ///            settings.UseBearerAuthorization("1af538baa9045a84c0e889f672baf83ff24")
+        ///                    .SetContentType("appliication/json")
+        ///                    .SetRequestBody("{ \"id\": 123, \"name\": \"Test Test\" }");
+        ///         });
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to PATCH.</param>
         /// <param name="configurator">The settings configurator.</param>
-        /// <returns>Content of the response as a string.</returns>
+        /// <returns>Content of the response body as a string.</returns>
         [CakeMethodAlias]
         public static string HttpPatch(this ICakeContext context, string address, Action<HttpSettings> configurator)
         {
@@ -385,12 +453,12 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///     string responseBody = HttpPatch("https://www.google.com/1");
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to PATCH.</param>
-        /// <returns>Content of the response a string</returns>
+        /// <returns>Content of the response body a string</returns>
         [CakeMethodAlias]
         public static string HttpPatch(this ICakeContext context, string address)
         {
@@ -406,13 +474,24 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///        var settings = new HttpSettings
+        ///        {
+        ///           Headers = new Dictionary&lt;string, string&gt;
+        ///            {
+        ///              { "Authorization", "Bearer 1af538baa9045a84c0e889f672baf83ff24" },
+        ///                { "Cache-Control", "no-store" },
+        ///                { "Connection", "keep-alive" } 
+        ///            },
+        ///            UseDefaultCredentials = true,
+        ///            EnsureSuccessStatusCode = true
+        ///        };        
+        ///
+        ///        HttpDelete("https://www.google.com/1", settings);
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to DELETE.</param>
         /// <param name="settings">The settings</param>
-        /// <returns>Content of the response as a string.</returns>
         [CakeMethodAlias]
         public static void HttpDelete(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -434,13 +513,15 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///         HttpDelete("https://www.google.com/1", settings =>
+        ///         {
+        ///            settings.UseBearerAuthorization("1af538baa9045a84c0e889f672baf83ff24");
+        ///         });
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to DELETE.</param>
         /// <param name="configurator">The settings configurator.</param>
-        /// <returns>Content of the response as a string.</returns>
         [CakeMethodAlias]
         public static void HttpDelete(this ICakeContext context, string address, Action<HttpSettings> configurator)
         {
@@ -458,12 +539,11 @@ namespace Cake.Http
         /// </summary>
         /// <example>
         /// <code>
-        /// 
+        ///     HttpDelete("https://www.google.com/1");
         /// </code>
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to DELETE.</param>
-        /// <returns>Content of the response a string</returns>
         [CakeMethodAlias]
         public static void HttpDelete(this ICakeContext context, string address)
         {

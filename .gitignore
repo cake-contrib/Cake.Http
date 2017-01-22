@@ -23,6 +23,7 @@ project.lock.json
 .idea/
 
 # Build related
+build/
 build-results/
 tools/Cake/
 tools/xunit.runners/
