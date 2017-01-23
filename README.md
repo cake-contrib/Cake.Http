@@ -1,12 +1,10 @@
 # Cake.Http
-Cake.Http is set of aliases for [Cake](http://cakebuild.net/) that help simplify HTTP calls for GET, POST, PUT, DELETE, PATCH, etc.
-
+Cake.Http is set of aliases for [Cake](http://cakebuild.net/) that help simplify HTTP calls for GET, POST, PUT, DELETE, PATCH, etc.  
 Release notes can be found [here](ReleaseNotes.md).
 
 ## Build Status
 Continuous Integration is provided by [AppVeyor](https://www.appveyor.com).  
-[![Build status](https://ci.appveyor.com/api/projects/status/le61twvbmwct99cc?svg=true)](https://ci.appveyor.com/project/louisfischer/cake-http)
-
+[![Build status](https://ci.appveyor.com/api/projects/status/le61twvbmwct99cc?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-http)
 
 ## Referencing
 [![NuGet Version](http://img.shields.io/nuget/v/Cake.Http.svg?style=flat)](https://www.nuget.org/packages/Cake.Http/)  
@@ -99,20 +97,15 @@ RunTarget("Http-GET");
 ```
 
 ## Documention
-
 Please visit the Cake Documentation site for a list of available aliases:  
-[http://cakebuild.net/dsl/http-operations-extended](http://cakebuild.net/dsl/http-operations-extended)
+[http://cakebuild.net/dsl/http/](http://cakebuild.net/dsl/http/)
 
 ## Tests
-
 Cake.Http is covered by set of xUnit tests.
 
 ## Contribution GuideLines
-
 [https://github.com/cake-build/cake/blob/develop/CONTRIBUTING.md](https://github.com/cake-build/cake/blob/develop/CONTRIBUTING.md)
 
 ## License
-
-Copyright (c) 2017 Louis Fischer
-
-Cake.Http is provided as-is under the MIT license. For more information see [LICENSE](https://github.com/louisfischer/Cake.Httpp/blob/master/LICENSE).
+Copyright (c) 2017 Cake Contributions Organization  
+Cake.Http is provided as-is under the MIT license. For more information see [LICENSE](https://github.com/cake-contrib/Cake.Http/blob/master/LICENSE).
