@@ -4,15 +4,15 @@
       <id>Cake.Http</id>
       <version>0.0.0</version>
       <authors>louisfischer</authors>
-      <owners>louisfischer</owners>
+      <owners>louisfischer,cake-contrib</owners>
       <title>Cake.Http</title>
       <description>HttpClient addin for cake build.</description>
       <summary>HttpClient addin for cake build.</summary>
-      <licenseUrl>https://github.com/louisfischer/Cake.Http/blob/master/LICENSE</licenseUrl>
-      <projectUrl>https://github.com/louisfischer/Cake.Http</projectUrl>
+      <licenseUrl>https://github.com/cake-contrib/Cake.Http/blob/master/LICENSE</licenseUrl>
+      <projectUrl>https://github.com/cake-contrib/Cake.Http</projectUrl>
       <iconUrl>https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png</iconUrl>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
-      <copyright>Copyright (c) Louis Fischer 2017</copyright>
+      <copyright>Copyright (c) Cake Contributions Organization 2017</copyright>
       <releaseNotes></releaseNotes>
       <tags>cake script build httpclient web</tags>
        <dependencies>
