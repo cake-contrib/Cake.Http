@@ -1,4 +1,4 @@
-## New in 0.1.1 (Released ???)
+## New in 0.1.1 (Released 01/23/2017)
 - Updated Release Notes, ReadMe, LICENSE, nuspec, and build script with Cake Contributions Organization
 - Updated ReadMe with new links to repository, documentation, and CI build locations
 
