@@ -6,6 +6,8 @@ Release notes can be found [here](ReleaseNotes.md).
 Continuous Integration is provided by [AppVeyor](https://www.appveyor.com).  
 [![Build status](https://ci.appveyor.com/api/projects/status/le61twvbmwct99cc?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-http)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/github/cake-contrib/Cake.Http)](https://ci.appveyor.com/project/cakecontrib/cake-http)
+
 ## Referencing
 [![NuGet Version](http://img.shields.io/nuget/v/Cake.Http.svg?style=flat)](https://www.nuget.org/packages/Cake.Http/)  
 You can reference Cake.Http in your build script as a cake addin:
