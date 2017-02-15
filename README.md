@@ -37,7 +37,7 @@ Task("Http-GET-With-Settings")
     {
         var settings = new HttpSettings
         {
-            Headers = new Dictionary<string, string
+            Headers = new Dictionary<string, string>
             {
                 { "Authorization", "Bearer 1af538baa9045a84c0e889f672baf83ff24" },
                 { "Cache-Control", "no-store" },
