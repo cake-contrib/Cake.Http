@@ -5,17 +5,16 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C827C1A6-94DB-4230-B6C9-D40B0350DEAE}"
 	ProjectSection(SolutionItems) = preProject
-		..\appveyor.yml = ..\appveyor.yml
-		..\build.cake = ..\build.cake
+		..\.appveyor.yml = ..\.appveyor.yml
 		..\build.ps1 = ..\build.ps1
-		..\nuspec\Cake.Http.nuspec = ..\nuspec\Cake.Http.nuspec
+		..\nuspec\nuget\Cake.Http.nuspec = ..\nuspec\nuget\Cake.Http.nuspec
+		..\setup.cake = ..\setup.cake
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meta", "Meta", "{3FBC45E7-8C75-4B59-BC6D-CB474107ECBD}"
 	ProjectSection(SolutionItems) = preProject
 		..\LICENSE = ..\LICENSE
 		..\README.md = ..\README.md
-		..\ReleaseNotes.md = ..\ReleaseNotes.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Http", "Cake.Http\Cake.Http.csproj", "{CCB786A8-703E-4E0B-B224-3E2C8FAB95D7}"
