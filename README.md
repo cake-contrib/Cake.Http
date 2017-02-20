@@ -1,111 +1,33 @@
 # Cake.Http
-Cake.Http is set of aliases for [Cake](http://cakebuild.net/) that help simplify HTTP calls for GET, POST, PUT, DELETE, PATCH, etc.  
+
+Cake.Http is set of aliases for [Cake](http://cakebuild.net/) that help simplify HTTP calls for GET, POST, PUT, DELETE, PATCH, etc.
 Release notes can be found [here](ReleaseNotes.md).
 
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://cake-contrib.mit-license.org)
+
+## Information
+
+||Stable|Pre-release|
+|:--:|:--:|:--:|
+|GitHub Release|-|[![GitHub release](https://img.shields.io/github/release/cake-contrib/Cake.Http.svg)](https://github.com/cake-contrib/Cake.Http/releases/latest)|
+|NuGet|[![NuGet](https://img.shields.io/nuget/v/Cake.Http.svg)](https://www.nuget.org/packages/Cake.Http)|[![NuGet](https://img.shields.io/nuget/vpre/Cake.Http.svg)](https://www.nuget.org/packages/Cake.Http)|
+
 ## Build Status
-Continuous Integration is provided by [AppVeyor](https://www.appveyor.com).  
-[![Build status](https://ci.appveyor.com/api/projects/status/github/cake-contrib/Cake.Http)](https://ci.appveyor.com/project/cakecontrib/cake-http)
 
-## Referencing
-[![NuGet Version](http://img.shields.io/nuget/v/Cake.Http.svg?style=flat)](https://www.nuget.org/packages/Cake.Http/)  
-You can reference Cake.Http in your build script as a cake addin:
-```cake
-#addin "Cake.Http"
-```  
- 
-or nuget reference:  
-```cake
-#addin "nuget:https://www.nuget.org/api/v2?package=Cake.Http"
-```
+|Develop|Master|
+|:--:|:--:|
+|[![Build status](https://ci.appveyor.com/api/projects/status/veoopwkay926jcqa/branch/develop?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-http/branch/develop)|[![Build status](https://ci.appveyor.com/api/projects/status/veoopwkay926jcqa/branch/develop?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-http/branch/master)|
 
-## Usage
+## Code Coverage
 
-```cake
-#addin "Cake.Http"
+[![Coverage Status](https://coveralls.io/repos/github/cake-contrib/Cake.Http/badge.svg?branch=develop)](https://coveralls.io/github/cake-contrib/Cake.Http?branch=develop)
 
-Task("Http-GET")
-    .Description("Basic http 'GET' request.") 
-    .Does(() =>
-    {
-        string responseBody = HttpGet("https://www.google.com");
-        Information(responseBody);    
-    });
+## Quick Links
 
-Task("Http-GET-With-Settings")
-    .Description("Basic http 'GET' request with settings.") 
-    .Does(() =>
-    {
-        var settings = new HttpSettings
-        {
-            Headers = new Dictionary<string, string>
-            {
-                { "Authorization", "Bearer 1af538baa9045a84c0e889f672baf83ff24" },
-                { "Cache-Control", "no-store" },
-                { "Connection", "keep-alive" } 
-            },
-            UseDefaultCredentials = true,
-            EnsureSuccessStatusCode = false
-        };
-        string responseBody = HttpGet("https://www.google.com", settings);
-        Information(responseBody);    
-    });
+- [Documentation](https://cake-contrib.github.io/Cake.Http)
 
-Task("Http-GET-With-Settings-Fluent")
-    .Description("Basic http 'GET' request with fluent settings.") 
-    .Does(() =>
-    {
-        string responseBody = HttpGet("https://www.google.com", settings => 
-        {
-            settings.UseBearerAuthorization("1af538baa9045a84c0e889f672baf83ff24")
-                    .SetNoCeche()
-                    .AppendHeader("Connection", "keep-alive");
-        });
-        Information(responseBody);    
-    });
+## Chat Room
 
-Task("Http-POST-With-Settings-Fluent")
-    .Description("Basic http 'POST' request with fluent settings and setting request body.") 
-    .Does(() =>
-    {
-        string responseBody = HttpPost("https://www.google.com", settings => 
-        {
-            settings.UseBearerAuthorization("1af538baa9045a84c0e889f672baf83ff24")
-                    .SetContentType("appliication/json")
-                    .SetRequestBody("{ \"id\": 123, \"name\": \"Test Test\" }");
-        });
-        Information(responseBody);    
-    });
+Come join in the conversation about Cake.Http in our Gitter Chat Room
 
-Task("Http-POST-With-Settings-Form-Url-Encoded")
-    .Description("http 'POST' request with fluent settings using form-url-encoded body.") 
-    .Does(() =>
-    {
-        string responseBody = HttpPost("https://www.google.com", settings => 
-        {
-            var formData = new Dictionary<string, string>
-            {
-                { "id", "12345" },
-                { "name", "Test Test" },
-                { "dateOfBirth", "11/22/1970" }
-            };
-            settings.SetFormUrlEncodedRequestBody(formData);
-        });
-        Information(responseBody);    
-    });
-
-RunTarget("Http-GET");
-```
-
-## Documention
-Please visit the Cake Documentation site for a list of available aliases:  
-[http://cakebuild.net/dsl/http/](http://cakebuild.net/dsl/http/)
-
-## Tests
-Cake.Http is covered by set of xUnit tests.
-
-## Contribution GuideLines
-[https://github.com/cake-build/cake/blob/develop/CONTRIBUTING.md](https://github.com/cake-build/cake/blob/develop/CONTRIBUTING.md)
-
-## License
-Copyright (c) 2017 Cake Contributions Organization  
-Cake.Http is provided as-is under the MIT license. For more information see [LICENSE](https://github.com/cake-contrib/Cake.Http/blob/master/LICENSE).
+[![Join the chat at https://gitter.im/cake-contrib/Lobby](https://badges.gitter.im/cake-contrib/Lobby.svg)](https://gitter.im/cake-contrib/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
