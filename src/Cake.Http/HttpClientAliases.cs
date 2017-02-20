@@ -32,14 +32,7 @@ namespace Cake.Http
         [CakeMethodAlias]
         public static byte[] HttpGetAsByteArray(this ICakeContext context, string address, HttpSettings settings)
         {
-            if (context == null)
-                throw new ArgumentNullException(nameof(context));
-
-            if (string.IsNullOrWhiteSpace(address))
-                throw new ArgumentNullException(nameof(address));
-
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            VerifyParameters(context, address, settings);
 
             var client = GetHttpClient(context, settings);
             var result = client.GetByteArrayAsync(address).Result;
@@ -58,11 +51,11 @@ namespace Cake.Http
         ///            {
         ///              { "Authorization", "Bearer 1af538baa9045a84c0e889f672baf83ff24" },
         ///                { "Cache-Control", "no-store" },
-        ///                { "Connection", "keep-alive" } 
+        ///                { "Connection", "keep-alive" }
         ///            },
         ///            UseDefaultCredentials = true,
         ///            EnsureSuccessStatusCode = false
-        ///        };        
+        ///        };
         ///
         ///        string responseBody = HttpGet("https://www.google.com", settings);
         /// </code>
@@ -97,7 +90,7 @@ namespace Cake.Http
         [CakeMethodAlias]
         public static string HttpGet(this ICakeContext context, string address, Action<HttpSettings> configurator)
         {
-            if (configurator == null)            
+            if (configurator == null)
                 throw new ArgumentNullException(nameof(configurator));
 
             var settings = new HttpSettings();
@@ -142,14 +135,7 @@ namespace Cake.Http
         [CakeMethodAlias]
         public static byte[] HttpPostAsByteArray(this ICakeContext context, string address, HttpSettings settings)
         {
-            if (context == null)
-                throw new ArgumentNullException(nameof(context));
-
-            if (string.IsNullOrWhiteSpace(address))
-                throw new ArgumentNullException(nameof(address));
-
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            VerifyParameters(context, address, settings);
 
             var client = GetHttpClient(context, settings);
             var response = client.PostAsync(address, new ByteArrayContent(settings.RequestBody)).Result;
@@ -170,11 +156,11 @@ namespace Cake.Http
         ///            {
         ///              { "Authorization", "Bearer 1af538baa9045a84c0e889f672baf83ff24" },
         ///                { "Cache-Control", "no-store" },
-        ///                { "Connection", "keep-alive" } 
+        ///                { "Connection", "keep-alive" }
         ///            },
         ///            UseDefaultCredentials = true,
         ///            EnsureSuccessStatusCode = false
-        ///        };        
+        ///        };
         ///
         ///        string responseBody = HttpPost("https://www.google.com", settings);
         /// </code>
@@ -254,14 +240,7 @@ namespace Cake.Http
         [CakeMethodAlias]
         public static byte[] HttpPutAsByteArray(this ICakeContext context, string address, HttpSettings settings)
         {
-            if (context == null)
-                throw new ArgumentNullException(nameof(context));
-
-            if (string.IsNullOrWhiteSpace(address))
-                throw new ArgumentNullException(nameof(address));
-
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            VerifyParameters(context, address, settings);
 
             var client = GetHttpClient(context, settings);
             var response = client.PutAsync(address, new ByteArrayContent(settings.RequestBody)).Result;
@@ -282,11 +261,11 @@ namespace Cake.Http
         ///            {
         ///              { "Authorization", "Bearer 1af538baa9045a84c0e889f672baf83ff24" },
         ///                { "Cache-Control", "no-store" },
-        ///                { "Connection", "keep-alive" } 
+        ///                { "Connection", "keep-alive" }
         ///            },
         ///            UseDefaultCredentials = true,
         ///            EnsureSuccessStatusCode = false
-        ///        };        
+        ///        };
         ///
         ///        string responseBody = HttpPut("https://www.google.com/1", settings);
         /// </code>
@@ -377,7 +356,7 @@ namespace Cake.Http
 
             var request = new HttpRequestMessage(new HttpMethod("PATCH"), address)
             {
-                Content = new ByteArrayContent(settings.RequestBody)                 
+                Content = new ByteArrayContent(settings.RequestBody)
             };
 
             var client = GetHttpClient(context, settings);
@@ -400,11 +379,11 @@ namespace Cake.Http
         ///            {
         ///              { "Authorization", "Bearer 1af538baa9045a84c0e889f672baf83ff24" },
         ///                { "Cache-Control", "no-store" },
-        ///                { "Connection", "keep-alive" } 
+        ///                { "Connection", "keep-alive" }
         ///            },
         ///            UseDefaultCredentials = true,
         ///            EnsureSuccessStatusCode = false
-        ///        };        
+        ///        };
         ///
         ///        string responseBody = HttpPatch("https://www.google.com/1", settings);
         /// </code>
@@ -480,11 +459,11 @@ namespace Cake.Http
         ///            {
         ///              { "Authorization", "Bearer 1af538baa9045a84c0e889f672baf83ff24" },
         ///                { "Cache-Control", "no-store" },
-        ///                { "Connection", "keep-alive" } 
+        ///                { "Connection", "keep-alive" }
         ///            },
         ///            UseDefaultCredentials = true,
         ///            EnsureSuccessStatusCode = true
-        ///        };        
+        ///        };
         ///
         ///        HttpDelete("https://www.google.com/1", settings);
         /// </code>
@@ -495,14 +474,7 @@ namespace Cake.Http
         [CakeMethodAlias]
         public static void HttpDelete(this ICakeContext context, string address, HttpSettings settings)
         {
-            if (context == null)
-                throw new ArgumentNullException(nameof(context));
-
-            if (string.IsNullOrWhiteSpace(address))
-                throw new ArgumentNullException(nameof(address));
-
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            VerifyParameters(context, address, settings);
 
             var client = GetHttpClient(context, settings);
             var response = client.DeleteAsync(address).Result;
@@ -551,7 +523,7 @@ namespace Cake.Http
         }
 
         #endregion
-        
+
         /// <summary>
         /// Gets an <see cref="HttpClient"/> pre-populated with the correct default/
         /// The returned client should be disposed of by the caller.
@@ -562,6 +534,18 @@ namespace Cake.Http
         private static HttpClient GetHttpClient(ICakeContext context, HttpSettings settings)
         {
             return new HttpClient(new CakeHttpClientHandler(context, settings));
+        }
+
+        private static void VerifyParameters(ICakeContext context, string address, HttpSettings settings)
+        {
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
+
+            if (string.IsNullOrWhiteSpace(address))
+                throw new ArgumentNullException(nameof(address));
+
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
         }
     }
 }

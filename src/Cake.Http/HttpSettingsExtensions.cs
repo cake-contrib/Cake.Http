@@ -19,20 +19,13 @@ namespace Cake.Http
         /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
         public static HttpSettings AppendHeader(this HttpSettings settings, string name, string value)
         {
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
-
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentNullException(nameof(name));
-
-            if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentNullException(nameof(value));
+            VerifyParameters(settings, name, value);
 
             settings.Headers[name] = value;
 
             return settings;
         }
-        
+
         /// <summary>
         /// Appends the cookie to the settings cookie collection
         /// </summary>
@@ -42,14 +35,7 @@ namespace Cake.Http
         /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
         public static HttpSettings AppendCookie(this HttpSettings settings, string name, string value)
         {
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
-
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentNullException(nameof(name));
-
-            if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentNullException(nameof(value));
+            VerifyParameters(settings, name, value);
 
             settings.Cookies[name] = value;
 
@@ -120,7 +106,7 @@ namespace Cake.Http
         /// <param name="contentType">The MIME type of the body of the request (used with POST and PUT requests).</param>
         /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
         public static HttpSettings SetContentType(this HttpSettings settings, string contentType)
-        {   
+        {
             if (string.IsNullOrWhiteSpace(contentType))
                 throw new ArgumentNullException(nameof(contentType));
 
@@ -140,7 +126,7 @@ namespace Cake.Http
 
             return settings.AppendHeader("Accept", accept);
         }
-        
+
         /// <summary>
         /// Sets the "Accept-Language" header of the request.
         /// </summary>
@@ -208,12 +194,12 @@ namespace Cake.Http
                 throw new ArgumentNullException(nameof(requestBody));
 
             settings.RequestBody = Encoding.UTF8.GetBytes(requestBody);
-            
+
             return settings;
         }
 
         /// <summary>
-        /// Sets the request body as form url encoded. 
+        /// Sets the request body as form url encoded.
         /// Only valid for Http Methods that allow a request body.
         /// Any existing content in the RequestBody is overriden.
         /// </summary>
@@ -232,6 +218,17 @@ namespace Cake.Http
             settings.SetContentType("application/x-www-form-urlencoded");
 
             return settings;
+        }
+        private static void VerifyParameters(HttpSettings settings, string name, string value)
+        {
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException(nameof(name));
+
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentNullException(nameof(value));
         }
     }
 }
