@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Cake.Http.Tests.Unit
@@ -643,7 +641,7 @@ namespace Cake.Http.Tests.Unit
                 HttpSettings settings = new HttpSettings();
                 IDictionary<string, string> data = new Dictionary<string, string>
                 {
-                    ["Id"] =  "123",
+                    ["Id"] = "123",
                     ["LastName"] = "Test",
                     ["FirstName"] = "John"
                 };
@@ -658,7 +656,34 @@ namespace Cake.Http.Tests.Unit
                 Assert.True(settings.Headers.ContainsKey("Content-Type"));
                 Assert.Equal(settings.Headers["Content-Type"], "application/x-www-form-urlencoded");
 
-                Assert.NotNull(settings.RequestBody);                                
+                Assert.NotNull(settings.RequestBody);
+                Assert.Equal(expected, Encoding.UTF8.GetString(settings.RequestBody));
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Set_Multiple_KeyValuePair_Request_Body_As_Url_Encoded()
+            {
+                //Given
+                HttpSettings settings = new HttpSettings();
+                var data = new []
+                {
+                    new KeyValuePair<string, string>("GroupId", "1"),
+                    new KeyValuePair<string, string>("GroupId", "2"),
+                    new KeyValuePair<string, string>("GroupId", "3")
+                };
+
+                //When
+                settings.SetFormUrlEncodedRequestBody(data);
+
+                //Then
+                var expected = "GroupId=1&GroupId=2&GroupId=3";
+
+                Assert.NotNull(settings.Headers);
+                Assert.True(settings.Headers.ContainsKey("Content-Type"));
+                Assert.Equal(settings.Headers["Content-Type"], "application/x-www-form-urlencoded");
+
+                Assert.NotNull(settings.RequestBody);
                 Assert.Equal(expected, Encoding.UTF8.GetString(settings.RequestBody));
             }
         }
