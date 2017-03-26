@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 
@@ -204,9 +205,23 @@ namespace Cake.Http
         /// Any existing content in the RequestBody is overriden.
         /// </summary>
         /// <param name="settings">The settings.</param>
-        /// <param name="data">Dictionary of data to url encode and append to the body.</param>
+        /// <param name="data">Dictionary of data to url encode and set to the body.</param>
         /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
-        public static HttpSettings SetFormUrlEncodedRequestBody(this HttpSettings settings, IDictionary<string, string> data)
+        public static HttpSettings SetFormUrlEncodedRequestBody(this HttpSettings settings,
+            IDictionary<string, string> data)
+            => SetFormUrlEncodedRequestBody(settings, data?.AsEnumerable());
+
+        /// <summary>
+        /// Sets the request body as form url encoded.
+        /// Only valid for Http Methods that allow a request body.
+        /// Any existing content in the RequestBody is overriden.
+        /// Accepts multiple parameters with the same key.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <param name="data">Enumerable of <see cref="KeyValuePair{TKey,TValue}"/> of data to url encode and set to the body.</param>
+        /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
+        public static HttpSettings SetFormUrlEncodedRequestBody(this HttpSettings settings,
+            IEnumerable<KeyValuePair<string, string>> data)
         {
             if (settings == null)
                 throw new ArgumentNullException(nameof(settings));
@@ -219,6 +234,7 @@ namespace Cake.Http
 
             return settings;
         }
+
         private static void VerifyParameters(HttpSettings settings, string name, string value)
         {
             if (settings == null)
