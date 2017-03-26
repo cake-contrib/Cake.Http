@@ -7,7 +7,7 @@ Release notes can be found [here](ReleaseNotes.md).
 
 ## Information
 
-||Stable|Pre-release|
+| |Stable|Pre-release|
 |:--:|:--:|:--:|
 |GitHub Release|-|[![GitHub release](https://img.shields.io/github/release/cake-contrib/Cake.Http.svg)](https://github.com/cake-contrib/Cake.Http/releases/latest)|
 |NuGet|[![NuGet](https://img.shields.io/nuget/v/Cake.Http.svg)](https://www.nuget.org/packages/Cake.Http)|[![NuGet](https://img.shields.io/nuget/vpre/Cake.Http.svg)](https://www.nuget.org/packages/Cake.Http)|
