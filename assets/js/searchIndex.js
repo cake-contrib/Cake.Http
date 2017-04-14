@@ -42,16 +42,16 @@ var searchModule = function() {
 
     a({
         id:1,
-        title:"HttpSettings",
-        content:"HttpSettings",
+        title:"HttpClientAliases",
+        content:"HttpClientAliases",
         description:'',
         tags:''
     });
 
     a({
         id:2,
-        title:"HttpClientAliases",
-        content:"HttpClientAliases",
+        title:"HttpSettings",
+        content:"HttpSettings",
         description:'',
         tags:''
     });
@@ -71,14 +71,14 @@ var searchModule = function() {
     });
 
     y({
-        url:'/Cake.Http/Cake.Http/api/Cake.Http/HttpSettings',
-        title:"HttpSettings",
+        url:'/Cake.Http/Cake.Http/api/Cake.Http/HttpClientAliases',
+        title:"HttpClientAliases",
         description:""
     });
 
     y({
-        url:'/Cake.Http/Cake.Http/api/Cake.Http/HttpClientAliases',
-        title:"HttpClientAliases",
+        url:'/Cake.Http/Cake.Http/api/Cake.Http/HttpSettings',
+        title:"HttpSettings",
         description:""
     });
 

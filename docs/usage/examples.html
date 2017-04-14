@@ -15,7 +15,7 @@
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/Cake.Http/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="/Cake.Http/assets/css/override.css" rel="stylesheet">
-        <script src="/Cake.Http/assets/js/jQuery-2.2.3.min.js"></script>
+        <script src="/Cake.Http/assets/js/jquery-2.2.3.min.js"></script>
         <script src="/Cake.Http/assets/js/bootstrap.min.js"></script>        
         <script src="/Cake.Http/assets/js/app.min.js"></script>         
         <script src="/Cake.Http/assets/js/highlight.pack.js"></script>   
@@ -160,7 +160,7 @@ Task("Http-POST-With-Settings-Fluent")
         string responseBody = HttpPost("https://www.google.com", settings =&gt;
         {
             settings.UseBearerAuthorization("1af538baa9045a84c0e889f672baf83ff24")
-                    .SetContentType("appliication/json")
+                    .SetContentType("application/json")
                     .SetRequestBody("{ \"id\": 123, \"name\": \"Test Test\" }");
         });
         Information(responseBody);
