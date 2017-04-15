@@ -34,8 +34,8 @@ var searchModule = function() {
 
     a({
         id:0,
-        title:"HttpSettingsExtensions",
-        content:"HttpSettingsExtensions",
+        title:"HttpSettings",
+        content:"HttpSettings",
         description:'',
         tags:''
     });
@@ -50,8 +50,8 @@ var searchModule = function() {
 
     a({
         id:2,
-        title:"HttpSettings",
-        content:"HttpSettings",
+        title:"HttpSettingsExtensions",
+        content:"HttpSettingsExtensions",
         description:'',
         tags:''
     });
@@ -65,8 +65,8 @@ var searchModule = function() {
     });
 
     y({
-        url:'/Cake.Http/Cake.Http/api/Cake.Http/HttpSettingsExtensions',
-        title:"HttpSettingsExtensions",
+        url:'/Cake.Http/Cake.Http/api/Cake.Http/HttpSettings',
+        title:"HttpSettings",
         description:""
     });
 
@@ -77,8 +77,8 @@ var searchModule = function() {
     });
 
     y({
-        url:'/Cake.Http/Cake.Http/api/Cake.Http/HttpSettings',
-        title:"HttpSettings",
+        url:'/Cake.Http/Cake.Http/api/Cake.Http/HttpSettingsExtensions',
+        title:"HttpSettingsExtensions",
         description:""
     });
 
