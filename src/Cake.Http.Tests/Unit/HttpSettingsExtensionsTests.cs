@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
@@ -598,6 +599,81 @@ namespace Cake.Http.Tests.Unit
                 //Then
                 Assert.NotNull(settings.RequestBody);
                 Assert.Equal(requestBody, Encoding.UTF8.GetString(settings.RequestBody));
+            }
+        }
+
+        public sealed class TheSetJsonRequestBodyMethod
+        {
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Throw_On_Null_Settings_Parameter()
+            {
+                //Given                
+                HttpSettings settings = null;
+                BodyModel model = new BodyModel { Id = 1234567, Active = true, Name = "Rob Test" };          
+
+                //When
+                var record = Record.Exception(() => HttpSettingsExtensions.SetJsonRequestBody(settings, model));
+
+                //Then
+                CakeAssert.IsArgumentNullException(record, "settings");
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Throw_On_Null_Or_Empty_Data_Parameter()
+            {
+                //Given                
+                HttpSettings settings = new HttpSettings();
+                BodyModel data = null;
+
+                //When
+                var actual = Record.Exception(() => HttpSettingsExtensions.SetJsonRequestBody(settings, data));
+
+                //Then
+                CakeAssert.IsArgumentNullException(actual, nameof(data));
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Add_Request_Body()
+            {
+                //Given
+                HttpSettings settings = new HttpSettings();
+                BodyModel model = new BodyModel { Id = 1234567, Active = true, Name = "Rob Test" };
+
+                //When
+                settings.SetJsonRequestBody(model);
+
+                //Then
+                Assert.NotNull(settings.RequestBody);
+
+                var actual = JsonConvert.DeserializeObject<BodyModel>(Encoding.UTF8.GetString(settings.RequestBody));
+                Assert.Equal(model, actual);
+            }
+
+
+            public sealed class BodyModel
+            {
+                public int Id { get; set; }
+                public string Name { get; set; }
+                public bool Active { get; set; }
+
+                public override int GetHashCode()
+                {
+                    return (Id.ToString() + Active.ToString() + Name).GetHashCode();
+                }
+
+                public override bool Equals(object obj)
+                {
+                    if (obj == null) return false;
+                    return int.Equals(obj.GetHashCode(), GetHashCode());
+                }
+
+                public override string ToString()
+                {
+                    return Name;
+                }
             }
         }
 

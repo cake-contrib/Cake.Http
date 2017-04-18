@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -196,6 +197,27 @@ namespace Cake.Http
 
             settings.RequestBody = Encoding.UTF8.GetBytes(requestBody);
 
+            return settings;
+        }
+
+        /// <summary>
+        /// Sets the request body from an object. Serialized as JSON
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <param name="data">The object to set as the request body. It will be serialized to JSON.</param>
+        /// <param name="jsonSettings">Optional settings to customize how object is serialized.</param>
+        /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
+        public static HttpSettings SetJsonRequestBody<T>(this HttpSettings settings, T data, JsonSerializerSettings jsonSettings = null)
+        {
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+
+            var requestBody = JsonConvert.SerializeObject(data, Formatting.Indented, jsonSettings);
+            settings.RequestBody = Encoding.UTF8.GetBytes(requestBody);
+            settings.SetContentType("application/json");
             return settings;
         }
 
