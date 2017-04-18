@@ -62,7 +62,7 @@ Task("Http-POST-With-Settings-Fluent")
         string responseBody = HttpPost("https://www.google.com", settings =>
         {
             settings.UseBearerAuthorization("1af538baa9045a84c0e889f672baf83ff24")
-                    .SetContentType("appliication/json")
+                    .SetContentType("application/json")
                     .SetRequestBody("{ \"id\": 123, \"name\": \"Test Test\" }");
         });
         Information(responseBody);
