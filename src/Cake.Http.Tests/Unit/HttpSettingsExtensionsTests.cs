@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Web.Script.Serialization;
 using Xunit;
 
 namespace Cake.Http.Tests.Unit
@@ -610,7 +610,7 @@ namespace Cake.Http.Tests.Unit
             {
                 //Given                
                 HttpSettings settings = null;
-                BodyModel model = new BodyModel { Id = 1234567, Active = true, Name = "Rob Test" };          
+                BodyModel model = new BodyModel { Id = 1234567, Active = true, name = "Rob Test" };          
 
                 //When
                 var record = Record.Exception(() => HttpSettingsExtensions.SetJsonRequestBody(settings, model));
@@ -634,13 +634,30 @@ namespace Cake.Http.Tests.Unit
                 CakeAssert.IsArgumentNullException(actual, nameof(data));
             }
 
-            [Fact]
+            [Fact(DisplayName = "Json Formarter Test")]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Add_Request_Body()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
-                BodyModel model = new BodyModel { Id = 1234567, Active = true, Name = "Rob Test" };
+                BodyModel model = new BodyModel
+                {
+                    Id = 1234567,
+                    Active = true,
+                    name = "Rob Test",
+                    Parts = new []
+                    {
+                        "Legs",
+                        "Arms",
+                        "Head"
+                    },
+                    SubModel = new BodySubModel
+                    {
+                        Description = "Body Sub Model Description",
+                        Dttm = DateTime.Now.Date,
+                        Type = "different type"
+                    }
+                };
 
                 //When
                 settings.SetJsonRequestBody(model);
@@ -648,20 +665,23 @@ namespace Cake.Http.Tests.Unit
                 //Then
                 Assert.NotNull(settings.RequestBody);
 
-                var actual = JsonConvert.DeserializeObject<BodyModel>(Encoding.UTF8.GetString(settings.RequestBody));
+                var actual = new JavaScriptSerializer().Deserialize<BodyModel>(Encoding.UTF8.GetString(settings.RequestBody));
                 Assert.Equal(model, actual);
             }
-
 
             public sealed class BodyModel
             {
                 public int Id { get; set; }
-                public string Name { get; set; }
+                public string name { get; set; }
                 public bool Active { get; set; }
+
+                public IEnumerable<string> Parts { get; set; }
+
+                public BodySubModel SubModel { get; set; }
 
                 public override int GetHashCode()
                 {
-                    return (Id.ToString() + Active.ToString() + Name).GetHashCode();
+                    return (Id.ToString() + Active.ToString() + name).GetHashCode();
                 }
 
                 public override bool Equals(object obj)
@@ -672,8 +692,16 @@ namespace Cake.Http.Tests.Unit
 
                 public override string ToString()
                 {
-                    return Name;
+                    return name;
                 }
+            }
+
+            public sealed class BodySubModel
+            {
+                public string Type { get; set; }
+                public string Description { get; set; }
+                public DateTime Dttm { get; set; }
+                public BodySubModel SubSubModel { get; set; }
             }
         }
 
