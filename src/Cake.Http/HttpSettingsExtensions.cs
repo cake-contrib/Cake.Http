@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Web.Script.Serialization;
 
 namespace Cake.Http
 {
@@ -205,9 +205,12 @@ namespace Cake.Http
         /// </summary>
         /// <param name="settings">The settings.</param>
         /// <param name="data">The object to set as the request body. It will be serialized to JSON.</param>
-        /// <param name="jsonSettings">Optional settings to customize how object is serialized.</param>
+        /// <param name="indentOutput">Option to indent the output of the format</param>
+        /// <remarks>
+        /// This uses the JavascriptSerializer
+        /// </remarks>
         /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
-        public static HttpSettings SetJsonRequestBody<T>(this HttpSettings settings, T data, JsonSerializerSettings jsonSettings = null)
+        public static HttpSettings SetJsonRequestBody<T>(this HttpSettings settings, T data, bool indentOutput = true)
         {
             if (settings == null)
                 throw new ArgumentNullException(nameof(settings));
@@ -215,7 +218,11 @@ namespace Cake.Http
             if (data == null)
                 throw new ArgumentNullException(nameof(data));
 
-            var requestBody = JsonConvert.SerializeObject(data, Formatting.Indented, jsonSettings);
+            var requestBody = new JavaScriptSerializer().Serialize(data);
+
+            if (indentOutput)
+                requestBody = FormatJsonOutput(requestBody);
+
             settings.RequestBody = Encoding.UTF8.GetBytes(requestBody);
             settings.SetContentType("application/json");
             return settings;
@@ -267,6 +274,76 @@ namespace Cake.Http
 
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentNullException(nameof(value));
+        }
+
+        /// <summary>
+        /// Adds indentation and line breaks to output of JavaScriptSerializer
+        /// </summary>
+        private static string FormatJsonOutput(string data)
+        {
+            if (string.IsNullOrWhiteSpace(data))
+                return data;
+
+            var stringBuilder = new StringBuilder();
+
+            bool escaping = false;
+            bool inQuotes = false;
+            int indentation = 0;
+
+            foreach (char character in data)
+            {
+                if (escaping)
+                {
+                    escaping = false;
+                    stringBuilder.Append(character);
+                }
+                else
+                {
+                    if (character == '\\')
+                    {
+                        escaping = true;
+                        stringBuilder.Append(character);
+                    }
+                    else if (character == '\"')
+                    {
+                        inQuotes = !inQuotes;
+                        stringBuilder.Append(character);
+                    }
+                    else if (!inQuotes)
+                    {
+                        if (character == ',')
+                        {
+                            stringBuilder.Append(character);
+                            stringBuilder.Append("\r\n");
+                            stringBuilder.Append('\t', indentation);
+                        }
+                        else if (character == '[' || character == '{')
+                        {
+                            stringBuilder.Append(character);
+                            stringBuilder.Append("\r\n");
+                            stringBuilder.Append('\t', ++indentation);
+                        }
+                        else if (character == ']' || character == '}')
+                        {
+                            stringBuilder.Append("\r\n");
+                            stringBuilder.Append('\t', --indentation);
+                            stringBuilder.Append(character);
+                        }
+                        else if (character == ':')
+                        {
+                            stringBuilder.Append(character);
+                            stringBuilder.Append('\t');
+                        }
+                        else
+                            stringBuilder.Append(character);
+
+                    }
+                    else
+                        stringBuilder.Append(character);
+
+                }
+            }
+            return stringBuilder.ToString();
         }
     }
 }

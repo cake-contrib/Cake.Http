@@ -1,7 +1,7 @@
 # Cake.Http
 
 Cake.Http is set of aliases for [Cake](http://cakebuild.net/) that help simplify HTTP calls for GET, POST, PUT, DELETE, PATCH, etc.
-Release notes can be found [here](ReleaseNotes.md).
+Release notes can be found [here](https://github.com/cake-contrib/Cake.Http/releases).
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://cake-contrib.mit-license.org)
 
