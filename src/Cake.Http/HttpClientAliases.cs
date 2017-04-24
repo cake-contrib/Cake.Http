@@ -11,7 +11,7 @@ namespace Cake.Http
     /// Contains functionality for working with HTTP operations such as GET, PUT, POST, DELETE, PATCH, etc.
     /// </para>
     /// </summary>
-    [CakeAliasCategory("Http")]
+    [CakeAliasCategory("HTTP Operations")]
     [CakeNamespaceImport("Cake.Http")]
     public static class HttpClientAliases
     {
@@ -29,6 +29,7 @@ namespace Cake.Http
         /// <param name="address">The URL of the resource to GET.</param>
         /// <param name="settings">The settings</param>
         /// <returns>Content of the response body as a byte array.</returns>
+        [CakeAliasCategory("Get")]
         [CakeMethodAlias]
         public static byte[] HttpGetAsByteArray(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -64,6 +65,7 @@ namespace Cake.Http
         /// <param name="address">The URL of the resource to GET.</param>
         /// <param name="settings">The settings</param>
         /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Get")]
         [CakeMethodAlias]
         public static string HttpGet(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -87,6 +89,7 @@ namespace Cake.Http
         /// <param name="address">The URL of the resource to GET.</param>
         /// <param name="configurator">The settings configurator.</param>
         /// <returns>Content of the request as a string.</returns>
+        [CakeAliasCategory("Get")]
         [CakeMethodAlias]
         public static string HttpGet(this ICakeContext context, string address, Action<HttpSettings> configurator)
         {
@@ -110,6 +113,7 @@ namespace Cake.Http
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to GET.</param>
         /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Get")]
         [CakeMethodAlias]
         public static string HttpGet(this ICakeContext context, string address)
         {
@@ -132,6 +136,7 @@ namespace Cake.Http
         /// <param name="address">The URL of the resource to POST.</param>
         /// <param name="settings">The settings</param>
         /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Post")]
         [CakeMethodAlias]
         public static byte[] HttpPostAsByteArray(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -169,6 +174,7 @@ namespace Cake.Http
         /// <param name="address">The URL of the resource to POST.</param>
         /// <param name="settings">The settings</param>
         /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Post")]
         [CakeMethodAlias]
         public static string HttpPost(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -192,6 +198,7 @@ namespace Cake.Http
         /// <param name="address">The URL of the resource to POST.</param>
         /// <param name="configurator">The settings configurator.</param>
         /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Post")]
         [CakeMethodAlias]
         public static string HttpPost(this ICakeContext context, string address, Action<HttpSettings> configurator)
         {
@@ -215,6 +222,7 @@ namespace Cake.Http
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to POST.</param>
         /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Post")]
         [CakeMethodAlias]
         public static string HttpPost(this ICakeContext context, string address)
         {
@@ -237,6 +245,7 @@ namespace Cake.Http
         /// <param name="address">The URL of the resource to PUT.</param>
         /// <param name="settings">The settings</param>
         /// <returns>Content of the response body as a byte array.</returns>
+        [CakeAliasCategory("Put")]
         [CakeMethodAlias]
         public static byte[] HttpPutAsByteArray(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -274,6 +283,7 @@ namespace Cake.Http
         /// <param name="address">The URL of the resource to PUT.</param>
         /// <param name="settings">The settings</param>
         /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Put")]
         [CakeMethodAlias]
         public static string HttpPut(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -297,6 +307,7 @@ namespace Cake.Http
         /// <param name="address">The URL of the resource to PUT.</param>
         /// <param name="configurator">The settings configurator.</param>
         /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Put")]
         [CakeMethodAlias]
         public static string HttpPut(this ICakeContext context, string address, Action<HttpSettings> configurator)
         {
@@ -320,6 +331,7 @@ namespace Cake.Http
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to PUT.</param>
         /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Put")]
         [CakeMethodAlias]
         public static string HttpPut(this ICakeContext context, string address)
         {
@@ -342,6 +354,7 @@ namespace Cake.Http
         /// <param name="address">The URL of the resource to PATCH.</param>
         /// <param name="settings">The settings</param>
         /// <returns>Content of the response body as a byte array.</returns>
+        [CakeAliasCategory("Patch")]
         [CakeMethodAlias]
         public static byte[] HttpPatchAsByteArray(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -392,6 +405,7 @@ namespace Cake.Http
         /// <param name="address">The URL of the resource to PATCH.</param>
         /// <param name="settings">The settings</param>
         /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Patch")]
         [CakeMethodAlias]
         public static string HttpPatch(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -415,6 +429,7 @@ namespace Cake.Http
         /// <param name="address">The URL of the resource to PATCH.</param>
         /// <param name="configurator">The settings configurator.</param>
         /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Patch")]
         [CakeMethodAlias]
         public static string HttpPatch(this ICakeContext context, string address, Action<HttpSettings> configurator)
         {
@@ -438,6 +453,7 @@ namespace Cake.Http
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to PATCH.</param>
         /// <returns>Content of the response body a string</returns>
+        [CakeAliasCategory("Patch")]
         [CakeMethodAlias]
         public static string HttpPatch(this ICakeContext context, string address)
         {
@@ -471,6 +487,7 @@ namespace Cake.Http
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to DELETE.</param>
         /// <param name="settings">The settings</param>
+        [CakeAliasCategory("Delete")]
         [CakeMethodAlias]
         public static void HttpDelete(this ICakeContext context, string address, HttpSettings settings)
         {
@@ -494,6 +511,7 @@ namespace Cake.Http
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to DELETE.</param>
         /// <param name="configurator">The settings configurator.</param>
+        [CakeAliasCategory("Delete")]
         [CakeMethodAlias]
         public static void HttpDelete(this ICakeContext context, string address, Action<HttpSettings> configurator)
         {
@@ -516,6 +534,7 @@ namespace Cake.Http
         /// </example>
         /// <param name="context">The context.</param>
         /// <param name="address">The URL of the resource to DELETE.</param>
+        [CakeAliasCategory("Delete")]
         [CakeMethodAlias]
         public static void HttpDelete(this ICakeContext context, string address)
         {
