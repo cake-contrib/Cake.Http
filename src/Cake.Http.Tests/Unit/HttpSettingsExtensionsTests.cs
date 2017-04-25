@@ -246,6 +246,37 @@ namespace Cake.Http.Tests.Unit
             }
         }
 
+        public sealed class TheEnsureSuccessCodeMethod
+        {
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Throw_On_Null_Settings_Parameter()
+            {
+                //Given                
+                HttpSettings settings = null;
+
+                //When
+                var nullRecord = Record.Exception(() => HttpSettingsExtensions.EnsureSuccessStatusCode(settings));
+
+                //Then
+                CakeAssert.IsArgumentNullException(nullRecord, "settings");
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Set_EnsureSuccesscCode_Property_To_True()
+            {
+                //Given
+                HttpSettings settings = new HttpSettings();
+
+                //When
+                settings.EnsureSuccessStatusCode();
+
+                //Then
+                Assert.True(settings.EnsureSuccessStatusCode);
+            }
+        }
+
         public sealed class TheUseBasicAuthorizationMethod
         {
             [Fact]
