@@ -264,6 +264,22 @@ namespace Cake.Http
             return settings;
         }
 
+
+        /// <summary>
+        /// Sets the EnsureSuccessStatusCode to true. This makes the httpclient throw an error if it does not return a 200 range status.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
+        public static HttpSettings EnsureSuccessStatusCode(this HttpSettings settings)
+        {
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+
+            settings.EnsureSuccessStatusCode = true;
+
+            return settings;
+        }
+
         private static void VerifyParameters(HttpSettings settings, string name, string value)
         {
             if (settings == null)
