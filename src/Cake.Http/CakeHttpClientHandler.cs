@@ -65,6 +65,7 @@ namespace Cake.Http
             byte[] responseMessage = null;
             if (response.IsSuccessStatusCode && response.Content != null)
                 responseMessage = await response.Content.ReadAsByteArrayAsync();
+
             else if (response.Content != null)
             {
                 var tempMessage = await response.Content.ReadAsStringAsync();
@@ -75,8 +76,20 @@ namespace Cake.Http
 
             await LogHttpEvent(id, HttpEventType.Response, requestInfo, responseMessage);
 
+            // Determines whether to ensure Status code
             if (_Settings.EnsureSuccessStatusCode)
-                response.EnsureSuccessStatusCode();
+            {
+                try
+                {
+                    response.EnsureSuccessStatusCode();
+                }
+                catch (Exception ex)
+                {
+                    // Only throw exception on when Non-Success Status Code
+                    if (_Settings.ThrowExceptionOnNonSuccessStatusCode)
+                        throw ex;
+                }
+            }
 
             return response;
         }
