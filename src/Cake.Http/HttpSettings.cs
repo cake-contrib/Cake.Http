@@ -44,5 +44,11 @@ namespace Cake.Http
         /// Gets or Sets whether to throw an exception if the returned response is not a Successful Status Code
         /// </summary>
         public bool EnsureSuccessStatusCode { get; set; }
+
+        /// <summary>
+        /// Gets or Sets where an exception is thrown on non success code.
+        /// This is used in conjunction with EnsureSuccessStatusCode.
+        /// </summary>
+        public bool ThrowExceptionOnNonSuccessStatusCode { get; set; }
     }
 }
