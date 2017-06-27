@@ -269,13 +269,15 @@ namespace Cake.Http
         /// Sets the EnsureSuccessStatusCode to true. This makes the httpclient throw an error if it does not return a 200 range status.
         /// </summary>
         /// <param name="settings">The settings.</param>
+        /// <param name="throwExceptionOnNonSuccessStatusCode">Determines if an exception is thrown on non-success code.</param>
         /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
-        public static HttpSettings EnsureSuccessStatusCode(this HttpSettings settings)
+        public static HttpSettings EnsureSuccessStatusCode(this HttpSettings settings, bool throwExceptionOnNonSuccessStatusCode = true)
         {
             if (settings == null)
                 throw new ArgumentNullException(nameof(settings));
 
             settings.EnsureSuccessStatusCode = true;
+            settings.ThrowExceptionOnNonSuccessStatusCode = throwExceptionOnNonSuccessStatusCode;
 
             return settings;
         }
