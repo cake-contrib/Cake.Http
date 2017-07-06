@@ -49,7 +49,7 @@ Task("Http-GET-With-Settings-Fluent")
         string responseBody = HttpGet("https://www.google.com", settings =>
         {
             settings.UseBearerAuthorization("1af538baa9045a84c0e889f672baf83ff24")
-                    .SetNoCeche()
+                    .SetNoCache()
                     .AppendHeader("Connection", "keep-alive");
         });
         Information(responseBody);
