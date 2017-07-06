@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Cake.Http/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Cake.Http/assets/img/favicon.ico" type="image/x-icon">
-        <title>Docs - API - HttpSettingsExtensions.AppendHeader(HttpSettings, string, string) Method</title>
+        <title>Docs - API - HttpSettingsExtensions.EnsureSuccessStatusCode(HttpSettings, bool) Method</title>
         <link href="/Cake.Http/assets/css/mermaid.css" rel="stylesheet">
         <link href="/Cake.Http/assets/css/highlight.css" rel="stylesheet">
         <link href="/Cake.Http/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
@@ -133,8 +133,8 @@
 		<li role="separator" class="divider"></li>
 			<li class="header">Method Members</li>
 				<li><a href="/Cake.Http/api/Cake.Http/HttpSettingsExtensions/C59C33BC">AppendCookie<wbr>(HttpSettings, <wbr>string, <wbr>string)<wbr></a></li>
-				<li class="selected"><a href="/Cake.Http/api/Cake.Http/HttpSettingsExtensions/C25DEC00">AppendHeader<wbr>(HttpSettings, <wbr>string, <wbr>string)<wbr></a></li>
-				<li><a href="/Cake.Http/api/Cake.Http/HttpSettingsExtensions/4C88A05E">Ensure<wbr>Success<wbr>Status<wbr>Code<wbr>(HttpSettings, <wbr>bool)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpSettingsExtensions/C25DEC00">AppendHeader<wbr>(HttpSettings, <wbr>string, <wbr>string)<wbr></a></li>
+				<li class="selected"><a href="/Cake.Http/api/Cake.Http/HttpSettingsExtensions/4C88A05E">Ensure<wbr>Success<wbr>Status<wbr>Code<wbr>(HttpSettings, <wbr>bool)<wbr></a></li>
 				<li><a href="/Cake.Http/api/Cake.Http/HttpSettingsExtensions/3D5E4E56">SetAccept<wbr>(HttpSettings, <wbr>string)<wbr></a></li>
 				<li><a href="/Cake.Http/api/Cake.Http/HttpSettingsExtensions/354ABA83">SetAcceptLanguage<wbr>(HttpSettings, <wbr>string)<wbr></a></li>
 				<li><a href="/Cake.Http/api/Cake.Http/HttpSettingsExtensions/F7A831F3">SetAuthorization<wbr>(HttpSettings, <wbr>string, <wbr>string)<wbr></a></li>
@@ -162,14 +162,14 @@
 
 <section class="content-header">
 			<h3><a href="/Cake.Http/api/Cake.Http/HttpSettingsExtensions">Http<wbr>Settings<wbr>Extensions</a>.</h3>
-	<h1>AppendHeader<wbr>(HttpSettings, <wbr>string, <wbr>string)<wbr> <small>Method</small></h1>
+	<h1>Ensure<wbr>Success<wbr>Status<wbr>Code<wbr>(HttpSettings, <wbr>bool)<wbr> <small>Method</small></h1>
 </section>
 <section class="content">
 	
 	
 		<h1 id="Summary">Summary</h1>
 	<div class="lead">
-    Appends the header to the settings header collection
+    Sets the EnsureSuccessStatusCode to true. This makes the httpclient throw an error if it does not return a 200 range status.
     </div>
 
 		<div class="panel panel-default">
@@ -187,7 +187,7 @@
 		</div>
 
 	<h1 id="Syntax">Syntax</h1>
-	<pre><code>public static HttpSettings AppendHeader(this HttpSettings settings, string name, string value)</code></pre>
+	<pre><code>public static HttpSettings EnsureSuccessStatusCode(this HttpSettings settings, bool throwExceptionOnNonSuccessStatusCode = true)</code></pre>
 
 
 
@@ -210,14 +210,9 @@
 						<td>The settings.</td>
 					</tr>
 					<tr>
-						<td>name</td>
-						<td>string</td>
-						<td>name of the header</td>
-					</tr>
-					<tr>
-						<td>value</td>
-						<td>string</td>
-						<td>value to apply to the header</td>
+						<td>throwExceptionOnNonSuccessStatusCode</td>
+						<td>bool</td>
+						<td>Determines if an exception is thrown on non-success code.</td>
 					</tr>
 			</tbody></table>
 		</div>
