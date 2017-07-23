@@ -3,6 +3,8 @@ using Cake.Http.Tests.Fixtures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -265,7 +267,7 @@ namespace Cake.Http.Tests.Unit
                 string address = $"{ RootAddress }/posts/1";
                 HttpSettings settings = new HttpSettings();
 
-                settings.SetRequestBody(putData);                
+                settings.SetRequestBody(putData);
 
                 //When
                 var actual = HttpClientAliases.HttpPut(context, address, settings);
@@ -447,7 +449,91 @@ namespace Cake.Http.Tests.Unit
                 HttpClientAliases.HttpDelete(context, address, settings);
 
                 //Then
-               //???
+                //???
+            }
+        }
+
+        [Collection(Traits.CakeContextCollection)]
+        public sealed class TheHttpSendMethod
+        {
+            private readonly ICakeContext _Context;
+
+            public TheHttpSendMethod(CakeContextFixture fixture)
+            {
+                _Context = fixture;
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Throw_On_Null_Or_Empty_Context_Parameter()
+            {
+                //Given                
+                ICakeContext context = null;
+                HttpRequestMessage request = new HttpRequestMessage { };
+                HttpSettings settings = new HttpSettings();
+
+                //When
+                var nullRecord = Record.Exception(() => HttpClientAliases.HttpSend(context, request, settings));
+
+                //Then
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(context));
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Throw_On_Null_Or_Empty_Request_Parameter()
+            {
+                //Given         
+                ICakeContext context = _Context;
+                HttpSettings settings = new HttpSettings();
+                HttpRequestMessage request = null;
+
+                //When
+                var nullRecord = Record.Exception(() => HttpClientAliases.HttpSend(context, request, settings));
+
+                //Then
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(request));
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Throw_On_Null_Settings_Parameter()
+            {
+                //Given                
+                ICakeContext context = _Context;
+                HttpRequestMessage request = new HttpRequestMessage { };
+                HttpSettings settings = null;
+
+                //When
+                var record = Record.Exception(() => HttpClientAliases.HttpSend(context, request, settings));
+
+                //Then
+                CakeAssert.IsArgumentNullException(record, nameof(settings));
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Integration)]
+            public void Should_Post_And_Return_Json_Result()
+            {
+                //Given                
+                ICakeContext context = _Context;
+                HttpSettings settings = new HttpSettings();
+
+                HttpRequestMessage request = new HttpRequestMessage
+                {
+                    RequestUri = new Uri($"{ RootAddress }/posts"),
+                    Method = HttpMethod.Post,
+                    Content = new StringContent("{ \"title\": \"foo\", \"body\": \"bar\", \"userId\": 1}", Encoding.UTF8, "application/json"),
+                };
+
+                //When
+                var actual = HttpClientAliases.HttpSend(context, request, settings);
+
+                //Then
+                var expected = "{\n  \"title\": \"foo\",\n  \"body\": \"bar\",\n  \"userId\": 1,\n  \"id\": 101\n}";
+
+                Assert.NotNull(actual);
+                Assert.Equal(expected, actual, ignoreCase: true, ignoreLineEndingDifferences: true, ignoreWhiteSpaceDifferences: true);
             }
         }
     }
