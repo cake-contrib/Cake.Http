@@ -372,13 +372,7 @@ namespace Cake.Http
                 Content = new ByteArrayContent(settings.RequestBody)
             };
 
-            var client = GetHttpClient(context, settings);
-
-            var response = client.SendAsync(request).Result;
-
-            var result = response.Content.ReadAsByteArrayAsync().Result;
-
-            return result;
+            return HttpSendAsByteArray(context, request, settings);
         }
 
         /// <summary>
@@ -539,6 +533,90 @@ namespace Cake.Http
         public static void HttpDelete(this ICakeContext context, string address)
         {
             HttpDelete(context, address, settings => { });
+        }
+
+        #endregion
+
+        #region Send Method
+
+        /// <summary>
+        /// Sends the HTTP Request using the generic HttpClient Send Method.
+        /// </summary>
+        /// <example>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="request">The HttpRequestMessage to send.</param>
+        /// <param name="settings">The settings</param>
+        /// <returns>Content of the response body as a byte array.</returns>
+        [CakeAliasCategory("Send")]
+        [CakeMethodAlias]
+        public static byte[] HttpSendAsByteArray(this ICakeContext context, HttpRequestMessage request, HttpSettings settings)
+        {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+
+            var client = GetHttpClient(context, settings);
+            var response = client.SendAsync(request).Result;
+
+            var result = response.Content.ReadAsByteArrayAsync().Result;
+
+            return result;
+        }
+
+        /// <summary>
+        /// Sends the HTTP Request using the generic HttpClient Send Method.
+        /// </summary>
+        /// <example>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="request">The HttpRequestMessage to send.</param>
+        /// <param name="settings">The settings</param>
+        /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Send")]
+        [CakeMethodAlias]
+        public static string HttpSend(this ICakeContext context, HttpRequestMessage request, HttpSettings settings)
+        {
+            return Encoding.UTF8.GetString(HttpSendAsByteArray(context, request, settings));
+        }
+
+        /// <summary>
+        /// Sends the HTTP Request using the generic HttpClient Send Method.
+        /// </summary>
+        /// <example>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="request">The HttpRequestMessage to send.</param>
+        /// <param name="configurator">The settings configurator.</param>
+        /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Send")]
+        [CakeMethodAlias]
+        public static string HttpSend(this ICakeContext context, HttpRequestMessage request, Action<HttpSettings> configurator)
+        {
+            if (configurator == null)
+                throw new ArgumentNullException(nameof(configurator));
+
+            var settings = new HttpSettings();
+            configurator(settings);
+
+            return HttpSend(context, request, settings);
+        }
+
+        /// <summary>
+        /// Sends the HTTP Request using the generic HttpClient Send Method.
+        /// </summary>
+        /// <example>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="request">The HttpRequestMessage to send.</param>
+        /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Send")]
+        [CakeMethodAlias]
+        public static string HttpSend(this ICakeContext context, HttpRequestMessage request)
+        {
+            return HttpSend(context, request, settings => { });
         }
 
         #endregion
