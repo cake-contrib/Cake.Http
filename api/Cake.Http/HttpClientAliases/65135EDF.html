@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Cake.Http/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Cake.Http/assets/img/favicon.ico" type="image/x-icon">
-        <title>Cake.Http - API - HttpSettings.Headers Property</title>
+        <title>Cake.Http - API - HttpClientAliases.HttpSendAsByteArray(ICakeContext, HttpRequestMessage, HttpSettings) Method</title>
         <link href="/Cake.Http/assets/css/mermaid.css" rel="stylesheet">
         <link href="/Cake.Http/assets/css/highlight.css" rel="stylesheet">
         <link href="/Cake.Http/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
@@ -74,7 +74,9 @@
                     	
 	<div id="infobar-headings"><h6>On This Page</h6><p><a href="#Summary">Summary</a></p>
 <p><a href="#Syntax">Syntax</a></p>
-<p><a href="#Value">Value</a></p>
+<p><a href="#Attributes">Attributes</a></p>
+<p><a href="#Parameters">Parameters</a></p>
+<p><a href="#ReturnValue">Return Value</a></p>
 <hr class="infobar-hidden">
 </div>
 
@@ -128,17 +130,32 @@
 			<li class="header">Namespace</li>
 		<li><a href="/Cake.Http/api/Cake.Http">Cake<wbr>.Http</a></li>
 		<li class="header">Type</li>
-		<li><a href="/Cake.Http/api/Cake.Http/HttpSettings">HttpSettings</a></li>
+		<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases">HttpClientAliases</a></li>
 		<li role="separator" class="divider"></li>
-			<li class="header">Constructors</li>
-				<li><a href="/Cake.Http/api/Cake.Http/HttpSettings/EDD0C0AF">HttpSettings<wbr>()<wbr></a></li>
-			<li class="header">Property Members</li>
-				<li><a href="/Cake.Http/api/Cake.Http/HttpSettings/D8E914F7">Cookies</a></li>
-				<li><a href="/Cake.Http/api/Cake.Http/HttpSettings/809CED48">Ensure<wbr>Success<wbr>Status<wbr>Code</a></li>
-				<li class="selected"><a href="/Cake.Http/api/Cake.Http/HttpSettings/814D42BF">Headers</a></li>
-				<li><a href="/Cake.Http/api/Cake.Http/HttpSettings/E50858E6">RequestBody</a></li>
-				<li><a href="/Cake.Http/api/Cake.Http/HttpSettings/B640D6A9">Throw<wbr>Exception<wbr>On<wbr>Non<wbr>Success<wbr>Status<wbr>Code</a></li>
-				<li><a href="/Cake.Http/api/Cake.Http/HttpSettings/C5749602">Use<wbr>Default<wbr>Credentials</a></li>
+			<li class="header">Method Members</li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/36F08191">HttpDelete<wbr>(ICakeContext, <wbr>string, <wbr>HttpSettings)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/7E4072C8">HttpDelete<wbr>(ICakeContext, <wbr>string, <wbr>Action<wbr>&lt;HttpSettings&gt;<wbr>)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/31329C5F">HttpDelete<wbr>(ICakeContext, <wbr>string)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/7734C066">HttpGet<wbr>(ICakeContext, <wbr>string, <wbr>HttpSettings)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/56381A30">HttpGet<wbr>(ICakeContext, <wbr>string, <wbr>Action<wbr>&lt;HttpSettings&gt;<wbr>)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/993065E8">HttpGet<wbr>(ICakeContext, <wbr>string)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/CA258714">HttpGetAsByteArray<wbr>(ICakeContext, <wbr>string, <wbr>HttpSettings)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/16E256A3">HttpPatch<wbr>(ICakeContext, <wbr>string, <wbr>HttpSettings)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/843AEAEB">HttpPatch<wbr>(ICakeContext, <wbr>string, <wbr>Action<wbr>&lt;HttpSettings&gt;<wbr>)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/FBDD5E90">HttpPatch<wbr>(ICakeContext, <wbr>string)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/DBE11B5C">HttpPatchAsByteArray<wbr>(ICakeContext, <wbr>string, <wbr>HttpSettings)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/FF1DB8C0">HttpPost<wbr>(ICakeContext, <wbr>string, <wbr>HttpSettings)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/E33D1AA5">HttpPost<wbr>(ICakeContext, <wbr>string, <wbr>Action<wbr>&lt;HttpSettings&gt;<wbr>)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/2887F86E">HttpPost<wbr>(ICakeContext, <wbr>string)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/CC56B44D">HttpPostAsByteArray<wbr>(ICakeContext, <wbr>string, <wbr>HttpSettings)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/01EEADF8">HttpPut<wbr>(ICakeContext, <wbr>string, <wbr>HttpSettings)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/CE23C2AE">HttpPut<wbr>(ICakeContext, <wbr>string, <wbr>Action<wbr>&lt;HttpSettings&gt;<wbr>)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/BC1B405E">HttpPut<wbr>(ICakeContext, <wbr>string)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/CA6205DD">HttpPutAsByteArray<wbr>(ICakeContext, <wbr>string, <wbr>HttpSettings)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/97E401AF">HttpSend<wbr>(ICakeContext, <wbr>HttpRequestMessage, <wbr>HttpSettings)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/C926A795">HttpSend<wbr>(ICakeContext, <wbr>HttpRequestMessage, <wbr>Action<wbr>&lt;HttpSettings&gt;<wbr>)<wbr></a></li>
+				<li><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/55C95282">HttpSend<wbr>(ICakeContext, <wbr>HttpRequestMessage)<wbr></a></li>
+				<li class="selected"><a href="/Cake.Http/api/Cake.Http/HttpClientAliases/65135EDF">HttpSendAsByteArray<wbr>(ICakeContext, <wbr>HttpRequestMessage, <wbr>HttpSettings)<wbr></a></li>
 
 
                     </ul>
@@ -152,39 +169,92 @@
 
 
 <section class="content-header">
-			<h3><a href="/Cake.Http/api/Cake.Http/HttpSettings">HttpSettings</a>.</h3>
-	<h1>Headers <small>Property</small></h1>
+			<h3><a href="/Cake.Http/api/Cake.Http/HttpClientAliases">HttpClientAliases</a>.</h3>
+	<h1>HttpSendAsByteArray<wbr>(ICakeContext, <wbr>HttpRequestMessage, <wbr>HttpSettings)<wbr> <small>Method</small></h1>
 </section>
 <section class="content">
 	
 	
 		<h1 id="Summary">Summary</h1>
 	<div class="lead">
-    Collection of headers to append to the http request
+    Sends the HTTP Request using the generic HttpClient Send Method.
     </div>
 
 		<div class="panel panel-default">
-  			<div class="panel-body">
+  			<div class="panel-body">	
 				<dl class="dl-horizontal">	
 						
 						<dt>Namespace</dt>
 						<dd><a href="/Cake.Http/api/Cake.Http">Cake<wbr>.Http</a></dd>
 					
 						<dt>Containing Type</dt>
-						<dd><a href="/Cake.Http/api/Cake.Http/HttpSettings">HttpSettings</a></dd>		
+						<dd><a href="/Cake.Http/api/Cake.Http/HttpClientAliases">HttpClientAliases</a></dd>		
 					
 				</dl>
   			</div>
 		</div>
 
 	<h1 id="Syntax">Syntax</h1>
-	<pre><code>public IDictionary&lt;string, string&gt; Headers { get; set; }</code></pre>
+	<pre><code>[CakeAliasCategory("Send")]
+[CakeMethodAlias]
+public static byte[] HttpSendAsByteArray(this ICakeContext context, HttpRequestMessage request, HttpSettings settings)</code></pre>
 
 
 
+	<h1 id="Attributes">Attributes</h1>
+	<div class="box">
+		<div class="box-body no-padding table-responsive">
+			<table class="table table-striped table-hover two-cols">
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+					<tbody><tr>
+						<td>CakeAliasCategory</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>CakeMethodAlias</td>
+						<td></td>
+					</tr>
+			</tbody></table>
+		</div>
+	</div>	
 
 
-	<h1 id="Value">Value</h1>
+	<h1 id="Parameters">Parameters</h1>
+	<div class="box">
+		<div class="box-body no-padding table-responsive">
+			<table class="table table-striped table-hover three-cols">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+					<tbody><tr>
+						<td>context</td>
+						<td>ICakeContext</td>
+						<td>The context.</td>
+					</tr>
+					<tr>
+						<td>request</td>
+						<td>HttpRequestMessage</td>
+						<td>The HttpRequestMessage to send.</td>
+					</tr>
+					<tr>
+						<td>settings</td>
+						<td><a href="/Cake.Http/api/Cake.Http/HttpSettings">HttpSettings</a></td>
+						<td>The settings</td>
+					</tr>
+			</tbody></table>
+		</div>
+	</div>	
+
+	<h1 id="ReturnValue">Return Value</h1>
 	<div class="box">
 		<div class="box-body no-padding table-responsive">
 			<table class="table table-striped table-hover two-cols">
@@ -195,8 +265,8 @@
 					</tr>
 				</thead>
 				<tbody><tr>
-					<td>IDictionary<wbr>&lt;string, <wbr>string&gt;<wbr></td>
-					<td></td>
+					<td>byte[]</td>
+					<td>Content of the response body as a byte array.</td>
 				</tr>
 			</tbody></table>
 		</div>

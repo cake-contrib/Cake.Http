@@ -42,6 +42,14 @@ var searchModule = function() {
 
     a({
         id:1,
+        title:"CakeHttpClientHandler",
+        content:"CakeHttpClientHandler",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:2,
         title:"HttpSettings",
         content:"HttpSettings",
         description:'',
@@ -49,17 +57,9 @@ var searchModule = function() {
     });
 
     a({
-        id:2,
+        id:3,
         title:"HttpSettingsExtensions",
         content:"HttpSettingsExtensions",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:3,
-        title:"CakeHttpClientHandler",
-        content:"CakeHttpClientHandler",
         description:'',
         tags:''
     });
@@ -67,6 +67,12 @@ var searchModule = function() {
     y({
         url:'/Cake.Http/Cake.Http/api/Cake.Http/HttpClientAliases',
         title:"HttpClientAliases",
+        description:""
+    });
+
+    y({
+        url:'/Cake.Http/Cake.Http/api/Cake.Http/CakeHttpClientHandler',
+        title:"CakeHttpClientHandler",
         description:""
     });
 
@@ -79,12 +85,6 @@ var searchModule = function() {
     y({
         url:'/Cake.Http/Cake.Http/api/Cake.Http/HttpSettingsExtensions',
         title:"HttpSettingsExtensions",
-        description:""
-    });
-
-    y({
-        url:'/Cake.Http/Cake.Http/api/Cake.Http/CakeHttpClientHandler',
-        title:"CakeHttpClientHandler",
         description:""
     });
 
