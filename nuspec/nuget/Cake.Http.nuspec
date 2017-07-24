@@ -15,6 +15,10 @@
       <copyright>Copyright (c) Cake Contributions Organization 2017</copyright>
       <releaseNotes></releaseNotes>
       <tags>cake script build httpclient web</tags>
+     <frameworkAssemblies>
+       <frameworkAssembly assemblyName="System.Net.Http" />
+       <frameworkAssembly assemblyName="System.Web.Extensions" />
+     </frameworkAssemblies>   
    </metadata>
    <files>
       <file src="Cake.Http.dll" target="lib/net45" />
