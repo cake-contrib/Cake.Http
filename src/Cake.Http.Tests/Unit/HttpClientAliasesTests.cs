@@ -469,11 +469,12 @@ namespace Cake.Http.Tests.Unit
             {
                 //Given                
                 ICakeContext context = null;
-                HttpRequestMessage request = new HttpRequestMessage { };
+                string address = RootAddress;
+                string httpMethod = "POST";
                 HttpSettings settings = new HttpSettings();
 
                 //When
-                var nullRecord = Record.Exception(() => HttpClientAliases.HttpSend(context, request, settings));
+                var nullRecord = Record.Exception(() => HttpClientAliases.HttpSend(context, address, httpMethod, settings));
 
                 //Then
                 CakeAssert.IsArgumentNullException(nullRecord, nameof(context));
@@ -481,18 +482,36 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Request_Parameter()
+            public void Should_Throw_On_Null_Or_Empty_Address_Parameter()
             {
                 //Given         
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
-                HttpRequestMessage request = null;
+                string address = null;
+                string httpMethod = "POST";
 
                 //When
-                var nullRecord = Record.Exception(() => HttpClientAliases.HttpSend(context, request, settings));
+                var nullRecord = Record.Exception(() => HttpClientAliases.HttpSend(context, address, httpMethod, settings));
 
                 //Then
-                CakeAssert.IsArgumentNullException(nullRecord, nameof(request));
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(address));
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Throw_On_Null_Or_Empty_HttpMethod_Parameter()
+            {
+                //Given         
+                ICakeContext context = _Context;
+                HttpSettings settings = new HttpSettings();
+                string address = RootAddress;
+                string httpMethod = null;
+
+                //When
+                var nullRecord = Record.Exception(() => HttpClientAliases.HttpSend(context, address, httpMethod, settings));
+
+                //Then
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(httpMethod));
             }
 
             [Fact]
@@ -501,11 +520,12 @@ namespace Cake.Http.Tests.Unit
             {
                 //Given                
                 ICakeContext context = _Context;
-                HttpRequestMessage request = new HttpRequestMessage { };
                 HttpSettings settings = null;
+                string address = RootAddress;
+                string httpMethod = "POST";
 
                 //When
-                var record = Record.Exception(() => HttpClientAliases.HttpSend(context, request, settings));
+                var record = Record.Exception(() => HttpClientAliases.HttpSend(context, address, httpMethod, settings));
 
                 //Then
                 CakeAssert.IsArgumentNullException(record, nameof(settings));
@@ -518,19 +538,16 @@ namespace Cake.Http.Tests.Unit
                 //Given                
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
-
-                HttpRequestMessage request = new HttpRequestMessage
-                {
-                    RequestUri = new Uri($"{ RootAddress }/posts"),
-                    Method = HttpMethod.Post,
-                    Content = new StringContent("{ \"title\": \"foo\", \"body\": \"bar\", \"userId\": 1}", Encoding.UTF8, "application/json"),
-                };
+                string address = $"{ RootAddress }/posts";
+                string httpMethod = "POST";
+                
+                settings.SetRequestBody("{ \"title\": \"foo\", \"body\": \"bar\", \"userId\": 1}");
 
                 //When
-                var actual = HttpClientAliases.HttpSend(context, request, settings);
+                var actual = HttpClientAliases.HttpSend(context, address, httpMethod, settings);
 
                 //Then
-                var expected = "{\n  \"title\": \"foo\",\n  \"body\": \"bar\",\n  \"userId\": 1,\n  \"id\": 101\n}";
+                var expected = "{\n  \"id\": 101\n}";
 
                 Assert.NotNull(actual);
                 Assert.Equal(expected, actual, ignoreCase: true, ignoreLineEndingDifferences: true, ignoreWhiteSpaceDifferences: true);
