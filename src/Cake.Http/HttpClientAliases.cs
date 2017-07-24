@@ -13,6 +13,7 @@ namespace Cake.Http
     /// </summary>
     [CakeAliasCategory("HTTP Operations")]
     [CakeNamespaceImport("Cake.Http")]
+    [CakeNamespaceImport("System.Net.Http")]
     public static class HttpClientAliases
     {
         #region Get Methods
