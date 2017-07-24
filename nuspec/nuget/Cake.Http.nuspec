@@ -15,14 +15,8 @@
     <copyright>Copyright (c) Cake Contributions Organization 2017</copyright>
     <releaseNotes></releaseNotes>
     <tags>cake script build httpclient web</tags>
-    <frameworkAssemblies>
-      <frameworkAssembly assemblyName="System.Net.Http" />
-      <frameworkAssembly assemblyName="System.Web.Extensions" />
-    </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="System.Net.Http.dll" target="lib/net45" />
-    <file src="System.Web.Extensions.dll" target="lib/net45" />
     <file src="Cake.Http.dll" target="lib/net45" />
     <file src="Cake.Http.pdb" target="lib/net45" />
     <file src="Cake.Http.xml" target="lib/net45" />
