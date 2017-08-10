@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-      <id>Cake.Http</id>
-      <version>0.0.0</version>
-      <authors>louisfischer</authors>
-      <owners>louisfischer,cake-contrib</owners>
-      <title>Cake.Http</title>
-      <description>HttpClient addin for cake build.</description>
-      <summary>HttpClient addin for cake build.</summary>
-      <licenseUrl>https://github.com/cake-contrib/Cake.Http/blob/master/LICENSE</licenseUrl>
-      <projectUrl>https://github.com/cake-contrib/Cake.Http</projectUrl>
-      <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
-      <requireLicenseAcceptance>false</requireLicenseAcceptance>
-      <copyright>Copyright (c) Cake Contributions Organization 2017</copyright>
-      <releaseNotes></releaseNotes>
-      <tags>cake script build httpclient web</tags>
-   </metadata>
-   <files>
-      <file src="net45/Cake.Http.dll" target="lib/net45" />
-      <file src="net45/Cake.Http.pdb" target="lib/net45" />
-      <file src="net45/Cake.Http.xml" target="lib/net45" />
-	  <file src="net45/Newtonsoft.Json.dll" target="lib/net45" />
-	  
-	  <file src="netstandard1.6/Cake.Http.dll" target="lib/netstandard1.6" />
-      <file src="netstandard1.6/Cake.Http.pdb" target="lib/netstandard1.6" />
-      <file src="netstandard1.6/Cake.Http.xml" target="lib/netstandard1.6" />
-	  <file src="netstandard1.6/Cake.Http.deps.json" target="lib/netstandard1.6" />
-   </files>
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>Cake.Http</id>
+    <version>0.0.0</version>
+    <authors>louisfischer</authors>
+    <owners>louisfischer,cake-contrib</owners>
+    <title>Cake.Http</title>
+    <description>HttpClient addin for cake build.</description>
+    <summary>HttpClient addin for cake build.</summary>
+    <licenseUrl>https://github.com/cake-contrib/Cake.Http/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/cake-contrib/Cake.Http</projectUrl>
+    <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Copyright (c) Cake Contributions Organization 2017</copyright>
+    <releaseNotes></releaseNotes>
+    <tags>cake script build httpclient web</tags>
+  </metadata>
+  <files>
+    <file src="net45/Cake.Http.dll" target="lib/net45" />
+    <file src="net45/Cake.Http.pdb" target="lib/net45" />
+    <file src="net45/Cake.Http.xml" target="lib/net45" />
+    <file src="net45/Newtonsoft.Json.dll" target="lib/net45" />
+
+    <file src="netstandard1.6/Cake.Http.dll" target="lib/netstandard1.6" />
+    <file src="netstandard1.6/Cake.Http.pdb" target="lib/netstandard1.6" />
+    <file src="netstandard1.6/Cake.Http.xml" target="lib/netstandard1.6" />
+    <file src="netstandard1.6/Cake.Http.deps.json" target="lib/netstandard1.6" />
+  </files>
 </package>
