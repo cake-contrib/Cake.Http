@@ -44,7 +44,7 @@ namespace Cake.Http
         /// <returns>Returns System.Threading.Tasks.Task`1. The task object representing the asynchronous</returns>
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var id = $"{ DateTime.UtcNow.Ticks }{ Thread.CurrentThread.ManagedThreadId }";
+            var id = $"{ DateTime.UtcNow.Ticks }{ Guid.NewGuid().ToString() }";
             var requestInfo = $"{request.Method} {request.RequestUri}";
 
             AppendHeaders(request); //<==== Appends Custom Headers to the request.

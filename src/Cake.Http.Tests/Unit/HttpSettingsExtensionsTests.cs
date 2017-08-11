@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Web.Script.Serialization;
 using Xunit;
 
 namespace Cake.Http.Tests.Unit
@@ -665,7 +664,7 @@ namespace Cake.Http.Tests.Unit
                 CakeAssert.IsArgumentNullException(actual, nameof(data));
             }
 
-            [Fact(DisplayName = "Json Formarter Test")]
+            [Fact(DisplayName = "Json  Test")]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Add_Request_Body()
             {
@@ -696,7 +695,7 @@ namespace Cake.Http.Tests.Unit
                 //Then
                 Assert.NotNull(settings.RequestBody);
 
-                var actual = new JavaScriptSerializer().Deserialize<BodyModel>(Encoding.UTF8.GetString(settings.RequestBody));
+                var actual = JsonEncoder.DeserializeObject<BodyModel>(Encoding.UTF8.GetString(settings.RequestBody));
                 Assert.Equal(model, actual);
             }
 
