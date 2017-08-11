@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Web.Script.Serialization;
 
 namespace Cake.Http
 {
@@ -218,10 +217,11 @@ namespace Cake.Http
             if (data == null)
                 throw new ArgumentNullException(nameof(data));
 
-            var requestBody = new JavaScriptSerializer().Serialize(data);
-
+            Newtonsoft.Json.Formatting formatting = Newtonsoft.Json.Formatting.None;
             if (indentOutput)
-                requestBody = FormatJsonOutput(requestBody);
+                formatting = Newtonsoft.Json.Formatting.Indented;
+
+            var requestBody = Newtonsoft.Json.JsonConvert.SerializeObject(data, formatting);
 
             settings.RequestBody = Encoding.UTF8.GetBytes(requestBody);
             settings.SetContentType("application/json");

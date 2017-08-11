@@ -4,6 +4,7 @@ using Cake.Core.IO;
 using Cake.Core.Tooling;
 using NSubstitute;
 using System;
+using System.Reflection;
 using System.Runtime.Versioning;
 
 namespace Cake.Http.Tests.Fixtures
@@ -23,7 +24,7 @@ namespace Cake.Http.Tests.Fixtures
         {
             var cakeRuntime = Substitute.For<ICakeRuntime>();
             cakeRuntime.TargetFramework.Returns(new FrameworkName(".NET Framework", new Version(4, 5, 2)));
-            cakeRuntime.CakeVersion.Returns(typeof(ICakeRuntime).Assembly.GetName().Version);
+            cakeRuntime.CakeVersion.Returns(typeof(ICakeRuntime).GetTypeInfo().Assembly.GetName().Version);
             
             FileSystem = Substitute.For<IFileSystem>();
             Environment = Substitute.For<ICakeEnvironment>();
