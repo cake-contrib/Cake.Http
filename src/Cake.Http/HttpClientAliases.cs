@@ -367,18 +367,7 @@ namespace Cake.Http
             if (settings == null)
                 throw new ArgumentNullException(nameof(settings));
 
-            var request = new HttpRequestMessage(new HttpMethod("PATCH"), address)
-            {
-                Content = new ByteArrayContent(settings.RequestBody)
-            };
-
-            var client = GetHttpClient(context, settings);
-
-            var response = client.SendAsync(request).Result;
-
-            var result = response.Content.ReadAsByteArrayAsync().Result;
-
-            return result;
+            return HttpSendAsByteArray(context, address, "PATCH", settings);
         }
 
         /// <summary>
@@ -539,6 +528,101 @@ namespace Cake.Http
         public static void HttpDelete(this ICakeContext context, string address)
         {
             HttpDelete(context, address, settings => { });
+        }
+
+        #endregion
+
+        #region Send Method
+
+        /// <summary>
+        /// Sends the HTTP Request using the generic HttpClient Send Method.
+        /// </summary>
+        /// <example>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="address">The URL of the resource.</param>
+        /// <param name="httpMethod">Http Method used to: POST, PUT, GET, DELETE, PATCH, etc.</param>
+        /// <param name="settings">The settings</param>
+        /// <returns>Content of the response body as a byte array.</returns>
+        [CakeAliasCategory("Send")]
+        [CakeMethodAlias]
+        public static byte[] HttpSendAsByteArray(this ICakeContext context, string address, string httpMethod, HttpSettings settings)
+        {
+            VerifyParameters(context, address, settings);
+
+            if (string.IsNullOrWhiteSpace(httpMethod))
+                throw new ArgumentNullException(nameof(httpMethod));
+
+            var client = GetHttpClient(context, settings);
+
+            var request = new HttpRequestMessage
+            {
+                Method = new HttpMethod(httpMethod),
+                RequestUri = new Uri(address),
+                Content = (settings.RequestBody != null && settings.RequestBody.Length > 0) ?  new ByteArrayContent(settings.RequestBody) : null                
+            };
+
+            var response = client.SendAsync(request).Result;
+
+            var result = response.Content.ReadAsByteArrayAsync().Result;
+
+            return result;
+        }
+
+        /// <summary>
+        /// Sends the HTTP Request using the generic HttpClient Send Method.
+        /// </summary>
+        /// <example>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="address">The URL of the resource.</param>
+        /// <param name="httpMethod">Http Method used to: POST, PUT, GET, DELETE, PATCH, etc.</param>
+        /// <param name="settings">The settings</param>
+        /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Send")]
+        [CakeMethodAlias]
+        public static string HttpSend(this ICakeContext context, string address, string httpMethod, HttpSettings settings)
+        {
+            return Encoding.UTF8.GetString(HttpSendAsByteArray(context, address, httpMethod, settings));
+        }
+
+        /// <summary>
+        /// Sends the HTTP Request using the generic HttpClient Send Method.
+        /// </summary>
+        /// <example>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="address">The URL of the resource.</param>
+        /// <param name="httpMethod">Http Method used to: POST, PUT, GET, DELETE, PATCH, etc.</param>
+        /// <param name="configurator">The settings configurator.</param>
+        /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Send")]
+        [CakeMethodAlias]
+        public static string HttpSend(this ICakeContext context, string address, string httpMethod, Action<HttpSettings> configurator)
+        {
+            if (configurator == null)
+                throw new ArgumentNullException(nameof(configurator));
+
+            var settings = new HttpSettings();
+            configurator(settings);
+
+            return HttpSend(context, address, httpMethod, settings);
+        }
+
+        /// <summary>
+        /// Sends the HTTP Request using the generic HttpClient Send Method.
+        /// </summary>
+        /// <example>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="address">The URL of the resource.</param>
+        /// <param name="httpMethod">Http Method used to: POST, PUT, GET, DELETE, PATCH, etc.</param>
+        /// <returns>Content of the response body as a string.</returns>
+        [CakeAliasCategory("Send")]
+        [CakeMethodAlias]
+        public static string HttpSend(this ICakeContext context, string address, string httpMethod)
+        {
+            return HttpSend(context, address, httpMethod, settings => { });
         }
 
         #endregion

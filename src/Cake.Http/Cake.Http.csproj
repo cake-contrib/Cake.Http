@@ -8,6 +8,18 @@
   <ItemGroup>
     <PackageReference Include="Cake.Core" Version="0.20.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <Reference Include="Cake.Core, Version=0.19.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cake.Core.0.19.3\lib\net45\Cake.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
