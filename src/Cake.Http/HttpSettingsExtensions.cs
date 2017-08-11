@@ -217,11 +217,7 @@ namespace Cake.Http
             if (data == null)
                 throw new ArgumentNullException(nameof(data));
 
-            Newtonsoft.Json.Formatting formatting = Newtonsoft.Json.Formatting.None;
-            if (indentOutput)
-                formatting = Newtonsoft.Json.Formatting.Indented;
-
-            var requestBody = Newtonsoft.Json.JsonConvert.SerializeObject(data, formatting);
+            var requestBody = JsonEncoder.SerializeObject(data);
 
             settings.RequestBody = Encoding.UTF8.GetBytes(requestBody);
             settings.SetContentType("application/json");
@@ -292,76 +288,6 @@ namespace Cake.Http
 
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentNullException(nameof(value));
-        }
-
-        /// <summary>
-        /// Adds indentation and line breaks to output of JavaScriptSerializer
-        /// </summary>
-        private static string FormatJsonOutput(string data)
-        {
-            if (string.IsNullOrWhiteSpace(data))
-                return data;
-
-            var stringBuilder = new StringBuilder();
-
-            bool escaping = false;
-            bool inQuotes = false;
-            int indentation = 0;
-
-            foreach (char character in data)
-            {
-                if (escaping)
-                {
-                    escaping = false;
-                    stringBuilder.Append(character);
-                }
-                else
-                {
-                    if (character == '\\')
-                    {
-                        escaping = true;
-                        stringBuilder.Append(character);
-                    }
-                    else if (character == '\"')
-                    {
-                        inQuotes = !inQuotes;
-                        stringBuilder.Append(character);
-                    }
-                    else if (!inQuotes)
-                    {
-                        if (character == ',')
-                        {
-                            stringBuilder.Append(character);
-                            stringBuilder.Append("\r\n");
-                            stringBuilder.Append('\t', indentation);
-                        }
-                        else if (character == '[' || character == '{')
-                        {
-                            stringBuilder.Append(character);
-                            stringBuilder.Append("\r\n");
-                            stringBuilder.Append('\t', ++indentation);
-                        }
-                        else if (character == ']' || character == '}')
-                        {
-                            stringBuilder.Append("\r\n");
-                            stringBuilder.Append('\t', --indentation);
-                            stringBuilder.Append(character);
-                        }
-                        else if (character == ':')
-                        {
-                            stringBuilder.Append(character);
-                            stringBuilder.Append('\t');
-                        }
-                        else
-                            stringBuilder.Append(character);
-
-                    }
-                    else
-                        stringBuilder.Append(character);
-
-                }
-            }
-            return stringBuilder.ToString();
         }
     }
 }
