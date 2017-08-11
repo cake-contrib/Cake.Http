@@ -664,7 +664,7 @@ namespace Cake.Http.Tests.Unit
                 CakeAssert.IsArgumentNullException(actual, nameof(data));
             }
 
-            [Fact(DisplayName = "Json Formarter Test")]
+            [Fact(DisplayName = "Json  Test")]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Add_Request_Body()
             {
@@ -695,7 +695,7 @@ namespace Cake.Http.Tests.Unit
                 //Then
                 Assert.NotNull(settings.RequestBody);
 
-                var actual = Newtonsoft.Json.JsonConvert.DeserializeObject<BodyModel>(Encoding.UTF8.GetString(settings.RequestBody));
+                var actual = JsonEncoder.DeserializeObject<BodyModel>(Encoding.UTF8.GetString(settings.RequestBody));
                 Assert.Equal(model, actual);
             }
 
