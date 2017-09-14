@@ -17,9 +17,9 @@
     <tags>cake script build httpclient web</tags>
   </metadata>
   <files>
-    <file src="net45/Cake.Http.dll" target="lib/net45" />
-    <file src="net45/Cake.Http.pdb" target="lib/net45" />
-    <file src="net45/Cake.Http.xml" target="lib/net45" />
+    <file src="net46/Cake.Http.dll" target="lib/net46" />
+    <file src="net46/Cake.Http.pdb" target="lib/net46" />
+    <file src="net46/Cake.Http.xml" target="lib/net46" />
 
     <file src="netstandard1.6/Cake.Http.dll" target="lib/netstandard1.6" />
     <file src="netstandard1.6/Cake.Http.pdb" target="lib/netstandard1.6" />
