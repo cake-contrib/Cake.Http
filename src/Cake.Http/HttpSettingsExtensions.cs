@@ -260,7 +260,6 @@ namespace Cake.Http
             return settings;
         }
 
-
         /// <summary>
         /// Sets the EnsureSuccessStatusCode to true. This makes the httpclient throw an error if it does not return a 200 range status.
         /// </summary>

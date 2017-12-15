@@ -102,7 +102,7 @@ namespace Cake.Http
         {
             var handler = new HttpClientHandler()
             {
-                UseDefaultCredentials = _Settings.UseDefaultCredentials,                
+                UseDefaultCredentials = _Settings.UseDefaultCredentials,
                 UseCookies = false
             };
 
