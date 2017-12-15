@@ -15,8 +15,7 @@ namespace Cake.Http
 
 #if net46
     public class CakeHttpClientHandler : WebRequestHandler
-#endif
-#if NETSTANDARD1_6
+#else
     public class CakeHttpClientHandler : HttpClientHandler
 #endif
   {
