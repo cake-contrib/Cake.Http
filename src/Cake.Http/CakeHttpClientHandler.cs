@@ -12,28 +12,30 @@ namespace Cake.Http
     /// <summary>
     /// Custom HTTP Handler to delegate the processing of HTTP requests and extending it.
     /// </summary>
-    public class CakeHttpClientHandler : DelegatingHandler
-    {
-        private readonly HttpSettings _Settings;
-        private readonly ICakeContext _Context;
 
-        /// <summary>
-        /// Custom HTTP Handler to delegate the processing of HTTP requests and extending it.
-        /// </summary>
-        /// <param name="context">Cake Context the request is geting </param>
-        /// <param name="settings">HttpSettings to apply to the inner handler</param>
-        public CakeHttpClientHandler(ICakeContext context, HttpSettings settings)
+#if net46
+    public class CakeHttpClientHandler : WebRequestHandler
+#endif
+#if NETSTANDARD1_6
+    public class CakeHttpClientHandler : HttpClientHandler
+#endif
+  {
+    private readonly HttpSettings _Settings;
+    private readonly ICakeContext _Context;
+
+    /// <summary>
+    /// Custom HTTP Handler to delegate the processing of HTTP requests and extending it.
+    /// </summary>
+    /// <param name="context">Cake Context the request is geting </param>
+    /// <param name="settings">HttpSettings to apply to the inner handler</param>
+    public CakeHttpClientHandler(ICakeContext context, HttpSettings settings)
         {
-            if (context == null)
-                throw new ArgumentNullException(nameof(context));
+            _Context = context ?? throw new ArgumentNullException(nameof(context));
+            _Settings = settings ?? throw new ArgumentException(nameof(settings));
 
-            if (settings == null)
-                throw new ArgumentException(nameof(settings));
+            UseDefaultCredentials = settings.UseDefaultCredentials;
+            UseCookies = false;
 
-            _Context = context;
-            _Settings = settings;
-
-            InnerHandler = GetClientHandler();
         }
 
         /// <summary>
@@ -94,21 +96,6 @@ namespace Cake.Http
             return response;
         }
 
-        /// <summary>
-        /// Gets the client Handler
-        /// </summary>
-        /// <returns></returns>
-        private HttpClientHandler GetClientHandler()
-        {
-            var handler = new HttpClientHandler()
-            {
-                UseDefaultCredentials = _Settings.UseDefaultCredentials,
-                UseCookies = false
-            };
-
-            return handler;
-        }
-        
         /// <summary>
         /// Appends headers to HttpRequestMessage before sending the 
         /// </summary>
