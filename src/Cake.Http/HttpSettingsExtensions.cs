@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace Cake.Http
@@ -276,6 +277,36 @@ namespace Cake.Http
 
             return settings;
         }
+
+          /// <summary>
+          ///  Adds client certificate(s) to the http handler.
+          /// </summary>
+          /// <param name="settings">The settings.</param>
+          /// <param name="clientCertificates">Client certificates to include in requests.</param>
+          /// <returns></returns>
+          public static HttpSettings UseClientCertificates(this HttpSettings settings, params X509Certificate2[] clientCertificates)
+          {
+              return settings.UseClientCertificates((IEnumerable<X509Certificate2>)clientCertificates);
+          }
+
+          /// <summary>
+          ///  Adds client certificate(s) to the http handler.
+          /// </summary>
+          /// <param name="settings">The settings.</param>
+          /// <param name="clientCertificates">Client certificates to include in requests.</param>
+          /// <returns></returns>
+          public static HttpSettings UseClientCertificates(this HttpSettings settings, IEnumerable<X509Certificate2> clientCertificates)
+          {
+            if (clientCertificates == null)
+                throw new ArgumentNullException(nameof(clientCertificates));
+
+            foreach (var clientCertificate in clientCertificates)
+            {
+                settings.ClientCertificates.Add(clientCertificate);
+            }
+
+            return settings;
+          }
 
         private static void VerifyParameters(HttpSettings settings, string name, string value)
         {

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using NSubstitute;
 using Xunit;
 
 namespace Cake.Http.Tests.Unit
@@ -819,6 +821,77 @@ namespace Cake.Http.Tests.Unit
 
                 Assert.NotNull(settings.RequestBody);
                 Assert.Equal(expected, Encoding.UTF8.GetString(settings.RequestBody));
+            }
+        }
+
+        public sealed class TheAddClientCertificateMethod
+        {
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Throw_On_Null_Argument()
+            {
+                //Given
+                var settings = new HttpSettings();
+                X509Certificate2[] clientCertificates = null;
+
+                //When
+                var nullRecord = Record.Exception(() => settings.UseClientCertificates(clientCertificates));
+
+                //Then
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(clientCertificates));
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Add_Client_Certificates_To_Settings()
+            {
+                //Given
+                var settings = new HttpSettings();
+                var firstCert = Substitute.For<X509Certificate2>();
+                var secondCert = Substitute.For<X509Certificate2>();
+
+                //When
+                settings.UseClientCertificates(firstCert, secondCert);
+
+                //Then
+                Assert.Contains(firstCert, settings.ClientCertificates);
+                Assert.Contains(secondCert, settings.ClientCertificates);
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Add_Client_Certificates_As_Enumerable_To_Settings()
+            {
+                //Given
+                var settings = new HttpSettings();
+                var firstCert = Substitute.For<X509Certificate2>();
+                var secondCert = Substitute.For<X509Certificate2>();
+
+                //When
+                settings.UseClientCertificates(new List<X509Certificate2>{ firstCert, secondCert });
+
+                //Then
+                Assert.Contains(firstCert, settings.ClientCertificates);
+                Assert.Contains(secondCert, settings.ClientCertificates);
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Accumulate_Certificates_From_Multiple_Calls()
+            {
+                //Given
+                var settings = new HttpSettings();
+                var firstCert = Substitute.For<X509Certificate2>();
+                var secondCert = Substitute.For<X509Certificate2>();
+
+                //When
+                settings
+                    .UseClientCertificates(firstCert)
+                    .UseClientCertificates(secondCert);
+
+                //Then
+                Assert.Contains(firstCert, settings.ClientCertificates);
+                Assert.Contains(secondCert, settings.ClientCertificates);
             }
         }
     }
