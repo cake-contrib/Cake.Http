@@ -85,11 +85,11 @@ namespace Cake.Http
                 {
                     response.EnsureSuccessStatusCode();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     // Only throw exception on when Non-Success Status Code
                     if (_Settings.ThrowExceptionOnNonSuccessStatusCode)
-                        throw ex;
+                        throw;
                 }
             }
 
