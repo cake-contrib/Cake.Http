@@ -35,6 +35,10 @@ namespace Cake.Http
             UseDefaultCredentials = settings.UseDefaultCredentials;
             UseCookies = false;
 
+            foreach (var clientCertificate in settings.ClientCertificates)
+            {
+                ClientCertificates.Add(clientCertificate);
+            }
         }
 
         /// <summary>
