@@ -8,7 +8,10 @@ BuildParameters.SetParameters(context: Context,
                             title: "Cake.Http",
                             repositoryOwner: "cake-contrib",
                             repositoryName: "Cake.Http",
-                            appVeyorAccountName: "cakecontrib");
+                            appVeyorAccountName: "cakecontrib",
+                            shouldRunDupFinder: false,
+                            shouldRunInspectCode: false,
+                            shouldRunCodecov: false);
 
 BuildParameters.PrintParameters(Context);
 

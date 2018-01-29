@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using NSubstitute;
 using Xunit;
 
 namespace Cake.Http.Tests.Unit
@@ -13,7 +15,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Settings_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = null;
                 string name = "Content-Type";
                 string value = "applicaion/json";
@@ -29,7 +31,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Name_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 string value = "applicaion/json";
 
@@ -48,7 +50,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Value_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 string name = "Content-Type";
 
@@ -107,7 +109,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Settings_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = null;
                 string name = "sessionid";
                 string value = "1BA9481B-74C1-42B3-A1B9-0B914BAE0F05";
@@ -123,7 +125,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Name_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 string name = null;
                 string value = "1BA9481B-74C1-42B3-A1B9-0B914BAE0F05";
@@ -146,7 +148,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Value_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 string name = "sessionid";
                 string value = null;
@@ -190,7 +192,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Schema_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 string parameter = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b3B0YWwuY29tIiwiZXhwIjoxNDI2NDIwODAwLCJodHRwOi8vdG9wdGFsLmNvbS9qd3RfY2xhaW1zL2lzX2FkbWluIjp0cnVlLCJjb21wYW55IjoiVG9wdGFsIiwiYXdlc29tZSI6dHJ1ZX0.yRQYnWzskCZUxPwaQupWkiUzKELZ49eM7oWxAQK_ZXw";
 
@@ -209,7 +211,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Parameter_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 string schema = "Bearer";
 
@@ -251,7 +253,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Settings_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = null;
 
                 //When
@@ -282,7 +284,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_UserName_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 string userName = null;
                 string password = "tiger";
@@ -305,7 +307,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Password_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 string userName = "scott";
                 string password = null;
@@ -351,7 +353,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Token_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 string token = null;
 
@@ -395,7 +397,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_ContentType_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 string contentType = null;
 
@@ -437,7 +439,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Accept_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 string accept = null;
 
@@ -498,7 +500,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Url_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 string url = null;
 
@@ -540,7 +542,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Url_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 string url = null;
 
@@ -582,7 +584,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Settings_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = null;
                 string requestBody = "{ \"id\":0, \"name\": \"testing\"}";
 
@@ -597,7 +599,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_RequestBody_Parameter()
             {
-                //Given                
+                //Given 
                 HttpSettings settings = new HttpSettings();
                 string requestBody = null;
 
@@ -638,7 +640,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Settings_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = null;
                 BodyModel model = new BodyModel { Id = 1234567, Active = true, name = "Rob Test" };          
 
@@ -653,7 +655,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Data_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 BodyModel data = null;
 
@@ -741,7 +743,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Settings_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = null;
                 var data = new Dictionary<string, string>();
 
@@ -756,7 +758,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Data_Parameter()
             {
-                //Given                
+                //Given
                 HttpSettings settings = new HttpSettings();
                 IDictionary<string, string> data = null;
 
@@ -819,6 +821,77 @@ namespace Cake.Http.Tests.Unit
 
                 Assert.NotNull(settings.RequestBody);
                 Assert.Equal(expected, Encoding.UTF8.GetString(settings.RequestBody));
+            }
+        }
+
+        public sealed class TheAddClientCertificateMethod
+        {
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Throw_On_Null_Argument()
+            {
+                //Given
+                var settings = new HttpSettings();
+                X509Certificate2[] clientCertificates = null;
+
+                //When
+                var nullRecord = Record.Exception(() => settings.UseClientCertificates(clientCertificates));
+
+                //Then
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(clientCertificates));
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Add_Client_Certificates_To_Settings()
+            {
+                //Given
+                var settings = new HttpSettings();
+                var firstCert = Substitute.For<X509Certificate2>();
+                var secondCert = Substitute.For<X509Certificate2>();
+
+                //When
+                settings.UseClientCertificates(firstCert, secondCert);
+
+                //Then
+                Assert.Contains(firstCert, settings.ClientCertificates);
+                Assert.Contains(secondCert, settings.ClientCertificates);
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Add_Client_Certificates_As_Enumerable_To_Settings()
+            {
+                //Given
+                var settings = new HttpSettings();
+                var firstCert = Substitute.For<X509Certificate2>();
+                var secondCert = Substitute.For<X509Certificate2>();
+
+                //When
+                settings.UseClientCertificates(new List<X509Certificate2>{ firstCert, secondCert });
+
+                //Then
+                Assert.Contains(firstCert, settings.ClientCertificates);
+                Assert.Contains(secondCert, settings.ClientCertificates);
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Accumulate_Certificates_From_Multiple_Calls()
+            {
+                //Given
+                var settings = new HttpSettings();
+                var firstCert = Substitute.For<X509Certificate2>();
+                var secondCert = Substitute.For<X509Certificate2>();
+
+                //When
+                settings
+                    .UseClientCertificates(firstCert)
+                    .UseClientCertificates(secondCert);
+
+                //Then
+                Assert.Contains(firstCert, settings.ClientCertificates);
+                Assert.Contains(secondCert, settings.ClientCertificates);
             }
         }
     }
