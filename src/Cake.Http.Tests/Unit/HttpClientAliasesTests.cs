@@ -31,7 +31,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Context_Parameter()
             {
-                //Given                
+                //Given 
                 ICakeContext context = null;
                 string address = RootAddress;
                 HttpSettings settings = new HttpSettings();
@@ -70,7 +70,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Settings_Parameter()
             {
-                //Given                
+                //Given
                 ICakeContext context = _Context;
                 string address = RootAddress;
                 HttpSettings settings = null;
@@ -86,7 +86,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Integration)]
             public void Should_Return_Json_Result()
             {
-                //Given                
+                //Given
                 ICakeContext context = _Context;
                 string address = $"{ RootAddress }/posts/1";
                 HttpSettings settings = new HttpSettings();
@@ -116,7 +116,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Context_Parameter()
             {
-                //Given                
+                //Given
                 ICakeContext context = null;
                 string address = RootAddress;
                 HttpSettings settings = new HttpSettings();
@@ -155,7 +155,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Settings_Parameter()
             {
-                //Given                
+                //Given
                 ICakeContext context = _Context;
                 string address = RootAddress;
                 HttpSettings settings = null;
@@ -171,7 +171,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Integration)]
             public void Should_Post_And_Return_Json_Result()
             {
-                //Given                
+                //Given
                 var postData = "{\r\n    title: 'foo',\r\n    body: 'bar',\r\n    userId: 1\r\n  }";
 
                 ICakeContext context = _Context;
@@ -205,7 +205,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Context_Parameter()
             {
-                //Given                
+                //Given
                 ICakeContext context = null;
                 string address = RootAddress;
                 HttpSettings settings = new HttpSettings();
@@ -244,7 +244,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Settings_Parameter()
             {
-                //Given                
+                //Given
                 ICakeContext context = _Context;
                 string address = RootAddress;
                 HttpSettings settings = null;
@@ -260,7 +260,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Integration)]
             public void Should_Put_And_Return_Json_Result()
             {
-                //Given                
+                //Given
                 var putData = "{\r\n    title: 'foo',\r\n    body: 'bar',\r\n    userId: 1\r\n  }";
 
                 ICakeContext context = _Context;
@@ -295,7 +295,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Context_Parameter()
             {
-                //Given                
+                //Given
                 ICakeContext context = null;
                 string address = RootAddress;
                 HttpSettings settings = new HttpSettings();
@@ -334,7 +334,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Settings_Parameter()
             {
-                //Given                
+                //Given
                 ICakeContext context = _Context;
                 string address = RootAddress;
                 HttpSettings settings = null;
@@ -350,7 +350,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Integration)]
             public void Should_Patch_And_Return_Json_Result()
             {
-                //Given                
+                //Given
                 var patchData = "{\r\n    title: 'foo',\r\n    body: 'bar',\r\n    userId: 1\r\n  }";
 
                 ICakeContext context = _Context;
@@ -385,7 +385,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Context_Parameter()
             {
-                //Given                
+                //Given
                 ICakeContext context = null;
                 string address = RootAddress;
                 HttpSettings settings = new HttpSettings();
@@ -424,7 +424,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Settings_Parameter()
             {
-                //Given                
+                //Given
                 ICakeContext context = _Context;
                 string address = RootAddress;
                 HttpSettings settings = null;
@@ -440,7 +440,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Integration)]
             public void Should_Delete_Return_Void()
             {
-                //Given                
+                //Given
                 ICakeContext context = _Context;
                 string address = $"{ RootAddress }/posts/1";
                 HttpSettings settings = new HttpSettings() { EnsureSuccessStatusCode = true };
@@ -467,7 +467,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Context_Parameter()
             {
-                //Given                
+                //Given
                 ICakeContext context = null;
                 string address = RootAddress;
                 string httpMethod = "POST";
@@ -518,7 +518,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Settings_Parameter()
             {
-                //Given                
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = null;
                 string address = RootAddress;
@@ -535,12 +535,12 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Integration)]
             public void Should_Post_And_Return_Json_Result()
             {
-                //Given                
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = $"{ RootAddress }/posts";
                 string httpMethod = "POST";
-                
+
                 settings.SetRequestBody("{ \"title\": \"foo\", \"body\": \"bar\", \"userId\": 1}");
 
                 //When

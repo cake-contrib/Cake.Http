@@ -36,7 +36,6 @@ namespace Cake.Http.Tests.Fixtures
             ProcessRunner = Substitute.For<IProcessRunner>();
             Registry = Substitute.For<IRegistry>();
             Tools = Substitute.For<IToolLocator>();
-            
         }
 
         public void Dispose()

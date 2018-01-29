@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Cake.Http
 {
@@ -14,6 +15,7 @@ namespace Cake.Http
         {
             Headers = new Dictionary<string, string>();
             Cookies = new Dictionary<string, string>();
+            ClientCertificates = new List<X509Certificate2>();
         }
 
         /// <summary>
@@ -50,5 +52,10 @@ namespace Cake.Http
         /// This is used in conjunction with EnsureSuccessStatusCode.
         /// </summary>
         public bool ThrowExceptionOnNonSuccessStatusCode { get; set; }
+
+        /// <summary>
+        /// List of Client Certificates to be enclosed with the http request.
+        /// </summary>
+        public IList<X509Certificate2> ClientCertificates { get; set; }
     }
 }
