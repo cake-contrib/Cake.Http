@@ -10,7 +10,8 @@ BuildParameters.SetParameters(context: Context,
                             repositoryName: "Cake.Http",
                             appVeyorAccountName: "cakecontrib",
                             shouldRunDupFinder: false,
-                            shouldRunInspectCode: false);
+                            shouldRunInspectCode: false,
+                            shouldRunCodecov: false);
 
 BuildParameters.PrintParameters(Context);
 
