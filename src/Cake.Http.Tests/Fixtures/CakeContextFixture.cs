@@ -1,4 +1,4 @@
-﻿using Cake.Core;
+using Cake.Core;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
 using Cake.Core.Tooling;
@@ -23,7 +23,7 @@ namespace Cake.Http.Tests.Fixtures
         public CakeContextFixture()
         {
             var cakeRuntime = Substitute.For<ICakeRuntime>();
-            cakeRuntime.TargetFramework.Returns(new FrameworkName(".NET Framework", new Version(4, 5, 2)));
+            cakeRuntime.BuiltFramework.Returns(new FrameworkName(".NET Framework", new Version(4, 5, 2)));
             cakeRuntime.CakeVersion.Returns(typeof(ICakeRuntime).GetTypeInfo().Assembly.GetName().Version);
             
             FileSystem = Substitute.For<IFileSystem>();
