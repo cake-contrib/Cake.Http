@@ -19,13 +19,14 @@ namespace Cake.Http.Tests.Fixtures
         public IProcessRunner ProcessRunner { get; set; }
         public IRegistry Registry { get; set; }
         public IToolLocator Tools { get; set; }
+        public ICakeDataResolver Data { get; set; }
 
         public CakeContextFixture()
         {
             var cakeRuntime = Substitute.For<ICakeRuntime>();
             cakeRuntime.BuiltFramework.Returns(new FrameworkName(".NET Framework", new Version(4, 5, 2)));
             cakeRuntime.CakeVersion.Returns(typeof(ICakeRuntime).GetTypeInfo().Assembly.GetName().Version);
-            
+
             FileSystem = Substitute.For<IFileSystem>();
             Environment = Substitute.For<ICakeEnvironment>();
             Environment.Runtime.Returns(cakeRuntime);
@@ -36,6 +37,7 @@ namespace Cake.Http.Tests.Fixtures
             ProcessRunner = Substitute.For<IProcessRunner>();
             Registry = Substitute.For<IRegistry>();
             Tools = Substitute.For<IToolLocator>();
+            Data = Substitute.For<ICakeDataResolver>();
         }
 
         public void Dispose()
