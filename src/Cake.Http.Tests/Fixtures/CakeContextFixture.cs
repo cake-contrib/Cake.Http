@@ -19,6 +19,7 @@ namespace Cake.Http.Tests.Fixtures
         public IProcessRunner ProcessRunner { get; set; }
         public IRegistry Registry { get; set; }
         public IToolLocator Tools { get; set; }
+        public ICakeDataResolver Data { get; set; }
 
         public CakeContextFixture()
         {
@@ -36,6 +37,7 @@ namespace Cake.Http.Tests.Fixtures
             ProcessRunner = Substitute.For<IProcessRunner>();
             Registry = Substitute.For<IRegistry>();
             Tools = Substitute.For<IToolLocator>();
+            Data = Substitute.For<ICakeDataResolver>();
         }
 
         public void Dispose()
