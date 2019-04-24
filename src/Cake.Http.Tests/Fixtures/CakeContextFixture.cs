@@ -1,4 +1,5 @@
 using Cake.Core;
+using Cake.Core.Configuration;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
 using Cake.Core.Tooling;
@@ -11,15 +12,16 @@ namespace Cake.Http.Tests.Fixtures
 {
     public sealed class CakeContextFixture : ICakeContext, IDisposable
     {
-        public IFileSystem FileSystem { get; set; }
-        public ICakeEnvironment Environment { get; set; }
-        public IGlobber Globber { get; set; }
-        public ICakeLog Log { get; set; }
-        public ICakeArguments Arguments { get; set; }
-        public IProcessRunner ProcessRunner { get; set; }
-        public IRegistry Registry { get; set; }
-        public IToolLocator Tools { get; set; }
-        public ICakeDataResolver Data { get; set; }
+        public IFileSystem FileSystem { get; }
+        public ICakeEnvironment Environment { get; }
+        public IGlobber Globber { get; }
+        public ICakeLog Log { get; }
+        public ICakeArguments Arguments { get; }
+        public IProcessRunner ProcessRunner { get; }
+        public IRegistry Registry { get; }
+        public IToolLocator Tools { get; }
+        public ICakeDataResolver Data { get; }
+        public ICakeConfiguration Configuration { get; }
 
         public CakeContextFixture()
         {
@@ -38,6 +40,7 @@ namespace Cake.Http.Tests.Fixtures
             Registry = Substitute.For<IRegistry>();
             Tools = Substitute.For<IToolLocator>();
             Data = Substitute.For<ICakeDataResolver>();
+            Configuration = Substitute.For<ICakeConfiguration>();
         }
 
         public void Dispose()
