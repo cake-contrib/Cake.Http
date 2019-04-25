@@ -10,17 +10,13 @@
     <summary>HttpClient addin for cake build.</summary>
     <licenseUrl>https://github.com/cake-contrib/Cake.Http/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/cake-contrib/Cake.Http</projectUrl>
-    <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
+    <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <copyright>Copyright (c) Cake Contributions Organization 2017</copyright>
     <releaseNotes></releaseNotes>
     <tags>cake script build httpclient web</tags>
   </metadata>
   <files>
-    <file src="net46/Cake.Http.dll" target="lib/net46" />
-    <file src="net46/Cake.Http.pdb" target="lib/net46" />
-    <file src="net46/Cake.Http.xml" target="lib/net46" />
-
     <file src="netstandard2.0/Cake.Http.dll" target="lib/netstandard2.0" />
     <file src="netstandard2.0/Cake.Http.pdb" target="lib/netstandard2.0" />
     <file src="netstandard2.0/Cake.Http.xml" target="lib/netstandard2.0" />

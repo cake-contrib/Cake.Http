@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -78,7 +78,7 @@ namespace Cake.Http.Tests.Unit
                 //Then
                 Assert.NotNull(settings.Headers);
                 Assert.True(settings.Headers.ContainsKey("Content-Type"));
-                Assert.Equal(settings.Headers["Content-Type"], "application/json", StringComparer.OrdinalIgnoreCase);
+                Assert.Equal("application/json", settings.Headers["Content-Type"], StringComparer.OrdinalIgnoreCase);
             }
 
             [Fact]
@@ -99,7 +99,7 @@ namespace Cake.Http.Tests.Unit
                 settings.AppendHeader("Content-Type", "text/xml");
 
                 //Then
-                Assert.Equal(settings.Headers["Content-Type"], "text/xml", StringComparer.OrdinalIgnoreCase);
+                Assert.Equal("text/xml", settings.Headers["Content-Type"], StringComparer.OrdinalIgnoreCase);
             }
         }
 
@@ -490,7 +490,7 @@ namespace Cake.Http.Tests.Unit
                 //Then
                 Assert.NotNull(settings.Headers);
                 Assert.True(settings.Headers.ContainsKey("Cache-Control"));
-                Assert.Equal(settings.Headers["Cache-Control"], "no-store");
+                Assert.Equal("no-store", settings.Headers["Cache-Control"]);
             }
         }
 
@@ -790,7 +790,7 @@ namespace Cake.Http.Tests.Unit
 
                 Assert.NotNull(settings.Headers);
                 Assert.True(settings.Headers.ContainsKey("Content-Type"));
-                Assert.Equal(settings.Headers["Content-Type"], "application/x-www-form-urlencoded");
+                Assert.Equal("application/x-www-form-urlencoded", settings.Headers["Content-Type"]);
 
                 Assert.NotNull(settings.RequestBody);
                 Assert.Equal(expected, Encoding.UTF8.GetString(settings.RequestBody));
@@ -817,7 +817,7 @@ namespace Cake.Http.Tests.Unit
 
                 Assert.NotNull(settings.Headers);
                 Assert.True(settings.Headers.ContainsKey("Content-Type"));
-                Assert.Equal(settings.Headers["Content-Type"], "application/x-www-form-urlencoded");
+                Assert.Equal("application/x-www-form-urlencoded", settings.Headers["Content-Type"]);
 
                 Assert.NotNull(settings.RequestBody);
                 Assert.Equal(expected, Encoding.UTF8.GetString(settings.RequestBody));
