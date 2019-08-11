@@ -8,11 +8,12 @@
     <title>Cake.Http</title>
     <description>HttpClient addin for cake build.</description>
     <summary>HttpClient addin for cake build.</summary>
-    <licenseUrl>https://github.com/cake-contrib/Cake.Http/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/cake-contrib/Cake.Http</projectUrl>
     <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <copyright>Copyright (c) Cake Contributions Organization 2017</copyright>
+    <license type="expression">MIT</license>
+    <repository type="git" url="https://github.com/cake-contrib/Cake.Http.git"/>
     <releaseNotes></releaseNotes>
     <tags>cake script build httpclient web</tags>
   </metadata>
