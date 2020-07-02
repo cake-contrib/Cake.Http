@@ -31,7 +31,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Context_Parameter()
             {
-                //Given 
+                //Given
                 ICakeContext context = null;
                 string address = RootAddress;
                 HttpSettings settings = new HttpSettings();
@@ -47,7 +47,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Address_Parameter()
             {
-                //Given         
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = null;
@@ -132,7 +132,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Address_Parameter()
             {
-                //Given         
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = null;
@@ -221,7 +221,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Address_Parameter()
             {
-                //Given         
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = null;
@@ -311,7 +311,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Address_Parameter()
             {
-                //Given         
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = null;
@@ -401,7 +401,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Address_Parameter()
             {
-                //Given         
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = null;
@@ -484,7 +484,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Address_Parameter()
             {
-                //Given         
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = null;
@@ -501,7 +501,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_HttpMethod_Parameter()
             {
-                //Given         
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = RootAddress;
@@ -551,6 +551,25 @@ namespace Cake.Http.Tests.Unit
 
                 Assert.NotNull(actual);
                 Assert.Equal(expected, actual, ignoreCase: true, ignoreLineEndingDifferences: true, ignoreWhiteSpaceDifferences: true);
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Integration)]
+            public void SoemTest()
+            {
+                //Given
+                var settings = new HttpSettings();
+                ICakeContext context = _Context;
+                string address = $"{ RootAddress }/posts";
+                //When
+                settings
+                    .SetTimeout(TimeSpan.FromMilliseconds(1));
+
+                _Context.HttpGet(address,
+                    settings);
+
+                //Then
+                Assert.Equal(TimeSpan.FromMinutes(1), settings.Timeout);
             }
         }
     }
