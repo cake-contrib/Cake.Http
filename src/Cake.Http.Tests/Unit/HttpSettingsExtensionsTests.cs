@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Xml;
 using NSubstitute;
 using Xunit;
 
@@ -599,7 +600,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_RequestBody_Parameter()
             {
-                //Given 
+                //Given
                 HttpSettings settings = new HttpSettings();
                 string requestBody = null;
 
@@ -642,7 +643,7 @@ namespace Cake.Http.Tests.Unit
             {
                 //Given
                 HttpSettings settings = null;
-                BodyModel model = new BodyModel { Id = 1234567, Active = true, name = "Rob Test" };          
+                BodyModel model = new BodyModel { Id = 1234567, Active = true, name = "Rob Test" };
 
                 //When
                 var record = Record.Exception(() => HttpSettingsExtensions.SetJsonRequestBody(settings, model));
@@ -892,6 +893,21 @@ namespace Cake.Http.Tests.Unit
                 //Then
                 Assert.Contains(firstCert, settings.ClientCertificates);
                 Assert.Contains(secondCert, settings.ClientCertificates);
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Set_Timeout()
+            {
+                //Given
+                var settings = new HttpSettings();
+
+                //When
+                settings
+                    .SetTimeout(TimeSpan.FromMinutes(1));
+
+                //Then
+                Assert.Equal(TimeSpan.FromMinutes(1), settings.Timeout);
             }
         }
     }

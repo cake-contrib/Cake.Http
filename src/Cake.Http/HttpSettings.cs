@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Cake.Http
@@ -19,7 +20,7 @@ namespace Cake.Http
         }
 
         /// <summary>
-        /// Gets or Sets the Body of the Request 
+        /// Gets or Sets the Body of the Request
         /// </summary>
         /// <remarks>
         /// This is only valid for http operations such as POST or PUT.
@@ -57,5 +58,10 @@ namespace Cake.Http
         /// List of Client Certificates to be enclosed with the http request.
         /// </summary>
         public IList<X509Certificate2> ClientCertificates { get; set; }
+
+        /// <summary>
+        /// Time out for http request, default is 100 seconds reference https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=netcore-3.1
+        /// </summary>
+        public TimeSpan? Timeout { get; set; }
     }
 }

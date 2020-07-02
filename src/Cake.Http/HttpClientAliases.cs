@@ -559,7 +559,7 @@ namespace Cake.Http
             {
                 Method = new HttpMethod(httpMethod),
                 RequestUri = new Uri(address),
-                Content = (settings.RequestBody != null && settings.RequestBody.Length > 0) ?  new ByteArrayContent(settings.RequestBody) : null                
+                Content = (settings.RequestBody != null && settings.RequestBody.Length > 0) ?  new ByteArrayContent(settings.RequestBody) : null
             };
 
             var response = client.SendAsync(request).Result;
@@ -636,7 +636,17 @@ namespace Cake.Http
         /// <returns>A <see cref="HttpClient"/> instance.</returns>
         private static HttpClient GetHttpClient(ICakeContext context, HttpSettings settings)
         {
-            return new HttpClient(new CakeHttpClientHandler(context, settings));
+            var httpClient = new HttpClient(new CakeHttpClientHandler(context, settings));
+            SetHttpClientBasedSettings(settings, httpClient);
+            return httpClient;
+        }
+
+        private static void SetHttpClientBasedSettings(HttpSettings settings, HttpClient httpClient)
+        {
+            if (settings.Timeout.HasValue)
+            {
+                httpClient.Timeout = settings.Timeout.Value;
+            }
         }
 
         private static void VerifyParameters(ICakeContext context, string address, HttpSettings settings)
