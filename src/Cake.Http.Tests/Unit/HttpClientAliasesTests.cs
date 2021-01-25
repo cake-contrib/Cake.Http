@@ -1,10 +1,6 @@
-﻿using Cake.Core;
+using Cake.Core;
 using Cake.Http.Tests.Fixtures;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -555,7 +551,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Integration)]
-            public async Task Should_Throw_Exception_IfRequestTimesOut()
+            public void Should_Throw_Exception_IfRequestTimesOut()
             {
                 //Given
                 var settings = new HttpSettings();
@@ -566,12 +562,12 @@ namespace Cake.Http.Tests.Unit
                     .SetTimeout(TimeSpan.FromMilliseconds(1));
 
                 var record = Record.Exception(() => _Context.HttpGet(address, settings));
-                CakeAssert.IsExceptionWithMessage<TaskCanceledException>(record.InnerException,"A task was canceled.");
+                CakeAssert.IsExceptionWithMessage<TaskCanceledException>(record.InnerException, "A task was canceled.");
             }
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Integration)]
-            public async Task Should_Get_And_Return_Json_Result()
+            public void Should_Get_And_Return_Json_Result()
             {
                 //Given
                 var settings = new HttpSettings();
