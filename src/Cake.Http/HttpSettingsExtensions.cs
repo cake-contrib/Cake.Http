@@ -308,6 +308,18 @@ namespace Cake.Http
             return settings;
           }
 
+          /// <summary>
+          /// Sets the timeout for the http request
+          /// </summary>
+          /// <param name="settings">The settings.</param>
+          /// <param name="timeout">Timeout to set in the http request</param>
+          /// <returns></returns>
+          public static HttpSettings SetTimeout(this HttpSettings settings, TimeSpan timeout)
+          {
+              settings.Timeout = timeout;
+              return settings;
+          }
+
         private static void VerifyParameters(HttpSettings settings, string name, string value)
         {
             if (settings == null)

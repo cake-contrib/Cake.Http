@@ -1,10 +1,6 @@
-﻿using Cake.Core;
+using Cake.Core;
 using Cake.Http.Tests.Fixtures;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -31,7 +27,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Context_Parameter()
             {
-                //Given 
+                //Given
                 ICakeContext context = null;
                 string address = RootAddress;
                 HttpSettings settings = new HttpSettings();
@@ -47,7 +43,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Address_Parameter()
             {
-                //Given         
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = null;
@@ -132,7 +128,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Address_Parameter()
             {
-                //Given         
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = null;
@@ -221,7 +217,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Address_Parameter()
             {
-                //Given         
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = null;
@@ -311,7 +307,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Address_Parameter()
             {
-                //Given         
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = null;
@@ -401,7 +397,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Address_Parameter()
             {
-                //Given         
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = null;
@@ -484,7 +480,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_Address_Parameter()
             {
-                //Given         
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = null;
@@ -501,7 +497,7 @@ namespace Cake.Http.Tests.Unit
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void Should_Throw_On_Null_Or_Empty_HttpMethod_Parameter()
             {
-                //Given         
+                //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
                 string address = RootAddress;
@@ -548,6 +544,43 @@ namespace Cake.Http.Tests.Unit
 
                 //Then
                 var expected = "{\n  \"id\": 101\n}";
+
+                Assert.NotNull(actual);
+                Assert.Equal(expected, actual, ignoreCase: true, ignoreLineEndingDifferences: true, ignoreWhiteSpaceDifferences: true);
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Integration)]
+            public void Should_Throw_Exception_IfRequestTimesOut()
+            {
+                //Given
+                var settings = new HttpSettings();
+                ICakeContext context = _Context;
+                string address = $"{ RootAddress }/posts";
+                //When
+                settings
+                    .SetTimeout(TimeSpan.FromMilliseconds(1));
+
+                var record = Record.Exception(() => _Context.HttpGet(address, settings));
+                CakeAssert.IsExceptionWithMessage<TaskCanceledException>(record.InnerException, "A task was canceled.");
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Integration)]
+            public void Should_Get_And_Return_Json_Result()
+            {
+                //Given
+                var settings = new HttpSettings();
+                ICakeContext context = _Context;
+                string address = $"{ RootAddress }/posts/1";
+                //When
+                settings
+                    .SetTimeout(TimeSpan.FromSeconds(100));
+
+                var actual = _Context.HttpGet(address, settings);
+
+                //Then
+                var expected = "{\r\n  \"userId\": 1,\r\n  \"id\": 1,\r\n  \"title\": \"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\",\r\n  \"body\": \"quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto\"\r\n}";
 
                 Assert.NotNull(actual);
                 Assert.Equal(expected, actual, ignoreCase: true, ignoreLineEndingDifferences: true, ignoreWhiteSpaceDifferences: true);

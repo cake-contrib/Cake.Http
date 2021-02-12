@@ -1,4 +1,4 @@
-﻿using Cake.Core;
+using Cake.Core;
 using Cake.Core.Annotations;
 using System;
 using System.Net.Http;
@@ -189,7 +189,7 @@ namespace Cake.Http
         ///         string responseBody = HttpPost("https://www.google.com", settings =>
         ///         {
         ///            settings.UseBearerAuthorization("1af538baa9045a84c0e889f672baf83ff24")
-        ///                    .SetContentType("appliication/json")
+        ///                    .SetContentType("application/json")
         ///                    .SetRequestBody("{ \"id\": 123, \"name\": \"Test Test\" }");
         ///         });
         /// </code>
@@ -298,7 +298,7 @@ namespace Cake.Http
         ///         string responseBody = HttpPut("https://www.google.com/1", settings =>
         ///         {
         ///            settings.UseBearerAuthorization("1af538baa9045a84c0e889f672baf83ff24")
-        ///                    .SetContentType("appliication/json")
+        ///                    .SetContentType("application/json")
         ///                    .SetRequestBody("{ \"id\": 123, \"name\": \"Test Test\" }");
         ///         });
         /// </code>
@@ -409,7 +409,7 @@ namespace Cake.Http
         ///         string responseBody = HttpPatch("https://www.google.com/1", settings =>
         ///         {
         ///            settings.UseBearerAuthorization("1af538baa9045a84c0e889f672baf83ff24")
-        ///                    .SetContentType("appliication/json")
+        ///                    .SetContentType("application/json")
         ///                    .SetRequestBody("{ \"id\": 123, \"name\": \"Test Test\" }");
         ///         });
         /// </code>
@@ -559,7 +559,7 @@ namespace Cake.Http
             {
                 Method = new HttpMethod(httpMethod),
                 RequestUri = new Uri(address),
-                Content = (settings.RequestBody != null && settings.RequestBody.Length > 0) ?  new ByteArrayContent(settings.RequestBody) : null                
+                Content = (settings.RequestBody != null && settings.RequestBody.Length > 0) ?  new ByteArrayContent(settings.RequestBody) : null
             };
 
             var response = client.SendAsync(request).Result;
@@ -636,7 +636,17 @@ namespace Cake.Http
         /// <returns>A <see cref="HttpClient"/> instance.</returns>
         private static HttpClient GetHttpClient(ICakeContext context, HttpSettings settings)
         {
-            return new HttpClient(new CakeHttpClientHandler(context, settings));
+            var httpClient = new HttpClient(new CakeHttpClientHandler(context, settings));
+            SetHttpClientBasedSettings(settings, httpClient);
+            return httpClient;
+        }
+
+        private static void SetHttpClientBasedSettings(HttpSettings settings, HttpClient httpClient)
+        {
+            if (settings.Timeout.HasValue)
+            {
+                httpClient.Timeout = settings.Timeout.Value;
+            }
         }
 
         private static void VerifyParameters(ICakeContext context, string address, HttpSettings settings)

@@ -1,6 +1,6 @@
-using System.Security.Cryptography.X509Certificates;
 using Cake.Core;
 using NSubstitute;
+using System.Security.Cryptography.X509Certificates;
 using Xunit;
 
 namespace Cake.Http.Tests.Unit
@@ -8,6 +8,7 @@ namespace Cake.Http.Tests.Unit
     public class CakeHttpClientHandlerTests
     {
         [Fact]
+        [Trait(Traits.TestCategory, TestCategories.Unit)]
         public void Should_Add_Client_Certificates_From_Settings_To_Property()
         {
             //Given
