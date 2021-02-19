@@ -1,9 +1,9 @@
+using Cake.Core.IO;
+using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Xml;
-using NSubstitute;
 using Xunit;
 
 namespace Cake.Http.Tests.Unit
@@ -667,9 +667,9 @@ namespace Cake.Http.Tests.Unit
                 CakeAssert.IsArgumentNullException(actual, nameof(data));
             }
 
-            [Fact(DisplayName = "Json  Test")]
+            [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_Request_Body()
+            public void Should_Add_Json_Request_Body()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -678,7 +678,7 @@ namespace Cake.Http.Tests.Unit
                     Id = 1234567,
                     Active = true,
                     name = "Rob Test",
-                    Parts = new []
+                    Parts = new[]
                     {
                         "Legs",
                         "Arms",
@@ -712,10 +712,7 @@ namespace Cake.Http.Tests.Unit
 
                 public BodySubModel SubModel { get; set; }
 
-                public override int GetHashCode()
-                {
-                    return (Id.ToString() + Active.ToString() + name).GetHashCode();
-                }
+                public override int GetHashCode() => HashCode.Combine(Id, Active, name);
 
                 public override bool Equals(object obj)
                 {
@@ -723,10 +720,7 @@ namespace Cake.Http.Tests.Unit
                     return int.Equals(obj.GetHashCode(), GetHashCode());
                 }
 
-                public override string ToString()
-                {
-                    return name;
-                }
+                public override string ToString() => name;
             }
 
             public sealed class BodySubModel
@@ -803,7 +797,7 @@ namespace Cake.Http.Tests.Unit
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
-                var data = new []
+                var data = new[]
                 {
                     new KeyValuePair<string, string>("GroupId", "1"),
                     new KeyValuePair<string, string>("GroupId", "2"),
@@ -822,6 +816,113 @@ namespace Cake.Http.Tests.Unit
 
                 Assert.NotNull(settings.RequestBody);
                 Assert.Equal(expected, Encoding.UTF8.GetString(settings.RequestBody));
+            }
+        }
+
+        public sealed class SetMultipartFormDataRequestBody
+        {
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Throw_On_Null_Settings_Parameter()
+            {
+                //Given
+                HttpSettings settings = null;
+                var data = new Dictionary<string, string>();
+
+                //When
+                var nullRecord = Record.Exception(() => HttpSettingsExtensions.SetMultipartFormDataRequestBody(settings, data));
+
+                //Then
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(settings));
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Throw_On_Null_Or_Empty_Data_Parameter()
+            {
+                //Given
+                HttpSettings settings = new HttpSettings();
+                IDictionary<string, string> data = null;
+
+                //When
+                var nullRecord = Record.Exception(() => HttpSettingsExtensions.SetMultipartFormDataRequestBody(settings, data));
+
+                //Then
+                CakeAssert.IsArgumentNullException(nullRecord, nameof(data));
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Set_Request_Body_As_Multipart_Form_Data()
+            {
+                //Given
+                HttpSettings settings = new HttpSettings();
+                IDictionary<string, string> data = new Dictionary<string, string>
+                {
+                    ["Id"] = "123",
+                    ["LastName"] = "Test",
+                    ["FirstName"] = "John"
+                };
+
+                //When
+                settings.SetMultipartFormDataRequestBody(data);
+
+                //Then
+                var expected = $@"-------6fd9070b8b1b5ba49564b8fff7b7784ea0cdf096
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: form-data; name=Id
+
+123
+-------6fd9070b8b1b5ba49564b8fff7b7784ea0cdf096
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: form-data; name=LastName
+
+Test
+-------6fd9070b8b1b5ba49564b8fff7b7784ea0cdf096
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: form-data; name=FirstName
+
+John
+-------6fd9070b8b1b5ba49564b8fff7b7784ea0cdf096--
+";
+
+                Assert.NotNull(settings.Headers);
+                Assert.True(settings.Headers.ContainsKey("Content-Type"));
+                Assert.StartsWith($"multipart/form-data; boundary={HttpSettingsExtensions.BoundaryPrefix}", settings.Headers["Content-Type"]);
+
+                Assert.NotNull(settings.RequestBody);
+            }
+
+            [Fact]
+            [Trait(Traits.TestCategory, TestCategories.Unit)]
+            public void Should_Set_Request_Body_As_Multipart_Form_Data_With_FilePaths()
+            {
+                //Given
+                HttpSettings settings = new HttpSettings();
+                IDictionary<string, string> data = new Dictionary<string, string>
+                {
+                    ["Id"] = "123",
+                    ["LastName"] = "Test",
+                    ["FirstName"] = "John"
+                };
+
+                var filePaths = new FilePathCollection()
+                {
+                     new FilePath("Data/actors.json"),
+                     new FilePath("Data/test.pdf"),
+                     new FilePath("Data/cake-contrib-small.png")
+                };
+
+                //When
+                settings.SetMultipartFormDataRequestBody(data, filePaths);
+
+                //Then
+                var expected = Encoding.UTF8.GetBytes(@$"");
+
+                Assert.NotNull(settings.Headers);
+                Assert.True(settings.Headers.ContainsKey("Content-Type"));
+                Assert.StartsWith($"multipart/form-data; boundary={HttpSettingsExtensions.BoundaryPrefix}", settings.Headers["Content-Type"]);
+                Assert.NotNull(settings.RequestBody);
             }
         }
 
@@ -869,7 +970,7 @@ namespace Cake.Http.Tests.Unit
                 var secondCert = Substitute.For<X509Certificate2>();
 
                 //When
-                settings.UseClientCertificates(new List<X509Certificate2>{ firstCert, secondCert });
+                settings.UseClientCertificates(new List<X509Certificate2> { firstCert, secondCert });
 
                 //Then
                 Assert.Contains(firstCert, settings.ClientCertificates);

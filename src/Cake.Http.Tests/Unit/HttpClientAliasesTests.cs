@@ -1,7 +1,6 @@
 using Cake.Core;
 using Cake.Http.Tests.Fixtures;
 using System;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Cake.Http.Tests.Unit
@@ -562,7 +561,7 @@ namespace Cake.Http.Tests.Unit
                     .SetTimeout(TimeSpan.FromMilliseconds(1));
 
                 var record = Record.Exception(() => _Context.HttpGet(address, settings));
-                CakeAssert.IsExceptionWithMessage<TaskCanceledException>(record.InnerException, "A task was canceled.");
+                CakeAssert.IsExceptionWithMessage<TimeoutException>(record.InnerException, "The operation was canceled.");
             }
 
             [Fact]
