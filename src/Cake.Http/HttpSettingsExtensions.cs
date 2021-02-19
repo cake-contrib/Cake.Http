@@ -1,9 +1,12 @@
-﻿using System;
+using Cake.Core.IO;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Cake.Http
 {
@@ -12,6 +15,8 @@ namespace Cake.Http
     /// </summary>
     public static class HttpSettingsExtensions
     {
+        internal const string BoundaryPrefix = "-----6fd9070b8b1b5ba49564b8fff7b7784ea0cdf096";
+
         /// <summary>
         /// Appends the header to the settings header collection
         /// </summary>
@@ -233,8 +238,7 @@ namespace Cake.Http
         /// <param name="settings">The settings.</param>
         /// <param name="data">Dictionary of data to url encode and set to the body.</param>
         /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
-        public static HttpSettings SetFormUrlEncodedRequestBody(this HttpSettings settings,
-            IDictionary<string, string> data)
+        public static HttpSettings SetFormUrlEncodedRequestBody(this HttpSettings settings, IDictionary<string, string> data)
             => SetFormUrlEncodedRequestBody(settings, data?.AsEnumerable());
 
         /// <summary>
@@ -246,8 +250,7 @@ namespace Cake.Http
         /// <param name="settings">The settings.</param>
         /// <param name="data">Enumerable of <see cref="KeyValuePair{TKey,TValue}"/> of data to url encode and set to the body.</param>
         /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
-        public static HttpSettings SetFormUrlEncodedRequestBody(this HttpSettings settings,
-            IEnumerable<KeyValuePair<string, string>> data)
+        public static HttpSettings SetFormUrlEncodedRequestBody(this HttpSettings settings, IEnumerable<KeyValuePair<string, string>> data)
         {
             if (settings == null)
                 throw new ArgumentNullException(nameof(settings));
@@ -255,8 +258,44 @@ namespace Cake.Http
             if (data == null)
                 throw new ArgumentNullException(nameof(data));
 
-            settings.RequestBody = new FormUrlEncodedContent(data).ReadAsByteArrayAsync().Result;
+            settings.RequestBody = Task.Run(async () => await new FormUrlEncodedContent(data).ReadAsByteArrayAsync()).ConfigureAwait(false).GetAwaiter().GetResult();
             settings.SetContentType("application/x-www-form-urlencoded");
+
+            return settings;
+        }
+
+        /// <summary>
+        /// Sets the request body as form url encoded.
+        /// Only valid for Http Methods that allow a request body.
+        /// Any existing content in the RequestBody is overriden.
+        /// Accepts multiple parameters with the same key.
+        ///This can be used to post files to a remote URL
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <param name="data">Enumerable of <see cref="KeyValuePair{TKey,TValue}"/> of data to url encode and set to the body.</param>
+        /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
+        public static HttpSettings SetMultipartFormDataRequestBody(this HttpSettings settings, IEnumerable<KeyValuePair<string, string>> data, IEnumerable<FilePath> filePaths = null)
+        {
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+
+            var multipart = new MultipartFormDataContent(HttpSettingsExtensions.BoundaryPrefix);
+
+            foreach (var kvp in data)
+                multipart.Add(new StringContent(kvp.Value), kvp.Key);
+
+            if (filePaths != null && filePaths.Any())
+            {
+                foreach (var filePath in filePaths)
+                    if (filePath != null)
+                        multipart.Add(new StreamContent(File.OpenRead(filePath.FullPath)), "file", filePath.GetFilename().ToString());
+            }
+
+            settings.RequestBody = Task.Run(async () => await multipart.ReadAsByteArrayAsync()).ConfigureAwait(false).GetAwaiter().GetResult();
+            settings.SetContentType($"multipart/form-data; boundary={HttpSettingsExtensions.BoundaryPrefix}");
 
             return settings;
         }
@@ -278,47 +317,45 @@ namespace Cake.Http
             return settings;
         }
 
-          /// <summary>
-          ///  Adds client certificate(s) to the http handler.
-          /// </summary>
-          /// <param name="settings">The settings.</param>
-          /// <param name="clientCertificates">Client certificates to include in requests.</param>
-          /// <returns></returns>
-          public static HttpSettings UseClientCertificates(this HttpSettings settings, params X509Certificate2[] clientCertificates)
-          {
-              return settings.UseClientCertificates((IEnumerable<X509Certificate2>)clientCertificates);
-          }
+        /// <summary>
+        ///  Adds client certificate(s) to the http handler.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <param name="clientCertificates">Client certificates to include in requests.</param>
+        /// <returns></returns>
+        public static HttpSettings UseClientCertificates(this HttpSettings settings, params X509Certificate2[] clientCertificates)
+        {
+            return settings.UseClientCertificates((IEnumerable<X509Certificate2>)clientCertificates);
+        }
 
-          /// <summary>
-          ///  Adds client certificate(s) to the http handler.
-          /// </summary>
-          /// <param name="settings">The settings.</param>
-          /// <param name="clientCertificates">Client certificates to include in requests.</param>
-          /// <returns></returns>
-          public static HttpSettings UseClientCertificates(this HttpSettings settings, IEnumerable<X509Certificate2> clientCertificates)
-          {
+        /// <summary>
+        ///  Adds client certificate(s) to the http handler.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <param name="clientCertificates">Client certificates to include in requests.</param>
+        /// <returns></returns>
+        public static HttpSettings UseClientCertificates(this HttpSettings settings, IEnumerable<X509Certificate2> clientCertificates)
+        {
             if (clientCertificates == null)
                 throw new ArgumentNullException(nameof(clientCertificates));
 
             foreach (var clientCertificate in clientCertificates)
-            {
                 settings.ClientCertificates.Add(clientCertificate);
-            }
 
             return settings;
-          }
+        }
 
-          /// <summary>
-          /// Sets the timeout for the http request
-          /// </summary>
-          /// <param name="settings">The settings.</param>
-          /// <param name="timeout">Timeout to set in the http request</param>
-          /// <returns></returns>
-          public static HttpSettings SetTimeout(this HttpSettings settings, TimeSpan timeout)
-          {
-              settings.Timeout = timeout;
-              return settings;
-          }
+        /// <summary>
+        /// Sets the timeout for the http request
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <param name="timeout">Timeout to set in the http request</param>
+        /// <returns></returns>
+        public static HttpSettings SetTimeout(this HttpSettings settings, TimeSpan timeout)
+        {
+            settings.Timeout = timeout;
+            return settings;
+        }
 
         private static void VerifyParameters(HttpSettings settings, string name, string value)
         {

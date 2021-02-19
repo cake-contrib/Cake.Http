@@ -1,5 +1,7 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 
+
+[assembly: InternalsVisibleTo("Cake.Http.Tests", AllInternalsVisible = true)]
 
 namespace Cake.Http
 {
