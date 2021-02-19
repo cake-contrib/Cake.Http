@@ -9,7 +9,7 @@ namespace Cake.Http.Tests.Unit
     {
         [Fact]
         [Trait(Traits.TestCategory, TestCategories.Unit)]
-        public void Should_Add_Client_Certificates_From_Settings_To_Property()
+        public void Http_Client_Handler_Should_Add_Client_Certificates_From_Settings_To_Property()
         {
             //Given
             var cakeContext = Substitute.For<ICakeContext>();

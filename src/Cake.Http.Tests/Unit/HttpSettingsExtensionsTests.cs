@@ -14,7 +14,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Settings_Parameter()
+            public void AppendHeaderMethod_Extenstion_Should_Throw_On_Null_Settings_Parameter()
             {
                 //Given
                 HttpSettings settings = null;
@@ -30,7 +30,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Name_Parameter()
+            public void AppendHeaderMethod_Extenstion_Should_Throw_On_Null_Or_Empty_Name_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -49,7 +49,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Value_Parameter()
+            public void AppendHeaderMethod_Extenstion_Should_Throw_On_Null_Or_Empty_Value_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -68,7 +68,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_Single_Header()
+            public void AppendHeaderMethod_Extenstion_Should_Add_Single_Header()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -84,7 +84,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Replace_Existing_Header()
+            public void AppendHeaderMethod_Extenstion_Should_Replace_Existing_Header()
             {
                 //Given
                 HttpSettings settings = new HttpSettings()
@@ -108,7 +108,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Settings_Parameter()
+            public void AppendCookieMethod_Extenstion_Should_Throw_On_Null_Settings_Parameter()
             {
                 //Given
                 HttpSettings settings = null;
@@ -124,7 +124,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Name_Parameter()
+            public void AppendCookieMethod_Extenstion_Should_Throw_On_Null_Or_Empty_Name_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -147,7 +147,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Value_Parameter()
+            public void AppendCookieMethod_Extenstion_Should_Throw_On_Null_Or_Empty_Value_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -170,7 +170,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_Single_Header()
+            public void AppendCookieMethod_Extenstion_Should_Add_Single_Header()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -191,7 +191,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Schema_Parameter()
+            public void SetAuthorizationMethod_Extension_Should_Throw_On_Null_Or_Empty_Schema_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -210,7 +210,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Parameter_Parameter()
+            public void SetAuthorizationMethod_Extension_Should_Throw_On_Null_Or_Empty_Parameter_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -229,7 +229,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_Authorization_Header()
+            public void SetAuthorizationMethod_Extension_Should_Add_Authorization_Header()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -252,7 +252,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Settings_Parameter()
+            public void EnsureSuccessCodeMethod_Extension_Should_Throw_On_Null_Settings_Parameter()
             {
                 //Given
                 HttpSettings settings = null;
@@ -266,7 +266,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Set_EnsureSuccesscCode_Property_To_True()
+            public void EnsureSuccessCodeMethod_Extension_Should_Set_EnsureSuccesscCode_Property_To_True()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -283,7 +283,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_UserName_Parameter()
+            public void UseBasicAuthorizationMethod_Extension_Should_Throw_On_Null_Or_Empty_UserName_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -306,7 +306,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Password_Parameter()
+            public void UseBasicAuthorizationMethod_Extension_Should_Throw_On_Null_Or_Empty_Password_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -329,7 +329,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_Basic_Authorization_Header()
+            public void UseBasicAuthorizationMethod_Extension_Should_Add_Basic_Authorization_Header()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -352,7 +352,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Token_Parameter()
+            public void UseBearerAuthorizationMethod_Extension_Should_Throw_On_Null_Or_Empty_Token_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -374,7 +374,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_Bearer_Authorization_Header()
+            public void UseBearerAuthorizationMethod_Extension_Should_Add_Bearer_Authorization_Header()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -396,7 +396,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_ContentType_Parameter()
+            public void SetContentTypeMethod_Extension_Should_Throw_On_Null_Or_Empty_ContentType_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -418,7 +418,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_ContentType_Header()
+            public void SetContentTypeMethod_Extension_Should_Add_ContentType_Header()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -438,7 +438,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Accept_Parameter()
+            public void SetAcceptMethod_Extension_Should_Throw_On_Null_Or_Empty_Accept_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -460,7 +460,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_Accept_Header()
+            public void SetAcceptMethod_Extension_Should_Add_Accept_Header()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -480,7 +480,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_CacheControl_Header()
+            public void SetNoCacheMethod_Extension_Should_Add_CacheControl_Header()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -499,7 +499,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Url_Parameter()
+            public void SetOriginMethod_Extension_Should_Throw_On_Null_Or_Empty_Url_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -521,7 +521,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_Origin_Header()
+            public void SetOriginMethod_Extension_Should_Add_Origin_Header()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -541,7 +541,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Url_Parameter()
+            public void SetRefererMethod_Extension_Should_Throw_On_Null_Or_Empty_Url_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -563,7 +563,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_Referer_Header()
+            public void SetRefererMethod_Extension_Should_Add_Referer_Header()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -583,7 +583,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Settings_Parameter()
+            public void SetRequestBodyMethod_Extension_Should_Throw_On_Null_Settings_Parameter()
             {
                 //Given
                 HttpSettings settings = null;
@@ -598,7 +598,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_RequestBody_Parameter()
+            public void SetRequestBodyMethod_Extension_Should_Throw_On_Null_Or_Empty_RequestBody_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -620,7 +620,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_Request_Body()
+            public void SetRequestBodyMethod_Extension_Should_Add_Request_Body()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -639,7 +639,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Settings_Parameter()
+            public void SetJsonRequestBodyMethod_Extension_Should_Throw_On_Null_Settings_Parameter()
             {
                 //Given
                 HttpSettings settings = null;
@@ -654,7 +654,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Data_Parameter()
+            public void SetJsonRequestBodyMethod_Extension_Should_Throw_On_Null_Or_Empty_Data_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -669,7 +669,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_Json_Request_Body()
+            public void SetJsonRequestBodyMethod_Extension_Should_Add_Json_Request_Body()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -736,7 +736,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Settings_Parameter()
+            public void SetFormUrlEncodedRequestBodyMethod_Extension_Should_Throw_On_Null_Settings_Parameter()
             {
                 //Given
                 HttpSettings settings = null;
@@ -751,7 +751,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Data_Parameter()
+            public void SetFormUrlEncodedRequestBodyMethod_Extension_Should_Throw_On_Null_Or_Empty_Data_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -766,7 +766,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Set_Request_Body_As_Url_Encoded()
+            public void SetFormUrlEncodedRequestBodyMethod_Extension_Should_Set_Request_Body_As_Url_Encoded()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -793,7 +793,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Set_Multiple_KeyValuePair_Request_Body_As_Url_Encoded()
+            public void SetFormUrlEncodedRequestBodyMethod_Extension_Should_Set_Multiple_KeyValuePair_Request_Body_As_Url_Encoded()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -823,7 +823,7 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Settings_Parameter()
+            public void SetMultipartFormDataRequestBody_Extension_Should_Throw_On_Null_Settings_Parameter()
             {
                 //Given
                 HttpSettings settings = null;
@@ -838,7 +838,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Or_Empty_Data_Parameter()
+            public void SetMultipartFormDataRequestBody_Extension_Should_Throw_On_Null_Or_Empty_Data_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -853,7 +853,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Set_Request_Body_As_Multipart_Form_Data()
+            public void SetMultipartFormDataRequestBody_Extension_Should_Set_Request_Body_As_Multipart_Form_Data()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -895,7 +895,7 @@ John
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Set_Request_Body_As_Multipart_Form_Data_With_FilePaths()
+            public void SetMultipartFormDataRequestBody_Extension_Should_Set_Request_Body_As_Multipart_Form_Data_With_FilePaths()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -930,7 +930,7 @@ John
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Throw_On_Null_Argument()
+            public void AddClientCertificateMethod_Extension_Should_Throw_On_Null_Argument()
             {
                 //Given
                 var settings = new HttpSettings();
@@ -945,7 +945,7 @@ John
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_Client_Certificates_To_Settings()
+            public void AddClientCertificateMethod_Extension_Should_Add_Client_Certificates_To_Settings()
             {
                 //Given
                 var settings = new HttpSettings();
@@ -962,7 +962,7 @@ John
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Add_Client_Certificates_As_Enumerable_To_Settings()
+            public void AddClientCertificateMethod_Extension_Should_Add_Client_Certificates_As_Enumerable_To_Settings()
             {
                 //Given
                 var settings = new HttpSettings();
@@ -979,7 +979,7 @@ John
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Accumulate_Certificates_From_Multiple_Calls()
+            public void AddClientCertificateMethod_Extension_Should_Accumulate_Certificates_From_Multiple_Calls()
             {
                 //Given
                 var settings = new HttpSettings();
@@ -998,7 +998,7 @@ John
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void Should_Set_Timeout()
+            public void AddClientCertificateMethod_Extension_Should_Set_Timeout()
             {
                 //Given
                 var settings = new HttpSettings();
