@@ -328,7 +328,7 @@ namespace Cake.Http
             if (filePaths != null && filePaths.Any())
             {
                 foreach (var filePath in filePaths)
-                    if (filePath.Value != null && string.IsNullOrWhiteSpace(filePath.Key))
+                    if (filePath.Value != null && !string.IsNullOrWhiteSpace(filePath.Key))
                         multipart.Add(new StreamContent(File.OpenRead(filePath.Value.FullPath)), filePath.Key, filePath.Value.GetFilename().ToString());
             }
 
