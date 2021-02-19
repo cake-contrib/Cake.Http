@@ -3,6 +3,7 @@ using Cake.Core.Annotations;
 using System;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Cake.Http
 {
@@ -36,7 +37,7 @@ namespace Cake.Http
             VerifyParameters(context, address, settings);
 
             var client = GetHttpClient(context, settings);
-            var result = client.GetByteArrayAsync(address).Result;
+            var result = Task.Run(async () => await client.GetByteArrayAsync(address)).ConfigureAwait(false).GetAwaiter().GetResult();
 
             return result;
         }
@@ -68,9 +69,7 @@ namespace Cake.Http
         [CakeAliasCategory("Get")]
         [CakeMethodAlias]
         public static string HttpGet(this ICakeContext context, string address, HttpSettings settings)
-        {
-            return Encoding.UTF8.GetString(HttpGetAsByteArray(context, address, settings));
-        }
+            => Encoding.UTF8.GetString(HttpGetAsByteArray(context, address, settings));
 
         /// <summary>
         /// GETS the specified resource over over HTTP/HTTPS.
@@ -116,9 +115,7 @@ namespace Cake.Http
         [CakeAliasCategory("Get")]
         [CakeMethodAlias]
         public static string HttpGet(this ICakeContext context, string address)
-        {
-            return HttpGet(context, address, settings => { });
-        }
+            => HttpGet(context, address, settings => { });
 
         #endregion
 
@@ -143,9 +140,9 @@ namespace Cake.Http
             VerifyParameters(context, address, settings);
 
             var client = GetHttpClient(context, settings);
-            var response = client.PostAsync(address, new ByteArrayContent(settings.RequestBody)).Result;
+            var response = client.PostAsync(address, new ByteArrayContent(settings.RequestBody)).GetAwaiter().GetResult();
 
-            var result = response.Content.ReadAsByteArrayAsync().Result;
+            var result = Task.Run(async () => await response.Content.ReadAsByteArrayAsync()).ConfigureAwait(false).GetAwaiter().GetResult();
 
             return result;
         }
@@ -177,9 +174,7 @@ namespace Cake.Http
         [CakeAliasCategory("Post")]
         [CakeMethodAlias]
         public static string HttpPost(this ICakeContext context, string address, HttpSettings settings)
-        {
-            return Encoding.UTF8.GetString(HttpPostAsByteArray(context, address, settings));
-        }
+            => Encoding.UTF8.GetString(HttpPostAsByteArray(context, address, settings));
 
         /// <summary>
         /// POST the specified resource over HTTP/HTTPS.
@@ -225,9 +220,7 @@ namespace Cake.Http
         [CakeAliasCategory("Post")]
         [CakeMethodAlias]
         public static string HttpPost(this ICakeContext context, string address)
-        {
-            return HttpPost(context, address, settings => { });
-        }
+            => HttpPost(context, address, settings => { });
 
         #endregion
 
@@ -252,9 +245,9 @@ namespace Cake.Http
             VerifyParameters(context, address, settings);
 
             var client = GetHttpClient(context, settings);
-            var response = client.PutAsync(address, new ByteArrayContent(settings.RequestBody)).Result;
+            var response = Task.Run(async () => await client.PutAsync(address, new ByteArrayContent(settings.RequestBody))).ConfigureAwait(false).GetAwaiter().GetResult();
 
-            var result = response.Content.ReadAsByteArrayAsync().Result;
+            var result = response.Content.ReadAsByteArrayAsync().GetAwaiter().GetResult();
 
             return result;
         }
@@ -286,9 +279,7 @@ namespace Cake.Http
         [CakeAliasCategory("Put")]
         [CakeMethodAlias]
         public static string HttpPut(this ICakeContext context, string address, HttpSettings settings)
-        {
-            return Encoding.UTF8.GetString(HttpPutAsByteArray(context, address, settings));
-        }
+            => Encoding.UTF8.GetString(HttpPutAsByteArray(context, address, settings));
 
         /// <summary>
         /// PUT the specified resource over HTTP/HTTPS.
@@ -334,9 +325,7 @@ namespace Cake.Http
         [CakeAliasCategory("Put")]
         [CakeMethodAlias]
         public static string HttpPut(this ICakeContext context, string address)
-        {
-            return HttpPut(context, address, settings => { });
-        }
+            => HttpPut(context, address, settings => { });
 
         #endregion
 
@@ -397,9 +386,7 @@ namespace Cake.Http
         [CakeAliasCategory("Patch")]
         [CakeMethodAlias]
         public static string HttpPatch(this ICakeContext context, string address, HttpSettings settings)
-        {
-            return Encoding.UTF8.GetString(HttpPatchAsByteArray(context, address, settings));
-        }
+            => Encoding.UTF8.GetString(HttpPatchAsByteArray(context, address, settings));
 
         /// <summary>
         /// PATCH the specified resource over HTTP/HTTPS.
@@ -445,9 +432,7 @@ namespace Cake.Http
         [CakeAliasCategory("Patch")]
         [CakeMethodAlias]
         public static string HttpPatch(this ICakeContext context, string address)
-        {
-            return HttpPatch(context, address, settings => { });
-        }
+            => HttpPatch(context, address, settings => { });
 
         #endregion
 
@@ -483,7 +468,7 @@ namespace Cake.Http
             VerifyParameters(context, address, settings);
 
             var client = GetHttpClient(context, settings);
-            var response = client.DeleteAsync(address).Result;
+            Task.Run(async () => await client.DeleteAsync(address)).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -526,9 +511,7 @@ namespace Cake.Http
         [CakeAliasCategory("Delete")]
         [CakeMethodAlias]
         public static void HttpDelete(this ICakeContext context, string address)
-        {
-            HttpDelete(context, address, settings => { });
-        }
+            => HttpDelete(context, address, settings => { });
 
         #endregion
 
@@ -559,14 +542,12 @@ namespace Cake.Http
             {
                 Method = new HttpMethod(httpMethod),
                 RequestUri = new Uri(address),
-                Content = (settings.RequestBody != null && settings.RequestBody.Length > 0) ?  new ByteArrayContent(settings.RequestBody) : null
+                Content = (settings.RequestBody != null && settings.RequestBody.Length > 0) ? new ByteArrayContent(settings.RequestBody) : null
             };
 
-            var response = client.SendAsync(request).Result;
+            var response = Task.Run(async () => await client.SendAsync(request)).ConfigureAwait(false).GetAwaiter().GetResult();
 
-            var result = response.Content.ReadAsByteArrayAsync().Result;
-
-            return result;
+            return Task.Run(async () => await response.Content.ReadAsByteArrayAsync()).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -582,9 +563,7 @@ namespace Cake.Http
         [CakeAliasCategory("Send")]
         [CakeMethodAlias]
         public static string HttpSend(this ICakeContext context, string address, string httpMethod, HttpSettings settings)
-        {
-            return Encoding.UTF8.GetString(HttpSendAsByteArray(context, address, httpMethod, settings));
-        }
+            => Encoding.UTF8.GetString(HttpSendAsByteArray(context, address, httpMethod, settings));
 
         /// <summary>
         /// Sends the HTTP Request using the generic HttpClient Send Method.
@@ -621,8 +600,27 @@ namespace Cake.Http
         [CakeAliasCategory("Send")]
         [CakeMethodAlias]
         public static string HttpSend(this ICakeContext context, string address, string httpMethod)
+            => HttpSend(context, address, httpMethod, settings => { });
+
+        /// <summary>
+        /// Sends the HTTP Request using the generic HttpClient Send Method using the HttpRequestMessage Object
+        /// </summary>
+        /// <example>
+        /// </example>
+        /// <param name="context">The context.</param>
+        /// <param name="request">Raw HttpRequest Message with full access to underlying request object.</param>
+        /// <returns>HttpResponseMessage</returns>
+        [CakeAliasCategory("Send")]
+        [CakeMethodAlias]
+        public static HttpResponseMessage HttpSend(this ICakeContext context, HttpRequestMessage request)
         {
-            return HttpSend(context, address, httpMethod, settings => { });
+            if (context == null) throw new ArgumentNullException(nameof(context));
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            var client = GetHttpClient(context, new HttpSettings { });
+
+            var response = Task.Run(async () => await client.SendAsync(request)).ConfigureAwait(false).GetAwaiter().GetResult();
+            return response;
         }
 
         #endregion
@@ -644,9 +642,7 @@ namespace Cake.Http
         private static void SetHttpClientBasedSettings(HttpSettings settings, HttpClient httpClient)
         {
             if (settings.Timeout.HasValue)
-            {
                 httpClient.Timeout = settings.Timeout.Value;
-            }
         }
 
         private static void VerifyParameters(ICakeContext context, string address, HttpSettings settings)

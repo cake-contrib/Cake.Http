@@ -11,6 +11,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Data\actors.json" />
+    <None Remove="Data\cake-contrib-small.png" />
+    <None Remove="Data\Test.pdf" />
+    <None Remove="xunit.runner.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\actors.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\cake-contrib-small.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Test.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="xunit.runner.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
     <PackageReference Include="NSubstitute" Version="4.2.2" />
     <PackageReference Include="xunit" Version="2.4.1" />
