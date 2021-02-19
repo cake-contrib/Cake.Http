@@ -273,6 +273,7 @@ namespace Cake.Http
         /// </summary>
         /// <param name="settings">The settings.</param>
         /// <param name="data">Enumerable of <see cref="KeyValuePair{TKey,TValue}"/> of data to url encode and set to the body.</param>
+        /// <param name="filePaths">Enumerable of <see cref="FilePath"/> of file paths to post.</param>
         /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
         public static HttpSettings SetMultipartFormDataRequestBody(this HttpSettings settings, IEnumerable<KeyValuePair<string, string>> data, IEnumerable<FilePath> filePaths = null)
         {
@@ -292,6 +293,43 @@ namespace Cake.Http
                 foreach (var filePath in filePaths)
                     if (filePath != null)
                         multipart.Add(new StreamContent(File.OpenRead(filePath.FullPath)), "file", filePath.GetFilename().ToString());
+            }
+
+            settings.RequestBody = Task.Run(async () => await multipart.ReadAsByteArrayAsync()).ConfigureAwait(false).GetAwaiter().GetResult();
+            settings.SetContentType($"multipart/form-data; boundary={HttpSettingsExtensions.BoundaryPrefix}");
+
+            return settings;
+        }
+
+        /// <summary>
+        /// Sets the request body as form url encoded.
+        /// Only valid for Http Methods that allow a request body.
+        /// Any existing content in the RequestBody is overriden.
+        /// Accepts multiple parameters with the same key.
+        /// This can be used to post files to a remote URL
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <param name="data">Enumerable of <see cref="KeyValuePair{TKey,TValue}"/> of data to include in the post</param>
+        /// <param name="filePaths">Enumerable of <see cref="KeyValuePair{TKey,TValue}"/> of file paths and associated names.</param>
+        /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
+        public static HttpSettings SetMultipartFormDataRequestBody(this HttpSettings settings, IEnumerable<KeyValuePair<string, string>> data, IEnumerable<KeyValuePair<string, FilePath>> filePaths)
+        {
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+
+            var multipart = new MultipartFormDataContent(HttpSettingsExtensions.BoundaryPrefix);
+
+            foreach (var kvp in data)
+                multipart.Add(new StringContent(kvp.Value), kvp.Key);
+
+            if (filePaths != null && filePaths.Any())
+            {
+                foreach (var filePath in filePaths)
+                    if (filePath.Value != null && string.IsNullOrWhiteSpace(filePath.Key))
+                        multipart.Add(new StreamContent(File.OpenRead(filePath.Value.FullPath)), filePath.Key, filePath.Value.GetFilename().ToString());
             }
 
             settings.RequestBody = Task.Run(async () => await multipart.ReadAsByteArrayAsync()).ConfigureAwait(false).GetAwaiter().GetResult();

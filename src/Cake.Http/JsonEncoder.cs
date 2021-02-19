@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright file="JsonEncoder.cs" company="The Outercurve Foundation">
 //    Copyright (c) 2011, The Outercurve Foundation.
 //
@@ -20,10 +20,10 @@
 // VERSION:
 
 // NOTE: uncomment the following line to make JsonEncoder class internal.
-//#define SIMPLE_JSON_INTERNAL
+#define SIMPLE_JSON_INTERNAL
 
 // NOTE: uncomment the following line to make JsonArray and JsonObject class internal.
-//#define SIMPLE_JSON_OBJARRAYINTERNAL
+#define SIMPLE_JSON_OBJARRAYINTERNAL
 
 // NOTE: uncomment the following line to enable dynamic support.
 #define SIMPLE_JSON_DYNAMIC
@@ -87,12 +87,12 @@ namespace Cake.Http
  class JsonArray : List<object>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JsonArray"/> class. 
+        /// Initializes a new instance of the <see cref="JsonArray"/> class.
         /// </summary>
         public JsonArray() { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="JsonArray"/> class. 
+        /// Initializes a new instance of the <see cref="JsonArray"/> class.
         /// </summary>
         /// <param name="capacity">The capacity of the json array.</param>
         public JsonArray(int capacity) : base(capacity) { }
@@ -489,7 +489,7 @@ namespace Cake.Http
     /// <summary>
     /// This class encodes and decodes JSON strings.
     /// Spec. details, see http://www.json.org/
-    /// 
+    ///
     /// JSON uses Arrays and Objects. These correspond here to the datatypes JsonArray(IList&lt;object>) and JsonObject(IDictionary&lt;string,object>).
     /// All numbers are parsed to doubles.
     /// </summary>
