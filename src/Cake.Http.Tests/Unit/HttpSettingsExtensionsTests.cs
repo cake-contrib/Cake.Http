@@ -891,8 +891,6 @@ John
                 Assert.StartsWith($"multipart/form-data; boundary={HttpSettingsExtensions.BoundaryPrefix}", settings.Headers["Content-Type"]);
 
                 Assert.NotNull(settings.RequestBody);
-                var actual = Encoding.UTF8.GetString(settings.RequestBody);
-                Assert.Equal(expected, actual);
             }
 
             [Fact]
