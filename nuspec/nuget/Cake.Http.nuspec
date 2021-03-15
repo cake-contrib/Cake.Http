@@ -15,7 +15,7 @@
     <license type="expression">MIT</license>
     <repository type="git" url="https://github.com/cake-contrib/Cake.Http.git"/>
     <releaseNotes></releaseNotes>
-    <tags>cake script build httpclient web</tags>
+    <tags>cake script build httpclient web cake-addin</tags>
   </metadata>
   <files>
     <file src="netstandard2.0/Cake.Http.dll" target="lib/netstandard2.0" />
