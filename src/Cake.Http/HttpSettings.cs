@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 
@@ -63,5 +63,10 @@ namespace Cake.Http
         /// Time out for http request, default is 100 seconds reference https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=netcore-3.1
         /// </summary>
         public TimeSpan? Timeout { get; set; }
+
+        /// <summary>
+        /// Determines whether to log the response/request body to the console.
+        /// </summary>
+        public bool LogRequestResponseOutput { get; set; } = true;
     }
 }

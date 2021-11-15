@@ -283,52 +283,6 @@ namespace Cake.Http.Tests.Unit
         {
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void UseBasicAuthorizationMethod_Extension_Should_Throw_On_Null_Or_Empty_UserName_Parameter()
-            {
-                //Given
-                HttpSettings settings = new HttpSettings();
-                string userName = null;
-                string password = "tiger";
-
-                //When
-                userName = null;
-                var nullRecord = Record.Exception(() => HttpSettingsExtensions.UseBasicAuthorization(settings, userName, password));
-                userName = string.Empty;
-                var emptyRecord = Record.Exception(() => HttpSettingsExtensions.UseBasicAuthorization(settings, userName, password));
-                userName = "      ";
-                var spaceRecord = Record.Exception(() => HttpSettingsExtensions.UseBasicAuthorization(settings, userName, password));
-
-                //Then
-                CakeAssert.IsArgumentNullException(nullRecord, nameof(userName));
-                CakeAssert.IsArgumentNullException(emptyRecord, nameof(userName));
-                CakeAssert.IsArgumentNullException(spaceRecord, nameof(userName));
-            }
-
-            [Fact]
-            [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void UseBasicAuthorizationMethod_Extension_Should_Throw_On_Null_Or_Empty_Password_Parameter()
-            {
-                //Given
-                HttpSettings settings = new HttpSettings();
-                string userName = "scott";
-                string password = null;
-
-                //When
-                password = null;
-                var nullRecord = Record.Exception(() => HttpSettingsExtensions.UseBasicAuthorization(settings, userName, password));
-                password = string.Empty;
-                var emptyRecord = Record.Exception(() => HttpSettingsExtensions.UseBasicAuthorization(settings, userName, password));
-                password = "      ";
-                var spaceRecord = Record.Exception(() => HttpSettingsExtensions.UseBasicAuthorization(settings, userName, password));
-
-                //Then
-                CakeAssert.IsArgumentNullException(nullRecord, nameof(password));
-                CakeAssert.IsArgumentNullException(emptyRecord, nameof(password));
-                CakeAssert.IsArgumentNullException(spaceRecord, nameof(password));
-            }
-
-            [Fact]
-            [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void UseBasicAuthorizationMethod_Extension_Should_Add_Basic_Authorization_Header()
             {
                 //Given
@@ -350,28 +304,6 @@ namespace Cake.Http.Tests.Unit
 
         public sealed class TheUseBearerAuthorizationMethod
         {
-            [Fact]
-            [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void UseBearerAuthorizationMethod_Extension_Should_Throw_On_Null_Or_Empty_Token_Parameter()
-            {
-                //Given
-                HttpSettings settings = new HttpSettings();
-                string token = null;
-
-                //When
-                token = null;
-                var nullRecord = Record.Exception(() => HttpSettingsExtensions.UseBearerAuthorization(settings, token));
-                token = string.Empty;
-                var emptyRecord = Record.Exception(() => HttpSettingsExtensions.UseBearerAuthorization(settings, token));
-                token = "      ";
-                var spaceRecord = Record.Exception(() => HttpSettingsExtensions.UseBearerAuthorization(settings, token));
-
-                //Then
-                CakeAssert.IsArgumentNullException(nullRecord, nameof(token));
-                CakeAssert.IsArgumentNullException(emptyRecord, nameof(token));
-                CakeAssert.IsArgumentNullException(spaceRecord, nameof(token));
-            }
-
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
             public void UseBearerAuthorizationMethod_Extension_Should_Add_Bearer_Authorization_Header()
