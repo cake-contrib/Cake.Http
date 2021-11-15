@@ -74,19 +74,8 @@ namespace Cake.Http
         /// <param name="userName">The userName used to authorize to the resource.</param>
         /// <param name="password">The credentials containing the authentication information of the user agent for</param>
         /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
-        public static HttpSettings UseBasicAuthorization(this HttpSettings settings, string userName, string password)
-        {
-            if (string.IsNullOrWhiteSpace(userName))
-                throw new ArgumentNullException(nameof(userName));
-
-            if (string.IsNullOrWhiteSpace(password))
-                throw new ArgumentNullException(nameof(password));
-
-            var credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes(userName + ":" + password));
-
-            settings.SetAuthorization("Basic", credentials);
-            return settings;
-        }
+        public static HttpSettings UseBasicAuthorization(this HttpSettings settings, string userName = "", string password = "") =>
+            settings.SetAuthorization("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes(userName + ":" + password)));
 
         /// <summary>
         /// Adds a "Bearer" Token Authorization Header to the request.
@@ -95,16 +84,8 @@ namespace Cake.Http
         /// <param name="settings">The settings.</param>
         /// <param name="token">Token to apply to the header</param>
         /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
-        public static HttpSettings UseBearerAuthorization(this HttpSettings settings, string token)
-        {
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
-
-            if (string.IsNullOrWhiteSpace(token))
-                throw new ArgumentNullException(nameof(token));
-
-            return settings.SetAuthorization("Bearer", token);
-        }
+        public static HttpSettings UseBearerAuthorization(this HttpSettings settings, string token = "") =>
+            settings.SetAuthorization("Bearer", token);
 
         /// <summary>
         /// Sets the content-type of the request
@@ -153,10 +134,7 @@ namespace Cake.Http
         /// </summary>
         /// <param name="settings">The settings.</param>
         /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
-        public static HttpSettings SetNoCache(this HttpSettings settings)
-        {
-            return settings.AppendHeader("Cache-Control", "no-store");
-        }
+        public static HttpSettings SetNoCache(this HttpSettings settings) => settings.AppendHeader("Cache-Control", "no-store");
 
         /// <summary>
         /// Sets the origin header to initiate a request for cross-origin resource sharing (asks server for an 'Access-Control-Allow-Origin' response field).
@@ -392,6 +370,17 @@ namespace Cake.Http
         public static HttpSettings SetTimeout(this HttpSettings settings, TimeSpan timeout)
         {
             settings.Timeout = timeout;
+            return settings;
+        }
+
+        /// <summary>
+        /// Supresses logging to the console
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <returns></returns>
+        public static HttpSettings SuppressLogResponseRequestBodyOutput(this HttpSettings settings)
+        {
+            settings.LogRequestResponseOutput = false;
             return settings;
         }
 

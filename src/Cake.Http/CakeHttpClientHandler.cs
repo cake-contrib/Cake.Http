@@ -1,4 +1,4 @@
-﻿using Cake.Core;
+using Cake.Core;
 using System;
 using System.Linq;
 using System.Net.Http;
@@ -18,16 +18,16 @@ namespace Cake.Http
 #else
     public class CakeHttpClientHandler : HttpClientHandler
 #endif
-  {
-    private readonly HttpSettings _Settings;
-    private readonly ICakeContext _Context;
+    {
+        private readonly HttpSettings _Settings;
+        private readonly ICakeContext _Context;
 
-    /// <summary>
-    /// Custom HTTP Handler to delegate the processing of HTTP requests and extending it.
-    /// </summary>
-    /// <param name="context">Cake Context the request is geting </param>
-    /// <param name="settings">HttpSettings to apply to the inner handler</param>
-    public CakeHttpClientHandler(ICakeContext context, HttpSettings settings)
+        /// <summary>
+        /// Custom HTTP Handler to delegate the processing of HTTP requests and extending it.
+        /// </summary>
+        /// <param name="context">Cake Context the request is geting </param>
+        /// <param name="settings">HttpSettings to apply to the inner handler</param>
+        public CakeHttpClientHandler(ICakeContext context, HttpSettings settings)
         {
             _Context = context ?? throw new ArgumentNullException(nameof(context));
             _Settings = settings ?? throw new ArgumentException(nameof(settings));
@@ -56,7 +56,7 @@ namespace Cake.Http
 
             //Logs the Request to the Cake Context Logger
             byte[] requestMessage = null;
-            if (request?.Content != null)
+            if (request?.Content != null && _Settings.LogRequestResponseOutput)
                 requestMessage = await request.Content.ReadAsByteArrayAsync();
             else
                 requestMessage = new byte[] { };
@@ -68,10 +68,10 @@ namespace Cake.Http
 
             //Logs the Response to the Cake Context Logger
             byte[] responseMessage = null;
-            if (response.IsSuccessStatusCode && response.Content != null)
+            if (response.IsSuccessStatusCode && response.Content != null && _Settings.LogRequestResponseOutput)
                 responseMessage = await response.Content.ReadAsByteArrayAsync();
 
-            else if (response.Content != null)
+            else if (response.Content != null && _Settings.LogRequestResponseOutput)
             {
                 var tempMessage = await response.Content.ReadAsStringAsync();
                 responseMessage = Encoding.UTF8.GetBytes($"{response.ReasonPhrase} ({ (int)response.StatusCode })\r\n{ string.Concat(Enumerable.Repeat("=", 70))}\r\n{ tempMessage ?? string.Empty }");
@@ -100,7 +100,7 @@ namespace Cake.Http
         }
 
         /// <summary>
-        /// Appends headers to HttpRequestMessage before sending the 
+        /// Appends headers to HttpRequestMessage before sending the
         /// </summary>
         /// <param name="request"></param>
         private void AppendHeaders(HttpRequestMessage request)
@@ -111,17 +111,17 @@ namespace Cake.Http
             {
                 //Append Non-Content Header Request
                 foreach (var header in _Settings.Headers.Where(kvp => !(kvp.Key.IndexOf("content", StringComparison.OrdinalIgnoreCase) >= 0)))
-                    request.Headers.Add(header.Key, header.Value);         
-                
-                //Append Content Headers to Request Body                
-                if(request.Content != null)
+                    request.Headers.Add(header.Key, header.Value);
+
+                //Append Content Headers to Request Body
+                if (request.Content != null)
                 {
                     foreach (var header in _Settings.Headers.Where(kvp => kvp.Key.IndexOf("content", StringComparison.OrdinalIgnoreCase) >= 0))
                         request.Content.Headers.Add(header.Key, header.Value);
                 }
             }
 
-            if(_Settings.Cookies?.Count > 0)
+            if (_Settings.Cookies?.Count > 0)
                 request.Headers.Add("Cookie", string.Join<string>(";", _Settings.Cookies.Select(kvp => $"{kvp.Key}={kvp.Value}")));
         }
 
