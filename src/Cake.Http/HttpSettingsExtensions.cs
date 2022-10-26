@@ -211,7 +211,7 @@ namespace Cake.Http
         /// <summary>
         /// Sets the request body as form url encoded.
         /// Only valid for Http Methods that allow a request body.
-        /// Any existing content in the RequestBody is overriden.
+        /// Any existing content in the RequestBody is overridden.
         /// </summary>
         /// <param name="settings">The settings.</param>
         /// <param name="data">Dictionary of data to url encode and set to the body.</param>
@@ -222,7 +222,7 @@ namespace Cake.Http
         /// <summary>
         /// Sets the request body as form url encoded.
         /// Only valid for Http Methods that allow a request body.
-        /// Any existing content in the RequestBody is overriden.
+        /// Any existing content in the RequestBody is overridden.
         /// Accepts multiple parameters with the same key.
         /// </summary>
         /// <param name="settings">The settings.</param>
@@ -245,7 +245,7 @@ namespace Cake.Http
         /// <summary>
         /// Sets the request body as form url encoded.
         /// Only valid for Http Methods that allow a request body.
-        /// Any existing content in the RequestBody is overriden.
+        /// Any existing content in the RequestBody is overridden.
         /// Accepts multiple parameters with the same key.
         ///This can be used to post files to a remote URL
         /// </summary>
@@ -282,7 +282,7 @@ namespace Cake.Http
         /// <summary>
         /// Sets the request body as form url encoded.
         /// Only valid for Http Methods that allow a request body.
-        /// Any existing content in the RequestBody is overriden.
+        /// Any existing content in the RequestBody is overridden.
         /// Accepts multiple parameters with the same key.
         /// This can be used to post files to a remote URL
         /// </summary>
