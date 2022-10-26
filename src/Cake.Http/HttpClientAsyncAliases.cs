@@ -79,7 +79,7 @@ namespace Cake.Http
         ///        var responseBody = await HttpGetAsync("https://www.google.com", settings =>
         ///        {
         ///            settings.UseBearerAuthorization("1af538baa9045a84c0e889f672baf83ff24")
-        ///                    .SetNoCeche()
+        ///                    .SetNoCache()
         ///                    .AppendHeader("Connection", "keep-alive");
         ///        });
         /// </code>
