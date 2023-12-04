@@ -1,6 +1,6 @@
+using System;
 using Cake.Core;
 using Cake.Http.Tests.Fixtures;
-using System;
 using Xunit;
 
 namespace Cake.Http.Tests.Unit
@@ -83,7 +83,7 @@ namespace Cake.Http.Tests.Unit
             {
                 //Given
                 ICakeContext context = _Context;
-                string address = $"{ RootAddress }/posts/1";
+                string address = $"{RootAddress}/posts/1";
                 HttpSettings settings = new HttpSettings();
 
                 //When
@@ -170,7 +170,7 @@ namespace Cake.Http.Tests.Unit
                 var postData = "{\r\n    title: 'foo',\r\n    body: 'bar',\r\n    userId: 1\r\n  }";
 
                 ICakeContext context = _Context;
-                string address = $"{ RootAddress }/posts";
+                string address = $"{RootAddress}/posts";
                 HttpSettings settings = new HttpSettings();
 
                 settings.SetRequestBody(postData);
@@ -259,7 +259,7 @@ namespace Cake.Http.Tests.Unit
                 var putData = "{\r\n    title: 'foo',\r\n    body: 'bar',\r\n    userId: 1\r\n  }";
 
                 ICakeContext context = _Context;
-                string address = $"{ RootAddress }/posts/1";
+                string address = $"{RootAddress}/posts/1";
                 HttpSettings settings = new HttpSettings();
 
                 settings.SetRequestBody(putData);
@@ -349,7 +349,7 @@ namespace Cake.Http.Tests.Unit
                 var patchData = "{\r\n    title: 'foo',\r\n    body: 'bar',\r\n    userId: 1\r\n  }";
 
                 ICakeContext context = _Context;
-                string address = $"{ RootAddress }/posts/1";
+                string address = $"{RootAddress}/posts/1";
                 HttpSettings settings = new HttpSettings();
 
                 settings.SetRequestBody(patchData);
@@ -437,7 +437,7 @@ namespace Cake.Http.Tests.Unit
             {
                 //Given
                 ICakeContext context = _Context;
-                string address = $"{ RootAddress }/posts/1";
+                string address = $"{RootAddress}/posts/1";
                 HttpSettings settings = new HttpSettings() { EnsureSuccessStatusCode = true };
 
                 //When
@@ -533,7 +533,7 @@ namespace Cake.Http.Tests.Unit
                 //Given
                 ICakeContext context = _Context;
                 HttpSettings settings = new HttpSettings();
-                string address = $"{ RootAddress }/posts";
+                string address = $"{RootAddress}/posts";
                 string httpMethod = "POST";
 
                 settings.SetRequestBody("{ \"title\": \"foo\", \"body\": \"bar\", \"userId\": 1}");
@@ -555,20 +555,14 @@ namespace Cake.Http.Tests.Unit
                 //Given
                 var settings = new HttpSettings();
                 ICakeContext context = _Context;
-                string address = $"{ RootAddress }/posts";
+                string address = $"{RootAddress}/posts";
                 //When
                 settings
                     .SetTimeout(TimeSpan.FromMilliseconds(1));
 
                 var record = Record.Exception(() => _Context.HttpGet(address, settings));
-#if NET5_0
-                CakeAssert.IsExceptionWithMessage<TimeoutException>(record.InnerException, "The operation was canceled.");
 
-#elif NETCOREAPP3_1
-                Assert.Null(record.InnerException);
-#else
                 CakeAssert.IsExceptionWithMessage<TimeoutException>(record.InnerException, "A task was canceled.");
-#endif
             }
 
             [Fact]
@@ -578,7 +572,7 @@ namespace Cake.Http.Tests.Unit
                 //Given
                 var settings = new HttpSettings();
                 ICakeContext context = _Context;
-                string address = $"{ RootAddress }/posts/1";
+                string address = $"{RootAddress}/posts/1";
                 //When
                 settings
                     .SetTimeout(TimeSpan.FromSeconds(100));
