@@ -17,9 +17,9 @@
         <releaseNotes></releaseNotes>
         <tags>cake script build httpclient web cake-addin</tags>
         <dependencies>
-            <group targetFramework=".NETCoreApp3.1" />
-            <group targetFramework="net5.0" />
             <group targetFramework="net6.0" />
+            <group targetFramework="net7.0" />
+            <group targetFramework="net8.0" />
         </dependencies>
     </metadata>
     <files>
@@ -29,5 +29,8 @@
         <file src="net7.0/Cake.Http.dll" target="lib/net7.0" />
         <file src="net7.0/Cake.Http.pdb" target="lib/net7.0" />
         <file src="net7.0/Cake.Http.xml" target="lib/net7.0" />
+        <file src="net7.0/Cake.Http.dll" target="lib/net8.0" />
+        <file src="net7.0/Cake.Http.pdb" target="lib/net8.0" />
+        <file src="net7.0/Cake.Http.xml" target="lib/net8.0" />
     </files>
 </package>
