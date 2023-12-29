@@ -1,25 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C827C1A6-94DB-4230-B6C9-D40B0350DEAE}"
-	ProjectSection(SolutionItems) = preProject
-		..\.appveyor.yml = ..\.appveyor.yml
-		..\build.ps1 = ..\build.ps1
-		..\nuspec\nuget\Cake.Http.nuspec = ..\nuspec\nuget\Cake.Http.nuspec
-		..\recipe.cake = ..\recipe.cake
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meta", "Meta", "{3FBC45E7-8C75-4B59-BC6D-CB474107ECBD}"
-	ProjectSection(SolutionItems) = preProject
-		..\LICENSE = ..\LICENSE
-		..\README.md = ..\README.md
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cake.Http", "Cake.Http\Cake.Http.csproj", "{75C21766-68D8-4480-829B-933560574F26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Http.Tests", "Cake.Http.Tests\Cake.Http.Tests.csproj", "{1B85EADC-915E-4D1C-9783-2954177A7224}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cake.Http.Tests", "Cake.Http.Tests\Cake.Http.Tests.csproj", "{1B85EADC-915E-4D1C-9783-2954177A7224}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

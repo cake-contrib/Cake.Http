@@ -572,7 +572,9 @@ namespace Cake.Http
             return success;
         }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static object DeserializeObject(string json, Type type, IJsonSerializerStrategy jsonSerializerStrategy)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             object jsonObject = DeserializeObject(json);
             return type == null || jsonObject != null && ReflectionUtils.IsAssignableFrom(jsonObject.GetType(), type)
@@ -580,17 +582,23 @@ namespace Cake.Http
                        : (jsonSerializerStrategy ?? CurrentJsonSerializerStrategy).DeserializeObject(jsonObject, type);
         }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static object DeserializeObject(string json, Type type)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             return DeserializeObject(json, type, null);
         }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static T DeserializeObject<T>(string json, IJsonSerializerStrategy jsonSerializerStrategy)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             return (T)DeserializeObject(json, typeof(T), jsonSerializerStrategy);
         }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static T DeserializeObject<T>(string json)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             return (T)DeserializeObject(json, typeof(T), null);
         }
@@ -608,13 +616,17 @@ namespace Cake.Http
             return (success ? builder.ToString() : null);
         }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static string SerializeObject(object json, bool indentOutput = true)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             var item = SerializeObject(json, CurrentJsonSerializerStrategy);
             return indentOutput ? FormatJsonOutput(item) : item;
         }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static string EscapeToJavascriptString(string jsonString)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             if (string.IsNullOrEmpty(jsonString))
                 return jsonString;
@@ -1180,7 +1192,9 @@ namespace Cake.Http
         }
 
         private static IJsonSerializerStrategy _currentJsonSerializerStrategy;
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static IJsonSerializerStrategy CurrentJsonSerializerStrategy
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             get
             {
@@ -1201,7 +1215,9 @@ namespace Cake.Http
 
         private static PocoJsonSerializerStrategy _pocoJsonSerializerStrategy;
         [EditorBrowsable(EditorBrowsableState.Advanced)]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static PocoJsonSerializerStrategy PocoJsonSerializerStrategy
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             get
             {
@@ -1213,7 +1229,9 @@ namespace Cake.Http
 
         private static DataContractJsonSerializerStrategy _dataContractJsonSerializerStrategy;
         [System.ComponentModel.EditorBrowsable(EditorBrowsableState.Advanced)]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static DataContractJsonSerializerStrategy DataContractJsonSerializerStrategy
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             get
             {
@@ -1300,11 +1318,17 @@ namespace Cake.Http
 #else
     public
 #endif
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
  interface IJsonSerializerStrategy
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     {
         [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate", Justification = "Need to support .NET 2")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         bool TrySerializeNonPrimitiveObject(object input, out object output);
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         object DeserializeObject(object value, Type type);
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 
     [GeneratedCode("simple-json", "1.0.0")]
@@ -1313,7 +1337,9 @@ namespace Cake.Http
 #else
     public
 #endif
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
  class PocoJsonSerializerStrategy : IJsonSerializerStrategy
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     {
         internal IDictionary<Type, ReflectionUtils.ConstructorDelegate> ConstructorCache;
         internal IDictionary<Type, IDictionary<string, ReflectionUtils.GetDelegate>> GetCache;
@@ -1329,14 +1355,18 @@ namespace Cake.Http
                                                                  @"yyyy-MM-dd\THH:mm:ssK"
                                                              };
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public PocoJsonSerializerStrategy()
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             ConstructorCache = new ReflectionUtils.ThreadSafeDictionary<Type, ReflectionUtils.ConstructorDelegate>(ContructorDelegateFactory);
             GetCache = new ReflectionUtils.ThreadSafeDictionary<Type, IDictionary<string, ReflectionUtils.GetDelegate>>(GetterValueFactory);
             SetCache = new ReflectionUtils.ThreadSafeDictionary<Type, IDictionary<string, KeyValuePair<Type, ReflectionUtils.SetDelegate>>>(SetterValueFactory);
         }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         protected virtual string MapClrMemberNameToJsonFieldName(string clrPropertyName)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             return clrPropertyName;
         }
@@ -1390,13 +1420,17 @@ namespace Cake.Http
             return result;
         }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public virtual bool TrySerializeNonPrimitiveObject(object input, out object output)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             return TrySerializeKnownTypes(input, out output) || TrySerializeUnknownTypes(input, out output);
         }
 
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public virtual object DeserializeObject(object value, Type type)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             if (type == null) throw new ArgumentNullException("type");
             string str = value as string;
@@ -1535,13 +1569,17 @@ namespace Cake.Http
             return obj;
         }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         protected virtual object SerializeEnum(Enum p)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             return Convert.ToDouble(p, CultureInfo.InvariantCulture);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate", Justification = "Need to support .NET 2")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         protected virtual bool TrySerializeKnownTypes(object input, out object output)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             bool returnValue = true;
             if (input is DateTime)
@@ -1566,7 +1604,9 @@ namespace Cake.Http
             return returnValue;
         }
         [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate", Justification = "Need to support .NET 2")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         protected virtual bool TrySerializeUnknownTypes(object input, out object output)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             if (input == null) throw new ArgumentNullException("input");
             output = null;
@@ -1592,9 +1632,13 @@ namespace Cake.Http
 #else
     public
 #endif
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
  class DataContractJsonSerializerStrategy : PocoJsonSerializerStrategy
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public DataContractJsonSerializerStrategy()
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             GetCache = new ReflectionUtils.ThreadSafeDictionary<Type, IDictionary<string, ReflectionUtils.GetDelegate>>(GetterValueFactory);
             SetCache = new ReflectionUtils.ThreadSafeDictionary<Type, IDictionary<string, KeyValuePair<Type, ReflectionUtils.SetDelegate>>>(SetterValueFactory);

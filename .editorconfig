@@ -1,21 +1,23 @@
-# http://EditorConfig.org
+; This file is for unifying the coding style for different editors and IDEs.
+; More information at http://EditorConfig.org
 
-# This file is the top-most EditorConfig file
 root = true
 
-# All Files
 [*]
-charset = utf-8
-end_of_line = crlf
+end_of_line = CRLF
+
+[*.ps1]
 indent_style = space
 indent_size = 4
-insert_final_newline = false
-trim_trailing_whitespace = true
 
-# Solution Files
-[*.sln]
+[*.cs]
+indent_style = space
+indent_size = 4
+
+[*.cake]
+indent_style = space
+indent_size = 4
+
+[*.js]
 indent_style = tab
-
-# XML Project Files
-[*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
 indent_size = 2

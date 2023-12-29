@@ -1,11 +1,46 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Cake.Http</PackageId>
+    <Title>Cake.Http</Title>
+    <Summary>HttpClient addin for cake build.</Summary>
+    <Description>HttpClient addin for cake build.</Description>
+    <PackageTags>cake;script;build;cake-addin;cake-build;addin;http;web</PackageTags>
+    <Authors>louisfischer</Authors>
+    <Owners>louisfischer; cake-contrib</Owners>
+    <Copyright>Copyright (c) 2017-$([System.DateTime]::Now.Year) - Cake Contributions</Copyright>
+    <PackageProjectUrl>https://github.com/cake-contrib/Cake.Http</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/cake-contrib/Cake.Http.git</RepositoryUrl>
+    <IconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/addin/cake-contrib-addin-medium.png</IconUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Cake.Core" Version="4.0.0" PrivateAssets="All" />
+    <PackageReference Include="CakeContrib.Guidelines" Version="1.5.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Cake.Addin.Analyzer" Version="0.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <CakeContribGuidelinesOmitRecommendedReference Include="StyleCop.Analyzers" />
+    <CakeContribGuidelinesOmitRecommendedConfigFile Include="stylecop.json" />
   </ItemGroup>
 </Project>

@@ -7,16 +7,16 @@ Release notes can be found [here](https://github.com/cake-contrib/Cake.Http/rele
 
 ## Information
 
-| |Stable|Pre-release|
-|:--:|:--:|:--:|
-|GitHub Release|-|[![GitHub release](https://img.shields.io/github/release/cake-contrib/Cake.Http.svg)](https://github.com/cake-contrib/Cake.Http/releases/latest)|
-|NuGet|[![NuGet](https://img.shields.io/nuget/v/Cake.Http.svg)](https://www.nuget.org/packages/Cake.Http)|[![NuGet](https://img.shields.io/nuget/vpre/Cake.Http.svg)](https://www.nuget.org/packages/Cake.Http)|
+|                |                                               Stable                                               |                                                                   Pre-release                                                                    |
+| :------------: | :------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------: |
+| GitHub Release |                                                 -                                                  | [![GitHub release](https://img.shields.io/github/release/cake-contrib/Cake.Http.svg)](https://github.com/cake-contrib/Cake.Http/releases/latest) |
+|     NuGet      | [![NuGet](https://img.shields.io/nuget/v/Cake.Http.svg)](https://www.nuget.org/packages/Cake.Http) |                      [![NuGet](https://img.shields.io/nuget/vpre/Cake.Http.svg)](https://www.nuget.org/packages/Cake.Http)                       |
 
 ## Build Status
 
-|Develop|Master|
-|:--:|:--:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/veoopwkay926jcqa/branch/develop?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-http/branch/develop)|[![Build status](https://ci.appveyor.com/api/projects/status/veoopwkay926jcqa/branch/develop?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-http/branch/master)|
+|                                                                                    Develop                                                                                    |                                                                                    Master                                                                                    |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [![Build status](https://ci.appveyor.com/api/projects/status/veoopwkay926jcqa/branch/develop?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-http/branch/develop) | [![Build status](https://ci.appveyor.com/api/projects/status/veoopwkay926jcqa/branch/develop?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-http/branch/master) |
 
 ## Code Coverage
 
