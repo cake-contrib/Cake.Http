@@ -15,7 +15,7 @@ Task("Restore")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    DotNetRestore("./Cake.GitHub.Endpoints.sln", new DotNetRestoreSettings
+    DotNetRestore("./Cake.Http.sln", new DotNetRestoreSettings
     {
         LockedMode = true,
     });
@@ -25,7 +25,7 @@ Task("Build")
     .IsDependentOn("Restore")
     .DoesForEach(new[] { "Debug", "Release" }, (configuration) =>
 {
-    DotNetBuild("./Cake.GitHub.Endpoints.sln", new DotNetBuildSettings
+    DotNetBuild("./Cake.Http.sln", new DotNetBuildSettings
     {
         Configuration = configuration,
         NoRestore = true,
@@ -44,7 +44,7 @@ Task("Pack")
     .IsDependentOn("Build")
     .Does(() =>
 {
-    DotNetPack("./src/Cake.GitHub.Endpoints/Cake.GitHub.Endpoints.csproj", new DotNetPackSettings
+    DotNetPack("./src/Cake.GitHub.Http/Cake.Http.csproj", new DotNetPackSettings
     {
         Configuration = "Release",
         NoRestore = true,
@@ -53,7 +53,7 @@ Task("Pack")
         MSBuildSettings = new DotNetMSBuildSettings
         {
             Version = buildVersion.Version,
-            PackageReleaseNotes = $"https://github.com/louisfischer/Cake.GitHub.Endpoints/releases/tag/v{buildVersion.Version}"
+            PackageReleaseNotes = $"https://github.com/cake-contrib/Cake.Http/releases/tag/v{buildVersion.Version}"
         }
     });
 });
@@ -93,7 +93,7 @@ Task("Publish")
     .WithCriteria(() => GitHubActions.IsRunningOnGitHubActions)
     .WithCriteria(() => string.Equals("refs/heads/main", GitHubActions.Environment.Workflow.Ref, StringComparison.OrdinalIgnoreCase))
     .Does(async () =>
-        await GitHubActions.Commands.UploadArtifact(Directory("./artifact/nuget"), $"Cake.GitHub.Endpoints.{buildVersion.Version}"));
+        await GitHubActions.Commands.UploadArtifact(Directory("./artifact/nuget"), $"Cake.Http.{buildVersion.Version}"));
 
 Task("Default")
     .IsDependentOn("Publish");
