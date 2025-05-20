@@ -1,0 +1,4 @@
+<Solution>
+    <Project Path="src/Cake.Http.Tests/Cake.Http.Tests.csproj" />
+    <Project Path="src/Cake.Http/Cake.Http.csproj" />
+</Solution>
