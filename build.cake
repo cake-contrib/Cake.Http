@@ -1,7 +1,12 @@
-#addin "nuget:?package=Cake.MinVer&version=3.0.0"
-#addin "nuget:?package=Cake.Args&version=3.0.0"
+#addin "nuget:?package=Cake.MinVer"
+#addin "nuget:?package=Cake.Args"
+
+var slnFile = File("./Cake.Http.slnx");
+var csprojFile = File("./src/Cake.Http/Cake.Http.csproj");
+var testProjectFile = File("./src/Cake.Http.Tests/Cake.Http.Tests.csproj");
 
 var target = ArgumentOrDefault<string>("Target") ?? "Default";
+var configuration = ArgumentOrDefault<string>("Configuration") ?? "Release";
 var buildVersion = MinVer(s => s.WithTagPrefix("v").WithDefaultPreReleasePhase("preview"));
 
 Task("Clean")
@@ -15,7 +20,7 @@ Task("Restore")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    DotNetRestore("./Cake.Http.sln", new DotNetRestoreSettings
+    DotNetRestore(slnFile, new DotNetRestoreSettings
     {
         LockedMode = true,
     });
@@ -23,9 +28,9 @@ Task("Restore")
 
 Task("Build")
     .IsDependentOn("Restore")
-    .DoesForEach(new[] { "Debug", "Release" }, (configuration) =>
+    .Does(context => 
 {
-    DotNetBuild("./Cake.Http.sln", new DotNetBuildSettings
+    DotNetBuild(slnFile, new DotNetBuildSettings
     {
         Configuration = configuration,
         NoRestore = true,
@@ -40,13 +45,25 @@ Task("Build")
     });
 });
 
-Task("Pack")
+Task("Tests")
     .IsDependentOn("Build")
+    .Does(context =>
+{
+    DotNetTest(testProjectFile, new DotNetTestSettings
+    {
+        NoBuild = true,
+        NoRestore = true,
+        Configuration = configuration
+    });
+});
+
+Task("Pack")
+    .IsDependentOn("Tests")
     .Does(() =>
 {
-    DotNetPack("./src/Cake.GitHub.Http/Cake.Http.csproj", new DotNetPackSettings
+    DotNetPack(csprojFile, new DotNetPackSettings
     {
-        Configuration = "Release",
+        Configuration = configuration,
         NoRestore = true,
         NoBuild = true,
         OutputDirectory = "./artifact/nuget",

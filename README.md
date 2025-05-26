@@ -5,18 +5,6 @@ Release notes can be found [here](https://github.com/cake-contrib/Cake.Http/rele
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://cake-contrib.mit-license.org)
 
-## Information
-
-|                |                                               Stable                                               |
-| :------------: | :------------------------------------------------------------------------------------------------: |
-| GitHub Release |                                                 -                                                  |
-|     NuGet      | [![NuGet](https://img.shields.io/nuget/v/Cake.Http.svg)](https://www.nuget.org/packages/Cake.Http) |
-
-## Build Status
-                                                                                    main                                                                                    |
-:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| [![Build status](h)](https://ci.appveyor.com/project/cakecontrib/cake-http/branch/develop) | [![Build status](https://ci.appveyor.com/api/projects/status/veoopwkay926jcqa/branch/develop?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-http/branch/master) |
-
 ## Quick Links
 
 - [Documentation](https://cakebuild.net/extensions/cake-http)
