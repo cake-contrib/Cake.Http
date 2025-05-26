@@ -530,7 +530,7 @@ namespace Cake.Http.Tests.Unit
 
             [Fact]
             [Trait(Traits.TestCategory, TestCategories.Unit)]
-            public void SetRequestBodyMethod_Extension_Should_Throw_On_Null_Or_Empty_RequestBody_Parameter()
+            public void SetRequestBodyMethod_Extension_Should_Throw_On_Null_RequestBody_Parameter()
             {
                 //Given
                 HttpSettings settings = new HttpSettings();
@@ -539,15 +539,9 @@ namespace Cake.Http.Tests.Unit
                 //When
                 requestBody = null;
                 var nullRecord = Record.Exception(() => HttpSettingsExtensions.SetRequestBody(settings, requestBody));
-                requestBody = string.Empty;
-                var emptyRecord = Record.Exception(() => HttpSettingsExtensions.SetRequestBody(settings, requestBody));
-                requestBody = "      ";
-                var spaceRecord = Record.Exception(() => HttpSettingsExtensions.SetRequestBody(settings, requestBody));
 
                 //Then
                 CakeAssert.IsArgumentNullException(nullRecord, nameof(requestBody));
-                CakeAssert.IsArgumentNullException(emptyRecord, nameof(requestBody));
-                CakeAssert.IsArgumentNullException(spaceRecord, nameof(requestBody));
             }
 
             [Fact]

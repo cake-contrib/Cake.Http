@@ -175,10 +175,10 @@ public static class HttpSettingsExtensions
         if (settings == null)
             throw new ArgumentNullException(nameof(settings));
 
-        if (string.IsNullOrWhiteSpace(requestBody))
+        if (requestBody is null)
             throw new ArgumentNullException(nameof(requestBody));
 
-        settings.RequestBody = Encoding.UTF8.GetBytes(requestBody);
+        settings.RequestBody = !string.IsNullOrWhiteSpace(requestBody) ? Encoding.UTF8.GetBytes(requestBody) : [];
 
         return settings;
     }
