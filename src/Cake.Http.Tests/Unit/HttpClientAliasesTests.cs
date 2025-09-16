@@ -562,7 +562,7 @@ namespace Cake.Http.Tests.Unit
 
                 var record = Record.Exception(() => _Context.HttpGet(address, settings));
 
-                CakeAssert.IsExceptionWithMessage<TimeoutException>(record.InnerException, "The operation was canceled.");
+                CakeAssert.IsExceptionWithMessage<TimeoutException>(record.InnerException, "A task was canceled.");
             }
 
             [Fact]
