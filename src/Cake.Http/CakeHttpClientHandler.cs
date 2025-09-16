@@ -1,11 +1,6 @@
 using Cake.Core;
-using System;
-using System.Linq;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Cake.Http;
 
@@ -29,6 +24,11 @@ public class CakeHttpClientHandler : HttpClientHandler
 
         UseDefaultCredentials = settings.UseDefaultCredentials;
         UseCookies = false;
+
+        if (settings.IgnoreServerCertificateErrors)
+        {
+            ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+        }
 
         foreach (var clientCertificate in settings.ClientCertificates)
         {

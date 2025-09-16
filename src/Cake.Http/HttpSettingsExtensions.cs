@@ -362,6 +362,22 @@ public static class HttpSettingsExtensions
     }
 
     /// <summary>
+    /// Configure the settings to ignore SSL server certificate validation errors.
+    /// Use with caution - disabling validation exposes you to man-in-the-middle attacks.
+    /// </summary>
+    /// <param name="settings">The settings.</param>
+    /// <param name="ignore">Whether to ignore server certificate validation errors.</param>
+    /// <returns>The same <see cref="HttpSettings"/> instance so that multiple calls can be chained.</returns>
+    public static HttpSettings IgnoreServerCertificateErrors(this HttpSettings settings, bool ignore = true)
+    {
+        if (settings == null)
+            throw new ArgumentNullException(nameof(settings));
+
+        settings.IgnoreServerCertificateErrors = ignore;
+        return settings;
+    }
+
+    /// <summary>
     /// Sets the timeout for the http request
     /// </summary>
     /// <param name="settings">The settings.</param>
