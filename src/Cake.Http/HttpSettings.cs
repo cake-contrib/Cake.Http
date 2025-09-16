@@ -68,4 +68,10 @@ public class HttpSettings
     /// Determines whether to log the response/request body to the console.
     /// </summary>
     public bool LogRequestResponseOutput { get; set; } = true;
+
+    /// <summary>
+    /// Determines whether SSL server certificate validation errors should be ignored.
+    /// Use with caution - disabling validation exposes you to man-in-the-middle attacks.
+    /// </summary>
+    public bool IgnoreServerCertificateErrors { get; set; }
 }
